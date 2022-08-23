@@ -9,6 +9,9 @@ edit_uri: edit/master/docs/
 
 nav:
     - Home: index.md
+    - About Me: about.md
+    - Chika's Library: library.md
+    - Sample Code: sample.md
 
 
 plugins:
@@ -22,6 +25,9 @@ plugins:
 
 theme:
   name: material
+  
+  logo: favicon_io/android-chrome-512x512.png
+  favicon: favicon_io/favicon-32x32.png
 
   icon:
       repo: fontawesome/brands/github
@@ -54,7 +60,9 @@ theme:
     - search.highlight
     - header.autohide
 
-
+extra_css:
+  - stylesheets/extra.css
+  
 extra:
 
   alternate:
@@ -72,6 +80,7 @@ extra:
       - icon: fontawesome/brands/github
         link: https://github.com/hirasawakinko/chika_home
         name: Visit Chika's Github repository
+
 
 
 
