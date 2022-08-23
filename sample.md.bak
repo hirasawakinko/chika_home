@@ -1,0 +1,11 @@
+# Sample
+
+Just testing some functionality.
+
+A sample Code is Below
+
+	def func():
+		for n in range(10):
+			print(n)
+
+	print("wow")
