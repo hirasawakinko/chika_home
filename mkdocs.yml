@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+
+site_name: Chika's Home
+copyright: Copyright &copy; 2022 Hirasawa Chika
+repo_name: chika_home
+repo_url: https://github.com/hirasawakinko/chika_home
+edit_uri: edit/master/docs/
+
+nav:
+    - Home: index.md
+
+
+plugins:
+  - search
+  - git-authors:
+      show_contribution: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_date
+
+
+theme:
+  name: material
+
+  icon:
+      repo: fontawesome/brands/github
+
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+
+  language: en
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.prune
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - header.autohide
+
+
+extra:
+
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Japanese
+      link: /ja/
+      lang: ja
+    - name: Tradition Chinese
+      link: /zh-tw/
+      lang: zh-TW
+
+  social:
+      - icon: fontawesome/brands/github
+        link: https://github.com/hirasawakinko/chika_home
+        name: Visit Chika's Github repository
+
+
+
+
+
+markdown_extensions:
+
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
