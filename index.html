@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              About this site
+              Home
             
           </span>
         </div>
@@ -129,38 +129,6 @@
         
       </form>
     
-    
-      <div class="md-header__option">
-        <div class="md-select">
-          
-          <button class="md-header__button md-icon" aria-label="Select language">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
-          </button>
-          <div class="md-select__inner">
-            <ul class="md-select__list">
-              
-                <li class="md-select__item">
-                  <a href="/en/" hreflang="en" class="md-select__link">
-                    English
-                  </a>
-                </li>
-                
-                <li class="md-select__item">
-                  <a href="/ja/" hreflang="ja" class="md-select__link">
-                    Japanese
-                  </a>
-                </li>
-                
-                <li class="md-select__item">
-                  <a href="/zh-tw/" hreflang="zh-TW" class="md-select__link">
-                    Tradition Chinese
-                  </a>
-                </li>
-                
-            </ul>
-          </div>
-        </div>
-      </div>
     
     
       <label class="md-header__button md-icon" for="__search">
@@ -222,10 +190,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="en/" class="md-tabs__link">
+    <a href="." class="md-tabs__link md-tabs__link--active">
       Home
     </a>
   </li>
@@ -237,7 +207,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="en/about/" class="md-tabs__link">
+    <a href="about/" class="md-tabs__link">
       About Me
     </a>
   </li>
@@ -249,7 +219,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="en/library/" class="md-tabs__link">
+    <a href="library/" class="md-tabs__link">
       Chika's Library
     </a>
   </li>
@@ -261,7 +231,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="en/sample/" class="md-tabs__link">
+    <a href="sample/" class="md-tabs__link">
       Sample Code
     </a>
   </li>
@@ -322,11 +292,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="en/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="." class="md-nav__link md-nav__link--active">
         Home
       </a>
+      
     </li>
   
 
@@ -339,7 +319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="en/about/" class="md-nav__link">
+      <a href="about/" class="md-nav__link">
         About Me
       </a>
     </li>
@@ -354,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="en/library/" class="md-nav__link">
+      <a href="library/" class="md-nav__link">
         Chika's Library
       </a>
     </li>
@@ -369,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="en/sample/" class="md-nav__link">
+      <a href="sample/" class="md-nav__link">
         Sample Code
       </a>
     </li>
@@ -415,17 +395,11 @@
 <h1 id="about-this-site">About this site<a class="headerlink" href="#about-this-site" title="Permanent link">&para;</a></h1>
 <details class="important" open="open">
 <summary>Important</summary>
-<p>Chika will never use none #000000 blackground in dark mode!</p>
+<p>Chika will never use none #000000 blackground in dark mode.</p>
 </details>
-<details class="question" open="open">
-<summary>Question</summary>
-<p>Choose your language</p>
-<ul>
-<li><a href="en/">English index</a></li>
-<li><a href="jp/index.md">Japanese index</a></li>
-<li><a href="zh-TW/">Traditional Chinese index</a></li>
-</ul>
-</details>
+<h1 id="who-is-chika">Who is Chika?<a class="headerlink" href="#who-is-chika" title="Permanent link">&para;</a></h1>
+<p>Check out this page to find out who is Chika!</p>
+<p><a href="about/">About Chika</a></p>
 <hr />
 <p><a href="#who-is-chika">back to top</a></p>
 
@@ -461,6 +435,27 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="about/" class="md-footer__link md-footer__link--next" aria-label="Next: About Me" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About Me
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
