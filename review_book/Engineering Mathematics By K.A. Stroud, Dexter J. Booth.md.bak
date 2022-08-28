@@ -1,0 +1,136 @@
+# Engineering Mathematics by Booth and Stroud - A Pedagogic Approach Toward Mathematical Maturity
+
+I spended 1.5 month reading and working out this **1100-pages** book:
+
+## Title
+
+> Engineering Mathematics by Booth and Stroud. 
+    
+Here is what I think about this book.
+
+## Coverage
+
+The book has a broad coverage across a lot of topics.
+    
+> - precalculus
+>     
+>     - addition, multiplication, associativity, distributivity, commutativity, linearity
+>     - identity, inverse
+>     - bin, oct, dec, hex number system and their manipulations
+>     - sin, cos, tan, cosec, sec, cotan, sinh, cosh, tanh, and their inverse
+>     - binomial expansion
+>     - complex number and e^ix = cos(x) + isin(x)
+>     - complex trigonomatric functino(sin and sinh are connected!!) 
+> 
+> - linear algebra
+> 
+>     - vector, linearity, linear combination
+>     - matrix, determinant
+>     - Eigenvalue and eigenvector
+>     - Hamilton-Caley theorem
+>     
+> - calculus
+> 
+>     - limt (no delta epsilon theorem)
+>     - derivative, partial derivative and their applications
+>     - integral, multiple integral and theor applications
+>     - first-order, second-order differential equation
+>     - LaPalace Transform and n-order differential equation
+>     - sequences and series, converge and diverge
+>     - numerical methods such as the usage of binomial and taylor expansion in integration
+>     
+> - statics
+> 
+>     - mean, mode, median 
+>     - deviation, standard variation
+>     - Bernoulli distribution, Pisson distribution, and their relationship
+>     - standard normal possibility distribution
+
+## What made this book extrodinaly?
+
+### real self-contained
+
+The authors put a great effort into the book to make it as pagmatic and pedagogic as possible. So far I have never seen a book can reach this level of completeness, namely, self-contained and pain-free. But this judgement might have a bias due to the fact that this is my second expose to calculus. And in fact in some topics the authors are just throwing equations to the readers without explaining them. I think real beginers might find confusion in those topics. Still, including those sections in the mist, the book as a whole no doubt reached a unpreccedented level of self-containness. 
+
+How many of students in the world is suffering in the abyss of "the proof is left as exercise"? That is a awful attitude in writing a book, especially a textbook. First is because student have already paid the money for the tution, or the cost of the book, still, those unfriendly, selfish and greedy authors want more from the students. Second, this approach is proven not helpful at all and its existence should be elinminated. For further details, take a look at this 2010 research.
+
+[Alfieri, L., Brooks, P. J., Aldrich, N. J., & Tenenbaum, H. R. (2011). Does discovery-based instruction enhance learning? Journal of Educational Psychology, 103(1), 1–18.](https://doi.org/10.1037/a0021017)
+> Discovery learning approaches to education have recently come under scrutiny...  
+> The findings suggest that unassisted discovery does not benefit learners, whereas feedback, worked examples, scaffolding, and elicited explanations do.
+
+[A mathematician has created a teaching method that’s proving there’s no such thing as a bad math student](https://qz.com/901125/a-mathematician-has-created-a-method-of-teaching-that-is-proving-there-is-no-such-thing-as-a-bad-math-student/)
+
+### no-bullshit proofs
+
+Greatfully, there is no such do-your-exercise bullshit in this book. Proofs and answers are **all worked out by the authors**. Student can follow these learning material with ease. Also proofs provided are simple and intuitive as hell. Some not-so-important proof are completely omited from the text. Which avoid digress from the main storyline. This will be discussed later.
+
+### learn through examples
+
+Unlike those exampleless math textbooks, this textbook is basically composited by a ton of worked out examples. Starting with some simple ones, then some variation of the patterns, and then introducing more advanced concept and skill through more examples. Usually 3 examples for 1 concept. The answers are all step-by-step guide. I believe that human learn better with examples rather than boring text and axioms. Just like researchs failed in making artifical intellegence in the early days, but then they gain a great success these days as soon as they realise that it is the matter of the volume of examples i.e. training data, and iterations. Most textbook failed at teaching anything but this book is different. 
+
+
+### barrier-free
+
+But I would argue that the examples and problems are a bit too easy. If you are pusuring competitive exams, this may not for you. But think of this, what is the point of making examples and problems insanely difficult to a beginer? Books for beginers should help student to build their confidence and attitude toware the subject instead of torturing. It is meaningless to make the learning curve so steep. It can only be a barrier instead of a ladder. You are doing so to keep people out from knowledge and keep the unknowledged and poverty. 
+
+
+## What is lacking in the book?
+
+Obviously there are handful of advanced topics are absent from this book. Especiallly those you are able to find in other commersial university calculus textbook.
+
+- rigious establishment of the concept "limit" and Delta-Epsilon-Theorem
+    - but I will argue that this is totally unnecessary since the concept of limit is easy, it is just the mathematical definition is written ugly.
+
+- the fundamental theorem of calculus 
+    - but the authurs does introduc it conceptually and without the name of it. I would say acceptible.
+
+## My favorite
+
+The introduction to complex number and the following hyperbolic function are fantasic.
+
+First they introduce trigonometry function such as sin cos tan. Then complex number. After that there is the Taylor Expansion of sin cos. So reader will know that complex number can be expressed in the form of 
+
+    r[ cos(x) + isin(x) ].
+
+Next, they introduce the concept of add and even function. Gradually carry to the point that hyperbolic sine and cosine is the odd and even part of e^ix. This conneced complex number to hyperboic functions.
+
+Lastly, what if we do sinh(ix) instead of sinh(x)? After working out, turn out hyperbolic function with a complex number being inputed is normal trigonometry. 
+
+The author spend a great effor to show me that 
+
+    [trigonometry - complex number - hyperbolic function] 
+    
+are all connected. At the end I am shocked by this discovery. Now I feel I finally understand what a hyperbolic function is. This is a Ah-Ha moment that other formal calculus book fail to gave me.
+
+## Chapters are Structured
+
+Obviously the authors sorted the chapters intentionally just like the [my favorite](#my-favorite) mentioned above. I can see there is a clear dependence tree made behind the scene. In particular, You don't need to know integral before you do partital derivative. Also you need to know both integral and derivative to do differential equation. And there is another consideration: clustering the related topics so that reader will can carry on to more advance topic before they forget.
+
+This is the order of chapters after considering the dependence tree:
+
+> 1. derivative
+> 1. partial derivative
+> 1. integral
+> 1. multiple integral
+> 1. differential equation
+    
+While other "formal" calculus is like:
+
+> 1. derivative
+> 1. integral
+> 1. differential equation 
+> 1. partial derivative
+> 1. multiple integral
+> 1. differential equation 
+    
+This kind of ordering obviously did not account for the memory loss nature of human readers. And in fact this happens to me. I almost forget anything from the derivative while I was looking at partial derivate, after the lengthy chapter of integral and applications of integral.
+
+## Almost Typo-free
+
+I worked out almost pages and the examples, found almost no typo. Except where placese should be "cosecant", are left empty. Mystery. 
+
+
+## Summary
+
+Engineering Mathematic by Booth and Stroud is a epic unconventional book for you to learn and refresh the basics of college level mathematics. It covers a lot of topics and kindly provides insane amount of worked example for readers. This book the a corner stone in math pedagogy. No one can unsee this book after seeing it. 
+ 
