@@ -102,7 +102,7 @@ The author spend a great effor to show me that
     
 are all connected. At the end I am shocked by this discovery. Now I feel I finally understand what a hyperbolic function is. This is a Ah-Ha moment that other formal calculus book fail to gave me.
 
-## Chapters are Structured
+## Chapters are Ordered Structurally
 
 Obviously the authors sorted the chapters intentionally just like the [my favorite](#my-favorite) mentioned above. I can see there is a clear dependence tree made behind the scene. In particular, You don't need to know integral before you do partital derivative. Also you need to know both integral and derivative to do differential equation. And there is another consideration: clustering the related topics so that reader will can carry on to more advance topic before they forget.
 
