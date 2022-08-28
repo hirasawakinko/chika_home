@@ -73,6 +73,33 @@ Unlike those exampleless math textbooks, this textbook is basically composited b
 
 But I would argue that the examples and problems are a bit too easy. If you are pusuring competitive exams, this may not for you. But think of this, what is the point of making examples and problems insanely difficult to a beginer? Books for beginers should help student to build their confidence and attitude toware the subject instead of torturing. It is meaningless to make the learning curve so steep. It can only be a barrier instead of a ladder. You are doing so to keep people out from knowledge and keep the unknowledged and poverty. 
 
+### Chapters are Ordered Structurally
+
+Obviously the authors sorted the chapters intentionally just like the [my favorite](#my-favorite) mentioned above. I can see there is a clear dependence tree made behind the scene. In particular, You don't need to know integral before you do partital derivative. Also you need to know both integral and derivative to do differential equation. And there is another consideration: clustering the related topics so that reader will can carry on to more advance topic before they forget.
+
+This is the order of chapters after considering the dependence tree:
+
+> 1. derivative
+> 1. partial derivative
+> 1. integral
+> 1. multiple integral
+> 1. differential equation
+    
+While other "formal" calculus is like:
+
+> 1. derivative
+> 1. integral
+> 1. differential equation 
+> 1. partial derivative
+> 1. multiple integral
+> 1. differential equation 
+    
+This kind of ordering obviously did not account for the memory loss nature of human readers. And in fact this happens to me. I almost forget anything from the derivative while I was looking at partial derivate, after the lengthy chapter of integral and applications of integral.
+
+### Almost Typo-free
+
+I worked out almost pages and the examples, found almost no typo. Except where placese should be "cosecant", are left empty. Mystery. 
+
 
 ## What is lacking in the book?
 
@@ -101,34 +128,6 @@ The author spend a great effor to show me that
     [trigonometry - complex number - hyperbolic function] 
     
 are all connected. At the end I am shocked by this discovery. Now I feel I finally understand what a hyperbolic function is. This is a Ah-Ha moment that other formal calculus book fail to gave me.
-
-## Chapters are Ordered Structurally
-
-Obviously the authors sorted the chapters intentionally just like the [my favorite](#my-favorite) mentioned above. I can see there is a clear dependence tree made behind the scene. In particular, You don't need to know integral before you do partital derivative. Also you need to know both integral and derivative to do differential equation. And there is another consideration: clustering the related topics so that reader will can carry on to more advance topic before they forget.
-
-This is the order of chapters after considering the dependence tree:
-
-> 1. derivative
-> 1. partial derivative
-> 1. integral
-> 1. multiple integral
-> 1. differential equation
-    
-While other "formal" calculus is like:
-
-> 1. derivative
-> 1. integral
-> 1. differential equation 
-> 1. partial derivative
-> 1. multiple integral
-> 1. differential equation 
-    
-This kind of ordering obviously did not account for the memory loss nature of human readers. And in fact this happens to me. I almost forget anything from the derivative while I was looking at partial derivate, after the lengthy chapter of integral and applications of integral.
-
-## Almost Typo-free
-
-I worked out almost pages and the examples, found almost no typo. Except where placese should be "cosecant", are left empty. Mystery. 
-
 
 ## Summary
 
