@@ -1,0 +1,309 @@
+# Optimising Python loops
+
+## Never Write Recursion
+
+Recursion come with cost. Every time you call a function, new resources needed to be allocated. Here is a comparsion of recursive and loop version of the same fibonacci function.
+
+First lets see the recursive one.
+
+    def recursive_fibonacci(x):
+        return ( recursive_fibonacci(x-1) + recursive_fibonacci(x-2) if x>=2
+                else 1 if x==1
+                else 0 if x == 0
+                else -1 )
+
+    recursive_coode = """
+    x = [recursive_fibonacci(n) for n in range(30)]
+    """
+    
+    import cProfile
+    cProfile.run(recursive_coode)
+
+    >>>
+             4356590 function calls (34 primitive calls) in 7.765 seconds
+
+       Ordered by: standard name
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    0.000    0.000    7.765    7.765 <string>:1(<module>)
+            1    0.000    0.000    7.765    7.765 <string>:2(<listcomp>)
+    4356586/30   7.765    0.000    7.765    0.259 Fibonancci.py:6(recursive_fibonacci)
+            1    0.000    0.000    7.765    7.765 {built-in method builtins.exec}
+            1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+            
+And here is the loop one.
+            
+    def loop_fibonacci(x):
+        # Split the domain of input into 3 parts
+        # x<0 | 0<=x<2 | 2<=x
+        # For each case:
+        
+        if x<2:
+            return 0 if x==0 else 1 if x==1 else -1
+        
+        # Minimun return from here is x==2
+        total = 0
+        
+        one_less = 1 # fibonacci(1)
+        two_less = 0 # fibonacci(0)
+        
+        i = 2
+        
+        while i <= x:
+            one_less, two_less = one_less + two_less, one_less
+            i += 1
+            
+        else:
+            return one_less
+                            
+    loop_code = """
+    y = [loop_fibonacci(n) for n in range(30)]
+    """
+    
+    import cProfile
+    cProfile.run(loop_code)
+        
+    >>>
+             34 function calls in 0.001 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 <string>:2(<listcomp>)
+       30    0.000    0.000    0.000    0.000 Fibonancci.py:19(loop_fibonacci)
+        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        
+        
+Immediately you can see the difference. Loop version takes so little time compare to the recursive one. Because of that, I need to increase the number to when will them be the costing same time.
+
+    loop_code = """
+    y = [loop_fibonacci(n) for n in range(3750)]
+    """
+    
+    import cProfile
+    cProfile.run(loop_code)
+    
+    >>>
+             3754 function calls in 7.659 seconds
+
+       Ordered by: standard name
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    0.000    0.000    7.659    7.659 <string>:1(<module>)
+            1    0.009    0.009    7.659    7.659 <string>:2(<listcomp>)
+         3750    7.650    0.002    7.650    0.002 Fibonancci.py:19(loop_fibonacci)
+            1    0.000    0.000    7.659    7.659 {built-in method builtins.exec}
+            1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+It shows that loop fibonacci function can make a 3575-element long series while recursive one can only make a 30-element long in the same time span.
+
+Let's analysis that. 
+
+Each function call on any fibonacci, say fibonacci(k), it needs to recalculate everything from 0 to k. Obviously this is a waste. Because we have already obtained some numbers in previous iterations isn't it? 
+
+Driven by this thought, here is another tips to optimise your loop.
+
+## Store The Results If You Are Going To Reuse It
+
+If you know you are going to reuse a calculation result, you have better store that somewhere! Below is the fibonacci function implemented.
+
+    # We have to wrap the fibonacci function into nested loop
+
+    def loop_fibonacci_series(count_to):
+        
+        book = {0: 0,
+                1: 1,
+                }
+
+        # Handle exceptional case first
+        if count_to < 0:
+            return [-1]
+            
+        result = []
+        put = result.append  # Preload the function to speedup
+
+        for x in range(count_to):
+            if x in book:
+                put(book[x])
+            else:
+                book[x] = temp = book[x-1] + book[x-2]
+                put(temp)
+            
+        return result
+               
+    loop_series_code = """
+    z = [loop_fibonacci_series(3750)]
+    """
+    
+    import cProfile
+    cProfile.run(loop_series_code)
+
+    >>>
+             3754 function calls in 0.018 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.017    0.017 <string>:1(<module>)
+        1    0.015    0.015    0.017    0.017 Fibonancci.py:52(loop_fibonacci_series)
+        1    0.000    0.000    0.018    0.018 {built-in method builtins.exec}
+     3750    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        
+As you can see, the time span reduced a lot. It is almost a million times faster than the recursive version from there! But, still there are rooms for improvement.
+
+## Preallocating Memory
+
+List and Dict in Python are flexble sized. It will grow into bigger size when you need more. But that growing also takes time. As you append more and more items into the list, or the dict, soon it may again fulled and need another growth. When this happens a lot, it takes a lot of time to deal with the memory space arrangement.
+
+Therefore given that you know how many resources you need, you can preallocate that amount of memory. 
+
+    # We have to wrap the fibonacci function into nested loop
+
+    def loop_fibonacci_series(count_to):
+
+        book = {n:None for n in range(count_to)}
+        book.update({
+                0: 0,
+                1: 1,
+                })
+
+        # Handle exceptional case first
+        if count_to < 0:
+            return [-1]
+            
+        result = [None for n in range(count_to)]  # Preallocate memory
+        put = result.append  # Preload the function to speedup
+
+        for x in range(count_to):
+            if x in book:
+                put(book[x])
+            else:
+                book[x] = temp = book[x-1] + book[x-2]
+                put(temp)
+            
+        return result
+                                
+    loop_series_code = f"""
+    z = [loop_fibonacci_series(count_to)]
+    """
+    
+    import cProfile
+    cProfile.run(loop_series_code)
+
+    >>> 
+             3757 function calls in 0.009 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.009    0.009 <string>:1(<module>)
+        1    0.005    0.005    0.009    0.009 Fibonancci.py:86(loop_fibonacci_series)
+        1    0.001    0.001    0.001    0.001 Fibonancci.py:88(<dictcomp>)
+        1    0.001    0.001    0.001    0.001 Fibonancci.py:98(<listcomp>)
+        1    0.000    0.000    0.009    0.009 {built-in method builtins.exec}
+     3750    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+        
+        
+You can see that this is even faster!
+
+## Say Goodbye To itertools.combinations
+
+Let say you need the combinations of some sort of arrangement as the input.
+
+    def some_func(x, y, z):
+        pass
+        
+The standard the to use itertools.combinations to do it. For example,
+
+    from itertools import combinations
+    
+    for x,y,z in combinations(X, Y, Z):
+        print(some_func(x,y,z))
+                
+However this is unoptimised because x and y must reset in every iteration. Despite that say you are counting combinations of numbers.
+
+    000 001 010 011 ...
+
+You see the value in x rarely changed.
+
+This leads to the dicision that nested for loop is still the recommented way to do it right.
+
+Combinations:
+
+    def use_combinations(count_to):
+        from itertools import combinations
+
+        f = loop_fibonacci  # from previous code
+
+        result = []
+        put = result.append
+
+        for x,y,z in combinations(range(count_to), r=3):
+            # Let say we somehow need to do a little manipluation to the value.
+            # Because x,y,z value reset everytime, you need to calculate this again and again.
+            fx, fy, fz = f(x), f(y), f(z)
+            put((fx, fy, fz))
+
+        return result
+        
+    import cProfile
+    cProfile.run("use_combinations(100)")
+    
+    >>>
+             646804 function calls in 13.517 seconds
+
+       Ordered by: standard name
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    0.036    0.036   13.516   13.516 <string>:1(<module>)
+            1    0.769    0.769   13.481   13.481 Fibonancci.py:147(use_combinations)
+       485100   12.622    0.000   12.622    0.000 Fibonancci.py:20(loop_fibonacci)
+            1    0.000    0.000   13.517   13.517 {built-in method builtins.exec}
+       161700    0.089    0.000    0.089    0.000 {method 'append' of 'list' objects}
+            1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        
+Nested Loop:
+    
+    def use_nest(count_to):
+        X = range(count_to)
+        f = loop_fibonacci
+
+        result = []
+        put = result.append
+
+        for x in (X):
+            # Let say we somehow need to do a little manipluation to the value.
+            # It will just stay until the next iteration, before that, never gonna changed.
+            # Thus save us a significant amount of time.
+            fx = f(x)
+            
+            for y in range(x+1, count_to):
+                fy = f(y)
+
+                for z in range(y+1, count_to):
+                    fz = f(z)
+                    put((fx, fy, fz))
+                    
+    import cProfile
+    cProfile.run("use_nest(100)")
+    
+    >>>
+                 328454 function calls in 7.097 seconds
+
+       Ordered by: standard name
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    0.030    0.030    7.097    7.097 <string>:1(<module>)
+            1    0.413    0.413    7.067    7.067 Fibonancci.py:122(use_nest)
+       166750    6.565    0.000    6.565    0.000 Fibonancci.py:20(loop_fibonacci)
+            1    0.000    0.000    7.097    7.097 {built-in method builtins.exec}
+       161700    0.088    0.000    0.088    0.000 {method 'append' of 'list' objects}
+            1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+Well, the time span speaks for itself. 
+
