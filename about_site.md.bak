@@ -56,10 +56,10 @@ pip install mkdocs-rss-plugin
 		
 		// Code color shades
 		--md-code-fg-color:                hsla(var(--md-hue), 18%, 90%, 1);
-		--md-code-bg-color:                hsla(var(--md-hue), 0%,  8%, 1);
-		
+		--md-code-bg-color:                hsla(var(--md-hue), 0%, 8%, 1);
+
 		// Code highlighting color shades
-		--md-code-hl-color:                hsla( 60, 100%, 70%, 1);
+		--md-code-hl-color:                hsla( 90, 100%, 50%, 1);
 		--md-code-hl-number-color:         hsla(180, 100%, 70%, 1);
 		--md-code-hl-special-color:        hsla(300, 100%, 50%, 1);
 		--md-code-hl-function-color:       hsla(200, 100%, 50%, 1);
@@ -72,7 +72,7 @@ pip install mkdocs-rss-plugin
 		--md-code-hl-comment-color:        hsla(150, 100%, 50%, 1);
 		--md-code-hl-generic-color:        var(--md-default-fg-color);
 		--md-code-hl-variable-color:       var(--md-default-fg-color);
-		
+    
 		// Admonition color shades
 		--md-admonition-fg-color:          var(--md-default-fg-color);
 		--md-admonition-bg-color:          var(--md-default-bg-color);   

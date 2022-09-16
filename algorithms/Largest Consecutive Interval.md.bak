@@ -227,7 +227,7 @@ case c
 
 This means that either connected or disjointed.
 
-``` py
+``` py hl_lines="9-11"
 from bisect import bisect as find
 
 A = [ (1 4) (7 9) ]
@@ -489,184 +489,184 @@ def find_maximum_len(intervals):
 5  # (5 6 7 8 9)
 ```
 
-=== "Real Maxium Interval"
+# Real Maxium Interval
 
-	However there is a problem.
+However there is a problem.
 
-	Everything before is saying that [1,2,3,4] is not consecutive with [5,6,7,8].
+Everything before is saying that [1,2,3,4] is not consecutive with [5,6,7,8].
 
-	But they are actually consecutive. See, [1,2,3,4,5,6,7,8]. Thus the algorithm need some refinement.
+But they are actually consecutive. See, [1,2,3,4,5,6,7,8]. Thus the algorithm need some refinement.
 
-	For any arbitrary interval (lo, hi), you should also consider if (lo-1, hi+1) is consecutive with any other intervals. 
+For any arbitrary interval (lo, hi), you should also consider if (lo-1, hi+1) is consecutive with any other intervals. 
 
-	``` py hl_lines="20 45"
-	from bisect import bisect as find
+``` py hl_lines="20 45"
+from bisect import bisect as find
 
-	def find_lowest(A, lo):
-		i = find(A, lo)
-		
-		# boundary case
-		if i == 0:
-			lowest = 0, 0  # limit@0
-			
-		else:
-			# i is odd, case b
-			if i % 2:  
-				# since lo is within the interval, 
-				# the lowest point is left boundary of that interval
-				lowest = A[i-1], i-1
-				
-			# i is even, case c
-			else:
-				# disjoint
-				if A[i-1] < lo-1:  #--- now comparing with lo-1
-					lowest = lo, i
-				# connected	
-				else:
-					lowest = A[i-2], i-2
-
-		return lowest
-		
-		
-	def find_highest(A, hi):
-		i = find(A, hi)
-		
-		# boundary case
-		if i == len(A):
-			highest = hi, len(A)
-		
-		else:
-			# i is odd, case b
-			if i % 2:  
-				# since hi is within the interval, 
-				# the highest point is right boundary of that interval
-				highest = A[i], i  # be careful with python indexing
-			
-			# i is even, case a
-			else:  
-				if hi+1 < A[i]:  #--- now comparing with hi+1
-					# disjointed 
-					highest = hi, i
-				else:
-					highest = A[i+1], i+2  # be careful with python indexing
-					# [ ... hi 7 9  ... ] 
-					#          ^ find(A,i) return index:i of this position
-
-		return highest
+def find_lowest(A, lo):
+	i = find(A, lo)
 	
+	# boundary case
+	if i == 0:
+		lowest = 0, 0  # limit@0
 		
-	def find_maximum_len(intervals):
-		maximun = 0
-		A = []
-		
-		for new_interval in intervals:
-			lo, hi = new_interval
+	else:
+		# i is odd, case b
+		if i % 2:  
+			# since lo is within the interval, 
+			# the lowest point is left boundary of that interval
+			lowest = A[i-1], i-1
 			
-			# combine intervals
-			lo, lo_limit = find_lowest(A, lo)
-			hi, up_limit = find_highest(A, hi)
-			
-			# update the list
-			A = A[:lo_limit] + [lo, hi] + A[up_limit:]
-			
-			# is this the largest consecutive interval?
-			leng = lo - hi
-			if leng > maximun:
-				maximum = leng
-				
-		return maximun+1
-		
-	>>> intervals = [(1,4), (7,9), (5,8)]
-	>>> find_maximum_len(intervals)
-	9  # (1 2 3 4 5 6 7 8 9)
-	```
-	
-=== "General Maxium Interval"
-
-	In the previous section you can see that there is only 2 point where we have +-some value to incooperate with the idea of `interval-width of 1`. Therefore this can be parameterize and process any arbitrary interval-width.
-
-	``` py hl_lines="3 20 29 45"
-	from bisect import bisect as find
-
-	def find_lowest(A, lo, r=1):
-		i = find(A, lo)
-		
-		# boundary case
-		if i == 0:
-			lowest = 0, 0  # limit@0
-			
+		# i is even, case c
 		else:
-			# i is odd, case b
-			if i % 2:  
-				# since lo is within the interval, 
-				# the lowest point is left boundary of that interval
-				lowest = A[i-1], i-1
-				
-			# i is even, case c
+			# disjoint
+			if A[i-1] < lo-1:  #--- now comparing with lo-1
+				lowest = lo, i
+			# connected	
 			else:
-				# disjoint
-				if A[i-1] < lo-r:  #--- parametrize
-					lowest = lo, i
-				# connected	
-				else:
-					lowest = A[i-2], i-2
+				lowest = A[i-2], i-2
 
-		return lowest
+	return lowest
+	
+	
+def find_highest(A, hi):
+	i = find(A, hi)
+	
+	# boundary case
+	if i == len(A):
+		highest = hi, len(A)
+	
+	else:
+		# i is odd, case b
+		if i % 2:  
+			# since hi is within the interval, 
+			# the highest point is right boundary of that interval
+			highest = A[i], i  # be careful with python indexing
 		
+		# i is even, case a
+		else:  
+			if hi+1 < A[i]:  #--- now comparing with hi+1
+				# disjointed 
+				highest = hi, i
+			else:
+				highest = A[i+1], i+2  # be careful with python indexing
+				# [ ... hi 7 9  ... ] 
+				#          ^ find(A,i) return index:i of this position
+
+	return highest
+
+	
+def find_maximum_len(intervals):
+	maximun = 0
+	A = []
+	
+	for new_interval in intervals:
+		lo, hi = new_interval
 		
-	def find_highest(A, hi, r=1):
-		i = find(A, hi)
+		# combine intervals
+		lo, lo_limit = find_lowest(A, lo)
+		hi, up_limit = find_highest(A, hi)
 		
-		# boundary case
-		if i == len(A):
-			highest = hi, len(A)
+		# update the list
+		A = A[:lo_limit] + [lo, hi] + A[up_limit:]
 		
+		# is this the largest consecutive interval?
+		leng = lo - hi
+		if leng > maximun:
+			maximum = leng
+			
+	return maximun+1
+	
+>>> intervals = [(1,4), (7,9), (5,8)]
+>>> find_maximum_len(intervals)
+9  # (1 2 3 4 5 6 7 8 9)
+```
+
+# General Maxium Interval
+
+In the previous section you can see that there is only 2 point where we have +-some value to incooperate with the idea of `interval-width of 1`. Therefore this can be parameterize and process any arbitrary interval-width.
+
+``` py hl_lines="3 20 29 45"
+from bisect import bisect as find
+
+def find_lowest(A, lo, r=1):
+	i = find(A, lo)
+	
+	# boundary case
+	if i == 0:
+		lowest = 0, 0  # limit@0
+		
+	else:
+		# i is odd, case b
+		if i % 2:  
+			# since lo is within the interval, 
+			# the lowest point is left boundary of that interval
+			lowest = A[i-1], i-1
+			
+		# i is even, case c
 		else:
-			# i is odd, case b
-			if i % 2:  
-				# since hi is within the interval, 
-				# the highest point is right boundary of that interval
-				highest = A[i], i  # be careful with python indexing
-			
-			# i is even, case a
-			else:  
-				if hi+r < A[i]:  #--- parametrize
-					# disjointed 
-					highest = hi, i
-				else:
-					highest = A[i+1], i+2  # be careful with python indexing
-					# [ ... hi 7 9  ... ] 
-					#          ^ find(A,i) return index:i of this position
+			# disjoint
+			if A[i-1] < lo-r:  #--- parametrize
+				lowest = lo, i
+			# connected	
+			else:
+				lowest = A[i-2], i-2
 
-		return highest
-
-
-	def low_and_high(A, lo, hi, r=1):
-		return find_lowest(A, lo, r), find_highest(A, hi, r)
-
-
-	def find_maximum_len(intervals, r=1):
-		maximun = 0
-		A = []
+	return lowest
+	
+	
+def find_highest(A, hi, r=1):
+	i = find(A, hi)
+	
+	# boundary case
+	if i == len(A):
+		highest = hi, len(A)
+	
+	else:
+		# i is odd, case b
+		if i % 2:  
+			# since hi is within the interval, 
+			# the highest point is right boundary of that interval
+			highest = A[i], i  # be careful with python indexing
 		
-		for new_interval in intervals:
-			lo, hi = new_interval
-			
-			# combine intervals
-			(lo, lo_limit), (hi, up_limit) = low_and_high(A, lo, hi, r)
-			
-			# update the list
-			A = A[:lo_limit] + [lo, hi] + A[up_limit:]
-			
-			# is this the largest consecutive interval?
-			leng = lo - hi
-			if leng > maximun:
-				maximum = leng
-				
-		return maximun+1
+		# i is even, case a
+		else:  
+			if hi+r < A[i]:  #--- parametrize
+				# disjointed 
+				highest = hi, i
+			else:
+				highest = A[i+1], i+2  # be careful with python indexing
+				# [ ... hi 7 9  ... ] 
+				#          ^ find(A,i) return index:i of this position
 
-	>>> intervals = [(1,4), (7,9), (5,8)]
-	>>> r = 1
-	>>> find_maximum_len(intervals, r)
-	9  # (1 2 3 4 5 6 7 8 9)
-	```
+	return highest
+
+
+def low_and_high(A, lo, hi, r=1):
+	return find_lowest(A, lo, r), find_highest(A, hi, r)
+
+
+def find_maximum_len(intervals, r=1):
+	maximun = 0
+	A = []
+	
+	for new_interval in intervals:
+		lo, hi = new_interval
+		
+		# combine intervals
+		(lo, lo_limit), (hi, up_limit) = low_and_high(A, lo, hi, r)
+		
+		# update the list
+		A = A[:lo_limit] + [lo, hi] + A[up_limit:]
+		
+		# is this the largest consecutive interval?
+		leng = lo - hi
+		if leng > maximun:
+			maximum = leng
+			
+	return maximun+1
+
+>>> intervals = [(1,4), (7,9), (5,8)]
+>>> r = 1
+>>> find_maximum_len(intervals, r)
+9  # (1 2 3 4 5 6 7 8 9)
+```
