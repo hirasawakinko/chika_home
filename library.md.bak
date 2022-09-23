@@ -6,85 +6,17 @@ This is Chika's library!
 
 ---
 
-### OpenStax
-- <https://openstax.org/subjects>
-- Rice University
-	- free and super thick college level textbooks
-
-
-### Open Textbook Library
-- <https://open.umn.edu/opentextbooks/>
-- University of Minnesota
-	- a hub of many university level free textbook
-
-
-### Open Textbook
-- <https://collection.bccampus.ca>
-- BCcampus
-	- a hub of many university level free textbook
-
-
-### Open Library
-- <https://openlibrary.org>
-- InternetArchive.org
-	- acient books can be found here.
-
-
-### NAP Library
-- <https://nap.nationalacademies.org/topic/?browse=1>
-- Nation Academies of Sciences Engineering Medicine of USA
-	- anything published by the USA academies can be found here
-	- super board cover of topics
-	- state of arts knowledge for the general public
-	- totally free
-
-
-### OECD Library
-- <https://www.oecd-ilibrary.org/books>
-- OECD
-	- research results from international institution
-	- focus on regional or national issues
-	- some books are open access.
-	- university usually paid for the subscription
-
-### LibreTexts
-- <https://libretexts.org>
-- University of California Davis
-	- textbooks that being used inside university campus
-	- unintuitive website
-	
-
-### MIT OCW
-- <https://ocw.mit.edu>
-- Massachusetts Institute of Technology
-	- advanced contents
-	- sometime they will upload a whole textbook
-
-
-### PSU Library
-- <https://roam.libraries.psu.edu/resources>
-- Penn State University
-	- focus on Geographic Information Science
-	- many topics that get you to graduate level
-
-
-### Springer Open Access
-- <https://link.springer.com/search?package=openaccess>
-- Springer
-	- high quality advanced topics
-
-
-## Nature Communications
-- <https://www.nature.com/ncomms/>
-- Nature
-	- science journal
-	- inspiration on research topics
-
-## Science Direct
-- <https://www.sciencedirect.com/browse/journals-and-books?accessType=openAccess>
-- Elsevier
-	- science journal
-	- portional free
-
-
+| Name | Description | By Who? | Url |
+|---|---|---|---|
+| ## OpenStax | free and super thick college level textbooks | Rice University | <https://openstax.org/subjects> |
+| Open Textbook Library | a hub of many university level free textbook | University of Minnesota | <https://open.umn.edu/opentextbooks/> | 
+| Open Textbook | a hub of many university level free textbook | BCcampus | <https://collection.bccampus.ca> |
+| Open Library | acient books can be found here | InternetArchive.org | <https://openlibrary.org> |
+| NAP Library | Nation Academies of Sciences Engineering Medicine of USA | anything published by the USA academies can be found here <br>super board cover of topics <br>state of arts knowledge for the general public <br>totally free | <https://nap.nationalacademies.org/topic/?browse=1> |
+| OECD Library | research results from international institution <br>focus on regional or national issues <br>some books are open access <br>university usually paid for the subscription | OECD | <https://www.oecd-ilibrary.org/books> |
+| LibreTexts | textbooks that being used inside university campus <br>unintuitive website | University of California Davis | <https://libretexts.org> |
+| MIT OCW | advanced contents <br>sometime they will upload a whole textbook | Massachusetts Institute of Technology | <https://ocw.mit.edu> |
+| PSU Library | focus on Geographic Information Science <br>many topics that get you to graduate level | Penn State University | <https://roam.libraries.psu.edu/resources> |
+| Springer Open Access | high quality advanced topics | Springer | <https://link.springer.com/search?package=openaccess> |
+| Nature Communications | science journal <br>inspiration on research topics | Nature | <https://www.nature.com/ncomms/> |
 

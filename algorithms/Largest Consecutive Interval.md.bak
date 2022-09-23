@@ -1,5 +1,14 @@
 # Largest Consecutive Interval
 
+# Contents
+
+1. [Data Structure](#data-structure)
+1. [Divide and Conquer](#divide-and-conquer)
+1. [Wrap Everything Up](#wrap-everything-ip)
+1. [Real Maxium Interval](#real-maxium-interval)
+1. [General Maxium Interval](#general-maxium-interval)
+
+
 Problem:
 >    Given a list of intervals, find the largest consecutive interval
     
@@ -17,7 +26,7 @@ This doesn't sound efficient.
 
 Therefore in order to implement this algorithm efficiently, you have to work directly with intervals. 
 
-## Data Structure
+# Data Structure
 
 I choose list for the sake of simplicity.
 
@@ -71,7 +80,7 @@ This is the basic idea of this algorithm.
 
 Here is the implementation.
 
-## Divide and Conquer
+# Divide and Conquer
 
 But there is more to think about. What about boundary case? 
 
@@ -86,7 +95,7 @@ Consider the same list as previous section,
     # For arbitrary interval
 	next interval = (lo, hi)
 
-### combine intervals and update the list
+## combine intervals and update the list
 
 Before going into the details of handling lo and hi, first you need to know how to do the finishing task. 
 
@@ -132,7 +141,7 @@ However no matter which cases, the goal is in fact finding the slicing indices o
 
     => A[0:2] = combined_intervals
 
-### in case of lo
+## in case of lo
 
 First deal with lo.
 
@@ -195,7 +204,7 @@ else:  # i is even
 			lowest = A[i-2]
 ```
 
-### boundary case
+## boundary case
 
 What if lo is the smallest number and find(A, lo)==0 ? 
 
@@ -259,7 +268,7 @@ def find_lowest(A, lo):
 	return lowest
 ```
 			
-### slicing index
+## slicing index
 		
 And this is not enough. After finding the lowest and highest point, you have to combine intervals and update the list. 
 
@@ -312,7 +321,7 @@ def find_lowest(A, lo):
 (5, 2)
 ```
 
-### in case of hi
+## in case of hi
 
 hi is almost the same.
 
@@ -381,7 +390,7 @@ def find_highest(A, hi):
 (10, 4)
 ```
 
-### find maximun length
+## find maximun length
 
 You have to loop through the list of intervals. 
 
@@ -405,7 +414,7 @@ def find_maximum_len(intervals):
 	return i
 ```
 	
-## Wrap Everything Up
+# Wrap Everything Up
 
 ``` py
 from bisect import bisect as find
