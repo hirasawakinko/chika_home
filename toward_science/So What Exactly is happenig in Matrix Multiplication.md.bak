@@ -212,7 +212,6 @@ Or this can be, somehow there is another team of colleagues consist of 3 people 
     [ 2  1  2 ]              [shop4_sales_by_v  new_shop4_sales_by_w]
     [ 1  5  0 ]              [shop5_sales_by_v  new_shop5_sales_by_w]
     
-    
 # How are these related to deep learning?
     
 As I explained in this article, using matrix multiplication help you solve that "many things are inter-related to each other" problem, this is why machine learning use Linear Algebra as its backbone.
