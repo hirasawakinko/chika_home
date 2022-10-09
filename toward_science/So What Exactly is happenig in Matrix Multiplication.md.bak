@@ -1,0 +1,272 @@
+# So What Exactly is happenig in Matrix Multiplication?
+
+- [Motivation of Matrix * Vector](#motivation-of-matrix-vector)
+- [Non square matrix?](#non-square-matrix)
+- [Matrix * Matrix](#matrix-matrix)
+- [How are these related to deep learning?](#how-are-these-related-to-deep-learning)
+
+Linear Algebra and Matrix Multiplication is propably the most spooky and mysterious mathematical function in the world. You can look up any textbooks, they suck, none of them really talk about how this work, why work in this way, and why not the other ways. Turn out no one seems understand what exactly is happening in Matrix Multiplication? I heard you say "no, you are wrong, I am one of the authors of that pile of books and I am sure I know my stuff". Oh yea? Prove my that. Oh you have already proved that. You wrote a book. And the content doesn't reflect that you understand Matrix at all.
+
+So here is me, after reading several of those insufferable textbooks, giving up understanding what really is a Matrix and its Multiplication. Then this idea comes up with my mind when I was reading a book about deep learning few days ago...
+
+# Motivation of Matrix * Vector
+
+> Let say there exist some factors, represented as a vector
+
+    v = [v1]
+        [v2]
+        [v3]
+    
+v is a vector, so I make it into a conventional column vector. v consist of 3 components of v1 v2 v3.
+
+And there are actions being token upon those values of v1 v2 v3. For example they represents wages of labers. The boss devided to increase everybody's wages by 100%. How are you going to computer that using vector?
+
+    new_v = 2 * [v1]
+                [v2]
+                [v3]
+        
+          = [2 v1]
+            [2 v2]
+            [2 v3]
+
+This is how you would do it. Multiple every component of the vector by a common scalar quantity. This sounds easy, but what about this. 
+
+> The boss now decided to increase everyone's wages by totatl sum of 10% of their colleagues' wages. 
+
+Now you cannot simply multiply a scalar quantity and call it a day. You need to look at other people's wages in order to determine the amount of increment. Rephase in the language of mathematical function:
+
+Before:
+    
+    eq.1) new_v1 = 2 * v1
+    
+    define this as function f (func_f) .
+    f is a function of variable v1.
+    
+After: 
+
+    eq.2) new_v1 = v1 + 0.1*v2 + 0.1*v3
+    
+    define this as function g (func_g) .
+    g is a function of variables {v1, v2, v3} .
+    
+Now that you see eq.2 got more variables on the right side of the equation, also indicate that is a multi-variable function. new_v1 do not only rely on the value of old_v1, only rely on old value of v2 and v3. 
+
+This sounds like non-STEM people talking about society issues. "XX phenomenon is due to many factors thus it is complicated, so that we need more research into that blah blah blah". Of couse you need more research. But speaking of research, we have already had the right tool for anlysing this kind of multi-factor multi-cause phenomenon. This tool is called Linear Algebra. 
+
+So how can Linear Algebra solve this kind of multi-factor problem?
+
+You do a Matrix Multiplication.
+
+First consider just the case of v1. Namely, the process of old_v1 transfer to new_v1.
+
+    new_v1 = [1 0.1 0.1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 1*v1 + 0.1*v2 + 0.1*v3
+
+So this is a vector * vector situation. Or formally you may call it a "inner product" or a "scalar product". Looking at the right side of the equation, there is a row vector on the left and column vector on the right, you multiply them component-wise, and that add them together. The result will be a scaler quantity, not vector. This is how you produce the new value of v1.
+
+And there is hidden parameter underneath this inner product. That is, components of all vectors are position-aware. You must not alter any of the position arbitrary. Let say swaping 1 and 0.1 in the row vector for fun, and you will get the wrong answer.
+
+    new_v1' = [0.1 1 0.1] * [v1]
+                            [v2]
+                            [v3]
+
+            = 0.1*v1 + 1*v2 + 0.1*v3
+            
+It is because there the position matters. The position means something. In particular, in the column vector, from top to the bottom, it contains the information of colleague no.1 to 3 respectively. And in the row vector, from left to right, it contains the information the coefficient you wanted to multiply toward colleague no.1 to 3's wages respectively.
+
+    [coef for v1, coef for v2, coef for v3] * [v1=wage of colleague 1]
+                                              [v2=wage of colleague 2]
+                                              [v3=wage of colleague 3]
+
+You can subsitute any value you like, as long as you obey the idea of what meaning does that position represent.
+
+So this is the case for new_v1. What about new_v2 and new_v3?
+
+    new_v2 = [0.1 1 0.1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 0.1*v1 + 1*v2 + 0.1*v3
+
+    new_v3 = [0.1 0.1 1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 0.1*v1 + 0.1*v2 + 1*v3
+           
+You can see that they are structually the same accross v1 v2 v3. They are all inner product.
+
+Now, we are producting the new wage one-by-one, which seems inefficient. Is there a way to do all for once? Yes. That is the Matrix * Vector.
+
+Before going into Matrix * Vector, there is a key idea that must be recap. That is, components in the column vector is position-aware and you can not change that afterwards. Namely:
+
+    [v1=wage of colleague 1]
+    [v2=wage of colleague 2]
+    [v3=wage of colleague 3]
+
+Thus after computing their new wages, the position excusively for one person is still  for that same person. 
+
+    [old_v1] -> [new_v1]
+    [old_v2] -> [new_v2]
+    [old_v3] -> [new_v3]
+
+Column vector is still vector, and that position is still representing the particular person's wage. In one word, the column vector should  should maintain the same structure after we compute the new value for it.
+
+This is what we have already know.
+
+    new_v1 = [1 0.1 0.1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 1*v1 + 0.1*v2 + 0.1*v3 = new_v1
+
+    new_v2 = [0.1 1 0.1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 0.1*v1 + 1*v2 + 0.1*v3 = new_v2
+
+    new_v3 = [0.1 0.1 1] * [v1]
+                           [v2]
+                           [v3]
+
+           = 0.1*v1 + 0.1*v2 + 1*v3 = new_v2
+
+And they should be in this structure.
+
+    [new_v1]
+    [new_v2]
+    [new_v3]
+    
+You may have already see this coming. 
+
+    [ 1   0.1  0.1] * [v1] = [new_v1] 
+    [0.1   1   0.1]   [v2]   [new_v2]  
+    [0.1  0.1   1 ]   [v3]   [new_v3] 
+    
+To make it visually making more sense, I should write it in this way.
+
+    multiply their values to everyone in the same column
+                            > [ v1   v2   v3]
+                              
+    this row outputs new_v1 > [ 1   0.1  0.1] = [new_v1] 
+    this row outputs new_v2 > [0.1   1   0.1]   [new_v2]  
+    this row outputs new_v3 > [0.1  0.1   1 ]   [new_v3] 
+    
+This answers two questions at the same time.
+
+Why is that multiplying a matrix need to do row-column, row-column kind of stuff (as what conventional textbooks told you to do) ?
+
+> It is to maintain the structure of the input vector. Meanwhile, still has to make sure the output is a linear combination of the old ones ( namely new_v1 = a*v1 + b*v2 + c*v3 ) . So that you are able to deal with the "many things are inter-related to each other" hard problem.
+
+# Non square matrix?
+
+But there also exist non square matrix in the world, as the only matrix presented in the previous section is merely a square matrix. How can I make sense to any of those non square matrix?
+
+Recap the last picture in the previous section.
+
+    multiply their values to everyone in the same column
+                            > [ v1   v2   v3]
+                              
+    this row outputs new_v1 > [ 1   0.1  0.1] = [new_v1] 
+    this row outputs new_v2 > [0.1   1   0.1]   [new_v2]  
+    this row outputs new_v3 > [0.1  0.1   1 ]   [new_v3] 
+
+Previously, we are considering the positional meaning of the output vector is the same as the input vector. They still representing wages of someone. What if now it does not anymore. Say, now these 3 colleagues's wages are affecting other stuffs. For example they will spend their money on their weekend, and there are many local stores in the shopping mall. Somehow you get to know how exactly they are going to spend on those stores. Thus you can have this new matrix multiplication.
+
+    multiply their values to everyone in the same column
+                                 > [ v1 v2 v3]
+                              
+    this row outputs shop1_sales > [ 1  0  3 ] = [shop1_sales] 
+    this row outputs shop2_sales > [ 0  2  0 ]   [shop2_sales]  
+    this row outputs shop3_sales > [ 3  0  4 ]   [shop3_sales]
+    this row outputs shop4_sales > [ 2  1  2 ]   [shop4_sales] 
+    this row outputs shop5_sales > [ 1  5  0 ]   [shop5_sales] 
+    
+    [ 1  0  3 ] * [v1] = [shop1_sales]
+    [ 0  2  0 ]   [v2]   [shop2_sales]
+    [ 3  0  4 ]   [v3]   [shop3_sales]
+    [ 2  1  2 ]          [shop4_sales]
+    [ 1  5  0 ]          [shop5_sales]
+
+Does this make sense?
+
+# Matrix * Matrix
+
+So, as the boss increase their wages, they can spend more to buy things. And they are not going to change their shopping behavior at all. And you want to see what is the different between now and then. You can do this, Matrix * Matrix .
+
+    [ 1  0  3 ] * [v1  new_v1] = [shop1_sales  new_shop1_sales]
+    [ 0  2  0 ]   [v2  new_v2]   [shop2_sales  new_shop2_sales]
+    [ 3  0  4 ]   [v3  new_v1]   [shop3_sales  new_shop3_sales]
+    [ 2  1  2 ]                  [shop4_sales  new_shop4_sales]
+    [ 1  5  0 ]                  [shop5_sales  new_shop5_sales]
+
+Or this can be, somehow there is another team of colleagues consist of 3 people (w1 w2 w3), also they shop on the same shopping mall in the weekend and the way they spend their money is totally the same as those 3 people back there.
+
+    [ 1  0  3 ] * [v1  w1] = [shop1_sales_by_v  new_shop1_sales_by_w]
+    [ 0  2  0 ]   [v2  w2]   [shop2_sales_by_v  new_shop2_sales_by_w]
+    [ 3  0  4 ]   [v3  w3]   [shop3_sales_by_v  new_shop3_sales_by_w]
+    [ 2  1  2 ]              [shop4_sales_by_v  new_shop4_sales_by_w]
+    [ 1  5  0 ]              [shop5_sales_by_v  new_shop5_sales_by_w]
+    
+    
+# How are these related to deep learning?
+    
+As I explained in this article, using matrix multiplication help you solve that "many things are inter-related to each other" problem, this is why machine learning use Linear Algebra as its backbone.
+
+For example there is a picture. You are going to write a program to determin what is in the picture. There may be a person in the picture, or maybe a dog, or a cat, or a flower. But this task is not easy at all per the programming point of view. There may be hair-like stuff in the picture but that doesn't automatically lead to the conclusion that there is a dog inside the picture. A dog is more that hairs. Maybe paws + hairs + big eyes + more can satisfy most of the features of a dog. But writing such program to capture all the features of a dog is overwhelmingly complex. What should you do? Matrix multiplication.
+
+    Matrix * [pixel1] = [feature1]
+             [pixel2]   [feature2]
+             [pixel3]   [feature3]
+             .          [feature4]
+             .          [feature5]
+             .          [feature6]
+                        .
+                        .
+                        .
+
+After gone through all the previous sections you should be able to see how this works. Otherwise just inform me that my explaination sucks. I will try improve it and edit it if you request.
+
+So ultimately you want to extract whether there is this feature or that feature from the original picture. You multiply the vector consitute of information of the original picture by the specific matrix. So that for example the feature1, will be a linear combination of all the pixels.
+
+    feature1 = a*pixel1 + b*pixel2 + c*pixel3 + ...
+    
+For instance, if feature49 requires that pixel1, 3, 26 are filled with color at the same time, and everything else are leave blank:
+
+    feature49 = +a*pixel1 -b*picel2 +c*pixel3 -d*pixel4 -... + z*pixel26
+
+Every pixel that is not in {1,3,26} contribute nagetively to the value of feature49. Only when pixels in {1,3,26} are filled with colors and not the others satisfy the existence of feature49, otherwise the picture do not have feature49.
+
+So you extract the basic features from picture. There is more you can do. What about combination of features. For example a more complex feature that requires feature1 and feature2 's existence at the same time. Like recognizing hairs and paws. The next step is to recogize that "having hairs and paws at the sametime" is also a feature. So there is another matrix multiplication for this.
+
+    Matrix2 * [feature1] = [complex_feature1]
+              [feature2]   [complex_feature2]
+              [feature3]   [complex_feature3]
+              [feature4]   [complex_feature4]
+              [feature5]   [complex_feature5]
+              [feature6]   [complex_feature6]
+              .            [complex_feature7]
+              .            [complex_feature8]
+              .            .
+                           .
+                           .
+
+And you can do this again and again and agin... finally you have a row vactor that decides that having such super complex feature indicate that it is highly likely to have a dog inside the picture.
+
+    Row Vector * [super_complex_feature1] = (a scalar. zero or one. yes or no.)
+                 [super_complex_feature2]   
+                 [super_complex_feature3]   
+                 [super_complex_feature4]   
+                 [super_complex_feature5]   
+                 [super_complex_feature6]   
+                 .            
+                 .            
+                 .            
+
+Now deep learning make sense too, after understanding what is happening in Matrix Multiplication.
+
+And also it is not hard to understand that solving problems through Linear Algebra is way more complex then any methods by non-STEM schoolars. You can sure have absurb larger matrix to include every single distinct feature of everything to study how they are inter-related. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. So all they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will said. But I disagree.  
