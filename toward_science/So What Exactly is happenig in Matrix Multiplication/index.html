@@ -512,6 +512,15 @@
 </ul>
 <p>Matrix Multiplication in Linear Algebra is probably the most spooky and mysterious mathematical function in the world. You can look it up in any textbooks, they suck, none of them really talk about how it works, why it works in that way, and why not the other ways. Turn out no one seems understand what exactly is happening in Matrix Multiplication? I heard you say "no, you are wrong, I am one of the authors of that pile of books and I am sure I know my stuff". Oh yeah? Prove my that. Oh you have already proved that. You wrote a book. And the content doesn't reflect that you understand Matrix at all.</p>
 <p>So here is me, after reading several of those insufferable textbooks, giving up understanding what really is a Matrix and its Multiplication. Then this idea comes up with my mind when I was reading a book about deep learning few days ago...</p>
+<h1 id="assuming">Assuming<a class="headerlink" href="#assuming" title="Permanent link">&para;</a></h1>
+<p>I assume reader of this article has basic ideas about Vector, Matrix, Inner Product. Also I assume that reader do not understand the way that why Matrix multiply stuffs in that way. </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1 2 3 ] * [x] = [ 1x+2y+3z   blah     blah ]
+[ 4 5 6 ]   [y]   [   blah     blah     blah ]
+[ 7 8 9 ]   [z]   [   blah     blah     blah ]
+</code></pre></div></td></tr></table></div>
+<p>I assume that you are asking: ^What the ** does this means????</p>
 <h1 id="motivation-of-matrix-vector">Motivation of Matrix * Vector<a class="headerlink" href="#motivation-of-matrix-vector" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Let say there exist some factors, represented as a vector</p>

@@ -9,6 +9,16 @@ Matrix Multiplication in Linear Algebra is probably the most spooky and mysterio
 
 So here is me, after reading several of those insufferable textbooks, giving up understanding what really is a Matrix and its Multiplication. Then this idea comes up with my mind when I was reading a book about deep learning few days ago...
 
+# Assuming
+
+I assume reader of this article has basic ideas about Vector, Matrix, Inner Product. Also I assume that reader do not understand the way that why Matrix multiply stuffs in that way. 
+
+    [ 1 2 3 ] * [x] = [ 1x+2y+3z   blah     blah ]
+    [ 4 5 6 ]   [y]   [   blah     blah     blah ]
+    [ 7 8 9 ]   [z]   [   blah     blah     blah ]
+    
+    (^What the ** does this means????)
+
 # Motivation of Matrix * Vector
 
 > Let say there exist some factors, represented as a vector
@@ -274,4 +284,4 @@ And you can do this again and again and agin... finally you have a row vactor th
 
 Now deep learning make sense too, after understanding what is happening in Matrix Multiplication.
 
-And also it is not hard to understand that solving problems through Linear Algebra can handle way more complex problems then any methods by non-STEM scholars. You sure can have absurbly larger matrix to represent every single distinct feature of everything to study how they are inter-related to each other. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. All they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will say. But I disagree.  
+And also it is not hard to understand that solving problems through Linear Algebra can handle way more complex problems then any methods by non-STEM scholars. You sure can have absurbly larger matrix to represent every single distinct feature of everything to study how they are inter-related to each other. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. All they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will say. But I disagree.
