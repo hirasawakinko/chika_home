@@ -510,7 +510,7 @@
 <li><a href="#matrix-matrix">Matrix * Matrix</a></li>
 <li><a href="#how-are-these-related-to-deep-learning">How are these related to deep learning?</a></li>
 </ul>
-<p>Linear Algebra and Matrix Multiplication is propably the most spooky and mysterious mathematical function in the world. You can look up any textbooks, they suck, none of them really talk about how this work, why work in this way, and why not the other ways. Turn out no one seems understand what exactly is happening in Matrix Multiplication? I heard you say "no, you are wrong, I am one of the authors of that pile of books and I am sure I know my stuff". Oh yea? Prove my that. Oh you have already proved that. You wrote a book. And the content doesn't reflect that you understand Matrix at all.</p>
+<p>Matrix Multiplication in Linear Algebra is probably the most spooky and mysterious mathematical function in the world. You can look it up in any textbooks, they suck, none of them really talk about how it works, why it works in that way, and why not the other ways. Turn out no one seems understand what exactly is happening in Matrix Multiplication? I heard you say "no, you are wrong, I am one of the authors of that pile of books and I am sure I know my stuff". Oh yeah? Prove my that. Oh you have already proved that. You wrote a book. And the content doesn't reflect that you understand Matrix at all.</p>
 <p>So here is me, after reading several of those insufferable textbooks, giving up understanding what really is a Matrix and its Multiplication. Then this idea comes up with my mind when I was reading a book about deep learning few days ago...</p>
 <h1 id="motivation-of-matrix-vector">Motivation of Matrix * Vector<a class="headerlink" href="#motivation-of-matrix-vector" title="Permanent link">&para;</a></h1>
 <blockquote>
@@ -523,7 +523,7 @@
     [v3]
 </code></pre></div></td></tr></table></div>
 <p>v is a vector, so I make it into a conventional column vector. v consist of 3 components of v1 v2 v3.</p>
-<p>And there are actions being token upon those values of v1 v2 v3. For example they represents wages of labers. The boss devided to increase everybody's wages by 100%. How are you going to computer that using vector?</p>
+<p>And there are actions being token upon those values of v1 v2 v3. For example they represent wages of labers. The boss devided to increase everybody's wages by 100%. How are you going to computer that using vector?</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -540,7 +540,7 @@
 </code></pre></div></td></tr></table></div>
 <p>This is how you would do it. Multiple every component of the vector by a common scalar quantity. This sounds easy, but what about this. </p>
 <blockquote>
-<p>The boss now decided to increase everyone's wages by totatl sum of 10% of their colleagues' wages. </p>
+<p>The boss now decided to increase everyone's wages by the total sum of 10% of their colleagues' wages. </p>
 </blockquote>
 <p>Now you cannot simply multiply a scalar quantity and call it a day. You need to look at other people's wages in order to determine the amount of increment. Rephase in the language of mathematical function:</p>
 <p>Before:</p>
@@ -549,7 +549,7 @@
 <span class="normal">3</span>
 <span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>eq.1) new_v1 = 2 * v1
 
-define this as function f (func_f) .
+define this as function f as func_f .
 f is a function of variable v1.
 </code></pre></div></td></tr></table></div>
 <p>After: </p>
@@ -558,10 +558,10 @@ f is a function of variable v1.
 <span class="normal">3</span>
 <span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>eq.2) new_v1 = v1 + 0.1*v2 + 0.1*v3
 
-define this as function g (func_g) .
+define this as function g as func_g .
 g is a function of variables {v1, v2, v3} .
 </code></pre></div></td></tr></table></div>
-<p>Now that you see eq.2 got more variables on the right side of the equation, also indicate that is a multi-variable function. new_v1 do not only rely on the value of old_v1, only rely on old value of v2 and v3. </p>
+<p>Now that you see eq.2 got more variables on the right side of the equation, also indicate that it is a multi-variable function. new_v1 do not only rely on the value of old_v1, only rely on old value from v2 and v3. </p>
 <p>This sounds like non-STEM people talking about society issues. "XX phenomenon is due to many factors thus it is complicated, so that we need more research into that blah blah blah". Of couse you need more research. But speaking of research, we have already had the right tool for anlysing this kind of multi-factor multi-cause phenomenon. This tool is called Linear Algebra. </p>
 <p>So how can Linear Algebra solve this kind of multi-factor problem?</p>
 <p>You do a Matrix Multiplication.</p>
@@ -577,7 +577,8 @@ g is a function of variables {v1, v2, v3} .
        = 1*v1 + 0.1*v2 + 0.1*v3
 </code></pre></div></td></tr></table></div>
 <p>So this is a vector * vector situation. Or formally you may call it a "inner product" or a "scalar product". Looking at the right side of the equation, there is a row vector on the left and column vector on the right, you multiply them component-wise, and that add them together. The result will be a scaler quantity, not vector. This is how you produce the new value of v1.</p>
-<p>And there is hidden parameter underneath this inner product. That is, components of all vectors are position-aware. You must not alter any of the position arbitrary. Let say swaping 1 and 0.1 in the row vector for fun, and you will get the wrong answer.</p>
+<p>Through the inner product, now you are mixing up the values of all components. new_v1 have some portion of v2 and some portion of v3 in it. So this is a multi-factor stuff!</p>
+<p>And there is hidden parameter underneath this inner product. That is, components of all vectors are position-aware. You must not alter any of the position arbitrarily. Let say swaping 1 and 0.1 in the row vector for fun, and you will get the wrong answer.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -588,14 +589,14 @@ g is a function of variables {v1, v2, v3} .
 
         = 0.1*v1 + 1*v2 + 0.1*v3
 </code></pre></div></td></tr></table></div>
-<p>It is because there the position matters. The position means something. In particular, in the column vector, from top to the bottom, it contains the information of colleague no.1 to 3 respectively. And in the row vector, from left to right, it contains the information the coefficient you wanted to multiply toward colleague no.1 to 3's wages respectively.</p>
+<p>It is because the position matters. The position means something even it is not written out. In particular, in the column vector, from top to the bottom, it contains the information of colleague no.1 to 3 respectively. And in the row vector, from left to right, it contains the information the coefficient you wanted to multiply toward colleague no.1 to 3's wages respectively.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[coef for v1, coef for v2, coef for v3] * [v1=wage of colleague 1]
                                           [v2=wage of colleague 2]
                                           [v3=wage of colleague 3]
 </code></pre></div></td></tr></table></div>
-<p>You can subsitute any value you like, as long as you obey the idea of what meaning does that position represent.</p>
+<p>You can subsitute any real value you like, as long as you obey the idea of what meaning does that position represents.</p>
 <p>So this is the case for new_v1. What about new_v2 and new_v3?</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -628,14 +629,15 @@ new_v3 = [0.1 0.1 1] * [v1]
 [v2=wage of colleague 2]
 [v3=wage of colleague 3]
 </code></pre></div></td></tr></table></div>
-<p>Thus after computing their new wages, the position excusively for one person is still  for that same person. </p>
+<p>Thus after computing their new wages, the position excusively for one person is still reserved for that same person. </p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[old_v1] -&gt; [new_v1]
 [old_v2] -&gt; [new_v2]
 [old_v3] -&gt; [new_v3]
 </code></pre></div></td></tr></table></div>
-<p>Column vector is still vector, and that position is still representing the particular person's wage. In one word, the column vector should  should maintain the same structure after we compute the new value for it.</p>
+<p>Column vector is still column vector, and that position is still representing the particular person's wage. In one word, the column vector must maintain the exact same structure after Matrix * Vector.</p>
+<p>To be clear:</p>
 <p>This is what we have already know.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -678,7 +680,7 @@ new_v3 = [0.1 0.1 1] * [v1]
 [new_v2]
 [new_v3]
 </code></pre></div></td></tr></table></div>
-<p>You may have already see this coming. </p>
+<p>You may have already see this coming. You just combine them structurely.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1   0.1  0.1] * [v1] = [new_v1] 
@@ -747,6 +749,7 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
 [ 2  1  2 ]          [shop4_sales]
 [ 1  5  0 ]          [shop5_sales]
 </code></pre></div></td></tr></table></div>
+<p>By such non square Matrix Multiplication, not only you have changed the size of the vector outcome, you also changed what those components in the vector are standing for. And these changes are intended and information of what stands for what is embeded in the Matrix you choose to multiply.</p>
 <p>Does this make sense?</p>
 <h1 id="matrix-matrix">Matrix * Matrix<a class="headerlink" href="#matrix-matrix" title="Permanent link">&para;</a></h1>
 <p>So, as the boss increase their wages, they can spend more to buy things. And they are not going to change their shopping behavior at all. And you want to see what is the different between now and then. You can do this, Matrix * Matrix .</p>
@@ -800,7 +803,7 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>feature49 = +a*pixel1 -b*picel2 +c*pixel3 -d*pixel4 -... + z*pixel26
 </code></pre></div></td></tr></table></div>
 <p>Every pixel that is not in {1,3,26} contribute nagetively to the value of feature49. Only when pixels in {1,3,26} are filled with colors and not the others satisfy the existence of feature49, otherwise the picture do not have feature49.</p>
-<p>So you extract the basic features from picture. There is more you can do. What about combination of features. For example a more complex feature that requires feature1 and feature2 's existence at the same time. Like recognizing hairs and paws. The next step is to recogize that "having hairs and paws at the sametime" is also a feature. So there is another matrix multiplication for this.</p>
+<p>So you extracted the basic features from picture. There is more you can do. What about combination of basic features. For example a more complex feature that requires feature1 and feature2 's co-existence. Like recognizing hairs and paws. The next step is to recogize that "having hairs and having paws at the same time" is important than either one of those. So there is another matrix multiplication for this.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -823,7 +826,7 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
                        .
                        .
 </code></pre></div></td></tr></table></div>
-<p>And you can do this again and again and agin... finally you have a row vactor that decides that having such super complex feature indicate that it is highly likely to have a dog inside the picture.</p>
+<p>And you can do this again and again and agin... finally you have a row vactor that decides which super complex feature indicates that it is highly likely to have a dog inside a picture.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -843,18 +846,18 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
              .
 </code></pre></div></td></tr></table></div>
 <p>Now deep learning make sense too, after understanding what is happening in Matrix Multiplication.</p>
-<p>And also it is not hard to understand that solving problems through Linear Algebra is way more complex then any methods by non-STEM schoolars. You can sure have absurb larger matrix to include every single distinct feature of everything to study how they are inter-related. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. So all they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will say. But I disagree.  </p>
+<p>And also it is not hard to understand that solving problems through Linear Algebra can handle way more complex problems then any methods by non-STEM scholars. You sure can have absurbly larger matrix to represent every single distinct feature of everything to study how they are inter-related to each other. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. All they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will say. But I disagree.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-10</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-09</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-10</span>
       
     
   </small>
