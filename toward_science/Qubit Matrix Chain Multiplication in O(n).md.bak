@@ -447,7 +447,8 @@ However, for the chain multiplication situation, since there is no need to R/W i
 Until now, I have been ignoring the coefficients, mainly focused on Pauli Operators. All comparison stated above is:
 
     conventional with coefficient 
-    VS new without coefficient
+    VS 
+    new without coefficient
 
 So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 10X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work.
 
