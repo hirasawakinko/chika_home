@@ -13,7 +13,7 @@
     
     
       
-        <title>So What Exactly is happenig in Matrix Multiplication? - Chika's Home</title>
+        <title>Qubit Matrix Chain Multiplication in O(n) - Chika's Home</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#so-what-exactly-is-happenig-in-matrix-multiplication" class="md-skip">
+        <a href="#qubit-matrix-chain-multiplication-in-on" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              So What Exactly is happenig in Matrix Multiplication?
+              Qubit Matrix Chain Multiplication in O(n)
             
           </span>
         </div>
@@ -497,117 +497,50 @@
                 
                   
 
-  <a href="https://github.com/hirasawakinko/chika_home/edit/master/docs/toward_science/So What Exactly is happenig in Matrix Multiplication.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/hirasawakinko/chika_home/edit/master/docs/toward_science/Qubit Matrix Chain Multiplication in O(n).md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="so-what-exactly-is-happenig-in-matrix-multiplication">So What Exactly is happenig in Matrix Multiplication?<a class="headerlink" href="#so-what-exactly-is-happenig-in-matrix-multiplication" title="Permanent link">&para;</a></h1>
+<h1 id="qubit-matrix-chain-multiplication-in-on">Qubit Matrix Chain Multiplication in O(n)<a class="headerlink" href="#qubit-matrix-chain-multiplication-in-on" title="Permanent link">&para;</a></h1>
 <ul>
-<li><a href="#assuming">Assuming</a></li>
-<li><a href="#motivation-of-matrix-vector">Motivation of Matrix * Vector</a></li>
-<li><a href="#non-square-matrix">Non square matrix?</a></li>
-<li><a href="#matrix-matrix">Matrix * Matrix</a></li>
-<li><a href="#how-are-these-related-to-deep-learning">How are these related to deep learning?</a></li>
+<li><a href="#benchmark">Benchmark</a></li>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#current-status">Current status</a></li>
+<li><a href="#naive-coding">Naive coding</a></li>
+<li><a href="#what-i-have-done-in-sympauli">What I have done in SymPauli</a></li>
+<li><a href="#relational-data-structure-and-super-parallelism">Relational data structure and super parallelism</a></li>
+<li><a href="#chain-multiplication">Chain multiplication</a></li>
+<li><a href="#scalablility">Scalablility</a></li>
+<li><a href="#but-comes-with-great-penalty">But comes with great penalty</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
-<p>Matrix Multiplication in Linear Algebra is probably the most spooky and mysterious mathematical function in the world. You can look it up in any textbooks, they suck, none of them really talk about how it works, why it works in that way, and why not the other ways. Turn out no one seems understand what exactly is happening in Matrix Multiplication? I heard you say "no, you are wrong, I am one of the authors of that pile of books and I am sure I know my stuff". Oh yeah? Prove my that. Oh you have already proved that. You wrote a book. And the content doesn't reflect that you understand Matrix at all.</p>
-<p>So here is me, after reading several of those insufferable textbooks, giving up understanding what really is a Matrix and its Multiplication. Then this idea comes up with my mind when I was reading a book about deep learning few days ago...</p>
-<h1 id="assuming">Assuming<a class="headerlink" href="#assuming" title="Permanent link">&para;</a></h1>
-<p>I assume reader of this article has basic ideas about Vector, Matrix, Inner Product. Also I assume that reader do not understand the way that why Matrix multiply stuffs in that way. </p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1 2 3 ] * [ x i t ] = [ 1x+2y+3z   blah     blah ]
-[ 4 5 6 ]   [ y j u ]   [   blah     blah     blah ]
-[ 7 8 9 ]   [ z k v ]   [   blah     blah     blah ]
+<h1 id="benchmark">Benchmark<a class="headerlink" href="#benchmark" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th><img alt="Benchmark result of summation part" src="../images/sympauli_bennchmark_1.png" /></th>
+<th><img alt="Benchmark result of chain multiplication part" src="../images/sympauli_bennchmark_2.png" /></th>
+<th><img alt="Benchmark result of chain multiplication part (Sympauli only)" src="../images/sympauli_bennchmark_3.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="sympauli">SymPauli<a class="headerlink" href="#sympauli" title="Permanent link">&para;</a></h1>
+<p><a href="https://github.com/hirasawakinko/SymPauli">https://github.com/hirasawakinko/SymPauli</a></p>
+<h1 id="basics">Basics<a class="headerlink" href="#basics" title="Permanent link">&para;</a></h1>
+<p>Any Matrix can be expressed in sum of Pauli Operator.</p>
+<p>Pauli Operator a set of operation in quantum computing. They are denoted as</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>I, X, Y, Z
 </code></pre></div></td></tr></table></div>
-<p>I assume that you are asking: ^What the ** does this means????</p>
-<h1 id="motivation-of-matrix-vector">Motivation of Matrix * Vector<a class="headerlink" href="#motivation-of-matrix-vector" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>Let say there exist some factors, represented as a vector</p>
-</blockquote>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>v = [v1]
-    [v2]
-    [v3]
-</code></pre></div></td></tr></table></div>
-<p>v is a vector, so I make it into a conventional column vector. v consist of 3 components of v1 v2 v3.</p>
-<p>And there are actions being token upon those values of v1 v2 v3. For example they represent wages of labers. The boss devided to increase everybody's wages by 100%. How are you going to computer that using vector?</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>new_v = 2 * [v1]
-            [v2]
-            [v3]
-
-      = [2 v1]
-        [2 v2]
-        [2 v3]
-</code></pre></div></td></tr></table></div>
-<p>This is how you would do it. Multiple every component of the vector by a common scalar quantity. This sounds easy, but what about this. </p>
-<blockquote>
-<p>The boss now decided to increase everyone's wages by the total sum of 10% of their colleagues' wages. </p>
-</blockquote>
-<p>Now you cannot simply multiply a scalar quantity and call it a day. You need to look at other people's wages in order to determine the amount of increment. Rephase in the language of mathematical function:</p>
-<p>Before:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>eq.1) new_v1 = 2 * v1
-
-define this as function f as func_f .
-f is a function of variable v1.
-</code></pre></div></td></tr></table></div>
-<p>After: </p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>eq.2) new_v1 = v1 + 0.1*v2 + 0.1*v3
-
-define this as function g as func_g .
-g is a function of variables {v1, v2, v3} .
-</code></pre></div></td></tr></table></div>
-<p>Now that you see eq.2 got more variables on the right side of the equation, also indicate that it is a multi-variable function. new_v1 do not only rely on the value of old_v1, only rely on old value from v2 and v3. </p>
-<p>This sounds like non-STEM people talking about society issues. "XX phenomenon is due to many factors thus it is complicated, so that we need more research into that blah blah blah". Of couse you need more research. But speaking of research, we have already had the right tool for anlysing this kind of multi-factor multi-cause phenomenon. This tool is called Linear Algebra. </p>
-<p>So how can Linear Algebra solve this kind of multi-factor problem?</p>
-<p>You do a Matrix Multiplication.</p>
-<p>First consider just the case of v1. Namely, the process of old_v1 transfer to new_v1.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>new_v1 = [1 0.1 0.1] * [v1]
-                       [v2]
-                       [v3]
-
-       = 1*v1 + 0.1*v2 + 0.1*v3
-</code></pre></div></td></tr></table></div>
-<p>So this is a vector * vector situation. Or formally you may call it a "inner product" or a "scalar product". Looking at the right side of the equation, there is a row vector on the left and column vector on the right, you multiply them component-wise, and that add them together. The result will be a scaler quantity, not vector. This is how you produce the new value of v1.</p>
-<p>Through the inner product, now you are mixing up the values of all components. new_v1 have some portion of v2 and some portion of v3 in it. So this is a multi-factor stuff!</p>
-<p>And there is hidden parameter underneath this inner product. That is, components of all vectors are position-aware. You must not alter any of the position arbitrarily. Let say swaping 1 and 0.1 in the row vector for fun, and you will get the wrong answer.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>new_v1&#39; = [0.1 1 0.1] * [v1]
-                        [v2]
-                        [v3]
-
-        = 0.1*v1 + 1*v2 + 0.1*v3
-</code></pre></div></td></tr></table></div>
-<p>It is because the position matters. The position means something even it is not written out. In particular, in the column vector, from top to the bottom, it contains the information of colleague no.1 to 3 respectively. And in the row vector, from left to right, it contains the information the coefficient you wanted to multiply toward colleague no.1 to 3's wages respectively.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[coef for v1, coef for v2, coef for v3] * [v1=wage of colleague 1]
-                                          [v2=wage of colleague 2]
-                                          [v3=wage of colleague 3]
-</code></pre></div></td></tr></table></div>
-<p>You can subsitute any real value you like, as long as you obey the idea of what meaning does that position represents.</p>
-<p>So this is the case for new_v1. What about new_v2 and new_v3?</p>
+<p>In their matrix form</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -618,37 +551,102 @@ g is a function of variables {v1, v2, v3} .
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>new_v2 = [0.1 1 0.1] * [v1]
-                       [v2]
-                       [v3]
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>I := [ 1  0 ]
+     [ 0  1 ]
 
-       = 0.1*v1 + 1*v2 + 0.1*v3
+X := [ 0  1 ]
+     [ 1  0 ]
 
-new_v3 = [0.1 0.1 1] * [v1]
-                       [v2]
-                       [v3]
+Y := [ 0 -i ]
+     [ i  0 ]
 
-       = 0.1*v1 + 0.1*v2 + 1*v3
+Z := [ 1  0 ]
+     [ 0 -1 ]
+
+The &quot;i&quot; in Y is the &quot;i&quot; of imaginary number.
 </code></pre></div></td></tr></table></div>
-<p>You can see that they are structually the same accross v1 v2 v3. They are all inner product.</p>
-<p>Now, we are producting the new wage one-by-one, which seems inefficient. Is there a way to do all for once? Yes. That is the Matrix * Vector.</p>
-<p>Before going into Matrix * Vector, there is a key idea that must be recap. That is, components in the column vector is position-aware and you can not change that afterwards. Namely:</p>
+<p>Let say there is a matrix A, you are able to carry Pauli decomposition to it.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[v1=wage of colleague 1]
-[v2=wage of colleague 2]
-[v3=wage of colleague 3]
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Pauli decomposition:
+
+matrix A = summation(i)[ coefficient i * pauli{I, X, Y, Z} ]
+
+for example 4I + 2Y + 7X - 4Z + 3Y ...
 </code></pre></div></td></tr></table></div>
-<p>Thus after computing their new wages, the position excusively for one person is still reserved for that same person. </p>
+<p>Then you can carry out tensor product to make larger matrix.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>I tensor X
+
+= [ 1  0 ] tensor X
+  [ 0  1 ]
+
+= [ X  0 ]
+  [ 0  X ]
+
+= [ 0  1  0  0 ]
+  [ 1  0  0  0 ]
+  [ 0  0  0  1 ]
+  [ 0  0  1  0 ]
+</code></pre></div></td></tr></table></div>
+<p>And the rules of multiplications are:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[old_v1] -&gt; [new_v1]
-[old_v2] -&gt; [new_v2]
-[old_v3] -&gt; [new_v3]
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>I* == + *
+*I == + *
+XY ==  iZ
+YX == -iZ
+YZ ==  iX
+ZY == -iX
+ZX ==  iY
+XZ == -iY
 </code></pre></div></td></tr></table></div>
-<p>Column vector is still column vector, and that position is still representing the particular person's wage. In one word, the column vector must maintain the exact same structure after Matrix * Vector.</p>
-<p>To be clear:</p>
-<p>This is what we have already know.</p>
+<p>You may try multipying those by hand, to confirm that they are valid.</p>
+<p>And obviously these symbolic rules are valid, you can avoid matrix multiplication, and merely do the string manipulation.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>IX -&gt; X
+XY -&gt; Z
+YZ -&gt; X
+...
+</code></pre></div></td></tr></table></div>
+<p>For exaple:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>matrix A = 4I + 2Y + 7X - 4Z + 3Y
+
+matrix A * Pauli X
+= (4I + 2Y + 7X - 4Z + 3Y) * X
+= (4A + 2Z + 7I - 4Y + 3Z)
+</code></pre></div></td></tr></table></div>
+<p>I omitted all those coefficient changes. Not because you don't have to, it is just because coefficient is not the main concern in this research.</p>
+<h1 id="current-status">Current status<a class="headerlink" href="#current-status" title="Permanent link">&para;</a></h1>
+<p>There are many Python library can do such symbolic quantum computation, however, not fast enough.</p>
+<p>Algorithm they use are naive, causing masive redundent runtime. For example OpenFermion.</p>
+<p>Some are not even usnig symbolic computation. Those are just expend string input into a matrix, and then carryout matrix vector multiplication. For example Qiskit, Qulacs. Which makes them absurbly slow in some of the most simple tasks.</p>
+<p>For example this.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -665,72 +663,126 @@ new_v3 = [0.1 0.1 1] * [v1]
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>new_v1 = [1 0.1 0.1] * [v1]
-                       [v2]
-                       [v3]
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code>(*) represent tensor product
 
-       = 1*v1 + 0.1*v2 + 0.1*v3 = new_v1
+matrix A 
+= I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*) 
+  I (*) I (*) I (*) I (*) I (*) I (*) I (*)
 
-new_v2 = [0.1 1 0.1] * [v1]
-                       [v2]
-                       [v3]
-
-       = 0.1*v1 + 1*v2 + 0.1*v3 = new_v2
-
-new_v3 = [0.1 0.1 1] * [v1]
-                       [v2]
-                       [v3]
-
-       = 0.1*v1 + 0.1*v2 + 1*v3 = new_v2
+Now we multiply it by
+matrix B 
+= X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*) 
+  X (*) X (*) X (*) X (*) X (*) X (*) X (*)
 </code></pre></div></td></tr></table></div>
-<p>And they should be in this structure.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[new_v1]
-[new_v2]
-[new_v3]
-</code></pre></div></td></tr></table></div>
-<p>You may have already see this coming. You just combine them structurely.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1   0.1  0.1] * [v1] = [new_v1] 
-[0.1   1   0.1]   [v2]   [new_v2]  
-[0.1  0.1   1 ]   [v3]   [new_v3]
-</code></pre></div></td></tr></table></div>
-<p>To make it visually making more sense, I should write it in this way.</p>
+<p>How long you think this would take? I can do this under a second single-handedly, but them? Probably take more than 1 year to output the answer.</p>
+<p>For tensor product, you multiply stuffs bitwise-ly. As <code>I*X -&gt; X</code>, the result is just matrix B itself. Cool?</p>
+<h1 id="naive-coding">Naive coding<a class="headerlink" href="#naive-coding" title="Permanent link">&para;</a></h1>
+<p>So, what about OpenFermion's naive coding? Well, they almost got it but not quite. Say you are multipying two matrix A and B:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>multiply their values to everyone in the same column
-                        &gt; [ v1   v2   v3]
-
-this row outputs new_v1 &gt; [ 1   0.1  0.1] = [new_v1] 
-this row outputs new_v2 &gt; [0.1   1   0.1]   [new_v2]  
-this row outputs new_v3 &gt; [0.1  0.1   1 ]   [new_v3]
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>matrix A  |  matrix B
+= I Y     |  = X Z
++ Y X     |  + Y Y
++ X Y     |  + X Y
++ Z X     |  + Z X
++ Y Z     |
 </code></pre></div></td></tr></table></div>
-<p>This answers two questions at the same time.</p>
-<p>Why is that multiplying a matrix need to do row-column, row-column kind of stuff (as what conventional textbooks told you to do) ?</p>
-<blockquote>
-<p>It is to maintain the structure of the input vector. Meanwhile, still has to make sure the output is a linear combination of the old ones ( namely new_v1 = a*v1 + b*v2 + c*v3 ) . So that you are able to deal with the "many things are inter-related to each other" hard problem.</p>
-</blockquote>
-<h1 id="non-square-matrix">Non square matrix?<a class="headerlink" href="#non-square-matrix" title="Permanent link">&para;</a></h1>
-<p>But there also exist non square matrix in the world, as the only matrix presented in the previous section is merely a square matrix. How can I make sense to any of those non square matrix?</p>
-<p>Recap the last picture in the previous section.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>multiply their values to everyone in the same column
-                        &gt; [ v1   v2   v3]
+<p>Just as what you will do to <code>(x + 3)(x + 2)</code>, you do the same thing to these matrix.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>first lable them...
 
-this row outputs new_v1 &gt; [ 1   0.1  0.1] = [new_v1] 
-this row outputs new_v2 &gt; [0.1   1   0.1]   [new_v2]  
-this row outputs new_v3 &gt; [0.1  0.1   1 ]   [new_v3]
+matrix A  |  matrix B
+= I Y     |  = X Z  (b1)
++ Y X     |  + Y Y  (b2)
++ X Y     |  + X Y  (b3)
++ Z X     |  + Z X  (b4)
++ Y Z     |
+
+
+matrix A * matrix B
+
+= matrix A * b1 + matrix A * b2 + matrix A * b3 ...
 </code></pre></div></td></tr></table></div>
-<p>Previously, we are considering the positional meaning of the output vector is the same as the input vector. They still representing wages of someone. What if now it does not anymore. Say, now these 3 colleagues's wages are affecting other stuffs. For example they will spend their money on their weekend, and there are many local stores in the shopping mall. Somehow you get to know how exactly they are going to spend on those stores. Thus you can have this new matrix multiplication.</p>
+<p>So you would carry the bitwise multiplication like this:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -744,76 +796,146 @@ this row outputs new_v3 &gt; [0.1  0.1   1 ]   [new_v3]
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>multiply their values to everyone in the same column
-                             &gt; [ v1 v2 v3]
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code>  X Z (b1)    Y Y  (b2)    X Y  (b3)    Z X  (b4)  
+matrix A    matrix A     matrix A     matrix A     
+= I Y       = I Y        = I Y        = I Y        
++ Y X    +  + Y X    +   + Y X    +   + Y X    +   
++ X Y       + X Y        + X Y        + X Y        
++ Z X       + Z X        + Z X        + Z X        
++ Y Z       + Y Z        + Y Z        + Y Z
 
-this row outputs shop1_sales &gt; [ 1  0  3 ] = [shop1_sales] 
-this row outputs shop2_sales &gt; [ 0  2  0 ]   [shop2_sales]  
-this row outputs shop3_sales &gt; [ 3  0  4 ]   [shop3_sales]
-this row outputs shop4_sales &gt; [ 2  1  2 ]   [shop4_sales] 
-this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
 
-[ 1  0  3 ] * [v1] = [shop1_sales]
-[ 0  2  0 ]   [v2]   [shop2_sales]
-[ 3  0  4 ]   [v3]   [shop3_sales]
-[ 2  1  2 ]          [shop4_sales]
-[ 1  5  0 ]          [shop5_sales]
+                 Y Y  (b2)    X Y  (b3)    Z X  (b4)  
+               matrix A     matrix A     matrix A     
+               = I Y        = I Y        = I Y        
+= something +  + Y X    +   + Y X    +   + Y X     
+               + X Y        + X Y        + X Y        
+               + Z X        + Z X        + Z X        
+               + Y Z        + Y Z        + Y Z
+
+
+                 X Y  (b3)    Z X  (b4)  
+               matrix A     matrix A     
+               = I Y        = I Y        
+= something +  + Y X    +   + Y X    
+               + X Y        + X Y        
+               + Z X        + Z X        
+               + Y Z        + Y Z
 </code></pre></div></td></tr></table></div>
-<p>By such non square Matrix Multiplication, not only you have changed the size of the vector outcome, you also changed what those components in the vector are standing for. And these changes are intended and information of what stands for what is embeded in the Matrix you choose to multiply.</p>
-<p>Does this make sense?</p>
-<h1 id="matrix-matrix">Matrix * Matrix<a class="headerlink" href="#matrix-matrix" title="Permanent link">&para;</a></h1>
-<p>So, as the boss increase their wages, they can spend more to buy things. And they are not going to change their shopping behavior at all. And you want to see what is the different between now and then. You can do this, Matrix * Matrix .</p>
+<p>At each step, you broadcase one row of matrix B to all rows of matrix A.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1  0  3 ] * [v1  new_v1] = [shop1_sales  new_shop1_sales]
-[ 0  2  0 ]   [v2  new_v2]   [shop2_sales  new_shop2_sales]
-[ 3  0  4 ]   [v3  new_v1]   [shop3_sales  new_shop3_sales]
-[ 2  1  2 ]                  [shop4_sales  new_shop4_sales]
-[ 1  5  0 ]                  [shop5_sales  new_shop5_sales]
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>matrix A
+= I Y * X Z (b1)
++ Y X * X Z (b1)
++ X Y * X Z (b1)
++ Z X * X Z (b1)
++ Y Z * X Z (b1)
 </code></pre></div></td></tr></table></div>
-<p>Or this can be, somehow there is another team of colleagues consist of 3 people (w1 w2 w3), also they shop on the same shopping mall in the weekend and the way they spend their money is totally the same as those 3 people back there.</p>
+<p>This approach seems legit, but absolutely we can do better and faster.</p>
+<h1 id="what-i-have-done-in-sympauli">What I have done in SymPauli<a class="headerlink" href="#what-i-have-done-in-sympauli" title="Permanent link">&para;</a></h1>
+<p>As you can see in the precious section, we have to call out matrix A multiple times in order to carryout complete process of matrix multiplication. From this, we know that matrix A is basically not going to change anyway.</p>
+<p>Also the not-so-obvious one is that, Pauli Operator has its cyclic group property. It means that we can totally predict the outcome.</p>
+<p>When you merged like terms i.e. <code>2y + 3y +7x = 5y + 7x</code>, there is only unique Pauli tensors left in the pool.</p>
+<p>Let say you have <code>I X Y Z</code>, still ignoring coefficient.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>  (I X Y Z) * X
+= (X I Z Y)
+</code></pre></div></td></tr></table></div>
+<p>(I +X +Y +Z) is the simpliest form of itself, you cannot simplify it anymore. After multiplying something, the outcome is still in its simpliest form. And you should notice that multiplication in here literally means permutation.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>[ 1  0  3 ] * [v1  w1] = [shop1_sales_by_v  new_shop1_sales_by_w]
-[ 0  2  0 ]   [v2  w2]   [shop2_sales_by_v  new_shop2_sales_by_w]
-[ 3  0  4 ]   [v3  w3]   [shop3_sales_by_v  new_shop3_sales_by_w]
-[ 2  1  2 ]              [shop4_sales_by_v  new_shop4_sales_by_w]
-[ 1  5  0 ]              [shop5_sales_by_v  new_shop5_sales_by_w]
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>  (I X Y Z) * Y
+= (Y Z I X)
+
+  (I X Y Z) * Z
+= (Z Y X I)
 </code></pre></div></td></tr></table></div>
-<h1 id="how-are-these-related-to-deep-learning">How are these related to deep learning?<a class="headerlink" href="#how-are-these-related-to-deep-learning" title="Permanent link">&para;</a></h1>
-<p>As I explained in this article, using matrix multiplication help you solve that "many things are inter-related to each other" problem, this is why machine learning use Linear Algebra as its backbone.</p>
-<p>For example there is a picture. You are going to write a program to determin what is in the picture. There may be a person in the picture, or maybe a dog, or a cat, or a flower. But this task is not easy at all per the programming point of view. There may be hair-like stuff in the picture but that doesn't automatically lead to the conclusion that there is a dog inside the picture. A dog is more that hairs. Maybe paws + hairs + big eyes + more can satisfy most of the features of a dog. But writing such program to capture all the features of a dog is overwhelmingly complex. What should you do? Matrix multiplication.</p>
+<p>Focus back on the matrix A * b1 :</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>Matrix * [pixel1] = [feature1]
-         [pixel2]   [feature2]
-         [pixel3]   [feature3]
-         .          [feature4]
-         .          [feature5]
-         .          [feature6]
-                    .
-                    .
-                    .
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>  X Z (b1)
+matrix A
+= I Y
++ Y X
++ X Y
++ Z X
++ Y Z
 </code></pre></div></td></tr></table></div>
-<p>After gone through all the previous sections you should be able to see how this works. Otherwise just inform me that my explaination sucks. I will try improve it and edit it if you request.</p>
-<p>So ultimately you want to extract whether there is this feature or that feature from the original picture. You multiply the vector consitute of information of the original picture by the specific matrix. So that for example the feature1, will be a linear combination of all the pixels.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>feature1 = a*pixel1 + b*pixel2 + c*pixel3 + ...
+<p>Further focus on the left Pauli Operators:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>  X (b1)
+matrix A
+= I
++ Y
++ X
++ Z
++ Y
 </code></pre></div></td></tr></table></div>
-<p>For instance, if feature49 requires that pixel1, 3, 26 are filled with color at the same time, and everything else are leave blank:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>feature49 = +a*pixel1 -b*picel2 +c*pixel3 -d*pixel4 -... + z*pixel26
+<p>By the previous rule, we know the answer already.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>  (I X Y Z) * X
+= (X I Z Y)
+
+  X (b1)
+matrix A
+= I -&gt; X
++ Y -&gt; Z
++ X -&gt; I
++ Z -&gt; Y
++ Y -&gt; Z
 </code></pre></div></td></tr></table></div>
-<p>Every pixel that is not in {1,3,26} contribute nagetively to the value of feature49. Only when pixels in {1,3,26} are filled with colors and not the others satisfy the existence of feature49, otherwise the picture do not have feature49.</p>
-<p>So you extracted the basic features from picture. There is more you can do. What about combination of basic features. For example a more complex feature that requires feature1 and feature2 's co-existence. Like recognizing hairs and paws. The next step is to recogize that "having hairs and having paws at the same time" is important than either one of those. So there is another matrix multiplication for this.</p>
+<p>Here you see some duplication. i.e. ee already know that <code>X*Z -&gt; Y</code>, so why are we still checking it row by row? This is just a waste of time.</p>
+<p>Here it comes the relational data structure.</p>
+<h1 id="relational-data-structure-and-super-parallelism">Relational data structure and super parallelism<a class="headerlink" href="#relational-data-structure-and-super-parallelism" title="Permanent link">&para;</a></h1>
+<p>This is one part of matrix A. And we are going to perform unified permutation operator to them all.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>matrix A
+= I * X
++ Y * X
++ X * X
++ Z * X
++ Y * X
+</code></pre></div></td></tr></table></div>
+<p>Here I purpose a relational data structure to execute a super parallelism algorithm.</p>
+<p>You have a fontend and a backend for this data structure. And you map every value of the fontend to the backend, so that its value refers to what it is at the back.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -824,19 +946,170 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>Matrix2 * [feature1] = [complex_feature1]
-          [feature2]   [complex_feature2]
-          [feature3]   [complex_feature3]
-          [feature4]   [complex_feature4]
-          [feature5]   [complex_feature5]
-          [feature6]   [complex_feature6]
-          .            [complex_feature7]
-          .            [complex_feature8]
-          .            .
-                       .
-                       .
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>front and back
+
+fontend   backend
+   I      0 = I
+   Y      1 = X
+   X      2 = Y
+   Z      3 = Z
+   Y
+
+mapping front to back
+fontend   backend
+    0      0 = I
+    2      1 = X
+    1      2 = Y
+    3      3 = Z
+    2
 </code></pre></div></td></tr></table></div>
-<p>And you can do this again and again and agin... finally you have a row vactor that decides which super complex feature indicates that it is highly likely to have a dog inside a picture.</p>
+<p>When you do multiplication, we do it to the backend, not frontend. After that, you read out values of frontend from the backend.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code>multiplying X
+fontend   backend
+    0      0 = I
+    2      1 = X     * X
+    1      2 = Y
+    3      3 = Z
+    2
+
+multiplied X
+fontend   backend
+    0      0 = X
+    2      1 = I
+    1      2 = Z
+    3      3 = Y
+    2
+
+multiplied X
+fontend   backend
+X &lt; 0       0 = X
+Z &lt; 2       1 = I
+I &lt; 1       2 = Z
+Y &lt; 3       3 = Y
+Z &lt; 2
+</code></pre></div></td></tr></table></div>
+<p>After reading out, you can reset matrix A to its init state solely by reseting the backend.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>reset backend
+fontend   backend
+I &lt; 0       0 = I
+Y &lt; 2       1 = X
+X &lt; 1       2 = Y
+Z &lt; 3       3 = Z
+Y &lt; 2
+</code></pre></div></td></tr></table></div>
+<p>So it is back to original matrix A. So you can do the next multiplication (also because it requires the original one), namely:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>  Y Y  (b2)
+matrix A
+= I Y
++ Y X
++ X Y
++ Z X
++ Y Z
+</code></pre></div></td></tr></table></div>
+<h1 id="chain-multiplication">Chain multiplication<a class="headerlink" href="#chain-multiplication" title="Permanent link">&para;</a></h1>
+<p>Last step in the last section we reset the backend. However it is not required if you are going to do a chain multiplication i.e. <code>A * b * c * d * e * ...</code>, <code>{b c d e}</code> are in small letter and they are one-row thing (not linear combination).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>fontend   backend
+   I       0 = I
+   Y       1 = X   * b * c * d * e * ...
+   X       2 = Y
+   Z       3 = Z
+   Y
+</code></pre></div></td></tr></table></div>
+<p>By not reseting the backend after every turn of multiplication, you are able to carry out the chain action that use precious state as the starting point of next action. So you can maintain the initial mapping and read the result with that initial mapping.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code>initial mapping
+fontend   backend
+    0      0 = I
+    2      1 = X  * b * c * d * e * ...
+    1      2 = Y
+    3      3 = Z
+    2
+
+after all multiplications
+fontend   backend
+    0      0 = ?
+    2      1 = ?
+    1      2 = ?
+    3      3 = ?
+    2
+
+you can read the result by the very same initial mapping
+fontend   backend
+? &lt; 0      0 = ?
+? &lt; 2      1 = ?
+? &lt; 1      2 = ?
+? &lt; 3      3 = ?
+? &lt; 2
+</code></pre></div></td></tr></table></div>
+<h1 id="scalablility">Scalablility<a class="headerlink" href="#scalablility" title="Permanent link">&para;</a></h1>
+<p>This relational data structure and algorithm is parallel native. Even not under parallel programming, still be able to gain a masive speed up.</p>
+<p>Due to the fact that all data manipulation is done solely to the backend, and the backend is as small as a constant, i.e. <code>size of backend array = 4 Pauli Operator * N qubits</code>, complexity of O(n). With this size, you can easily pack that into CPU cache and do everything in unprecedented speed.</p>
+<p>This is the initial state of a 6 qubits backend, and you have one row of your matrix is <code>(I I I I I I)</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -844,19 +1117,47 @@ this row outputs shop5_sales &gt; [ 1  5  0 ]   [shop5_sales]
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>Row Vector * [super_complex_feature1] = (a scalar. zero or one. yes or no.)
-             [super_complex_feature2]   
-             [super_complex_feature3]   
-             [super_complex_feature4]   
-             [super_complex_feature5]   
-             [super_complex_feature6]   
-             .            
-             .            
-             .
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>qubits  0  1  2  3  4  5
+
+0 = I   0  0  0  0  0  0
+1 = X   1  1  1  1  1  1
+2 = Y   2  2  2  2  2  2
+3 = Z   3  3  3  3  3  3
+
+my row : (I I I I I I) -&gt; (0 0 0 0 0 0)
 </code></pre></div></td></tr></table></div>
-<p>Now deep learning make sense too, after understanding what is happening in Matrix Multiplication.</p>
-<p>And also it is not hard to understand that solving problems through Linear Algebra can handle way more complex problems then any methods by non-STEM scholars. You sure can have absurbly larger matrix to represent every single distinct feature of everything to study how they are inter-related to each other. But what I have seen in the non-STEM field? Ploting a 3 dimensional graph is maxium. All they can imagine is up to 3 features. Hairs and paws and big-eyes and 4-legs for a dog? That counts to 4 and it is way to complicated for human to understand. "You can never understand a dog through numbers" is what they will say. But I disagree.</p>
+<p>For example multiplied by <code>(X Y Z Y Z X)</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>qubits  0  1  2  3  4  5
+
+0 = I   1  2  3  2  3  1
+1 = X   0  3  2  3  2  0
+2 = Y   3  0  1  0  1  3
+3 = Z   2  1  0  1  0  2
+</code></pre></div></td></tr></table></div>
+<p>You just have to look at the same position of the table, to find out what it becomes now.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>my row : (I I I I I I) -&gt; (1 2 3 2 3 1) -&gt; (X Y Z Y Z X)
+</code></pre></div></td></tr></table></div>
+<p>Same table applies to all rows. Multiply once, read many. Because Pauli Operator is Cyclic, Just like you rotate a analogue clock (those come with hours minutes pins), the internal relative position of 10 o'clock and 4 o'clock and others are not gonna to change.</p>
+<p>Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the while thing into subprocess and sum them up lately.</p>
+<p>Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into small subtask.</p>
+<p>Also the small size of the backend makes the communicational cost very low.</p>
+<h1 id="but-comes-with-great-penalty">But comes with great penalty<a class="headerlink" href="#but-comes-with-great-penalty" title="Permanent link">&para;</a></h1>
+<p>Read and write performance of this data structure is fatal. Since you have to first map the information of frontend to the backend, and after that you have to do the reverse. This kind of translation cost is super expensive, for matrix that is <code>30000 rows of Pauli tensor * 40 qubits</code>, it is about 0.1X to 0.01X of the R/W performance. </p>
+<p>However, for the chain multiplication situation, since there is no need to R/W is only at first and the last, multiplying chain of <code>30000 rows of Pauli tensor * 40 qubits</code> to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.</p>
+<p>Until now, I have been ignoring the coefficients, mainly focused on Pauli Operators. All comparison stated above is:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>conventional with coefficient 
+VS new without coefficient
+</code></pre></div></td></tr></table></div>
+<p>So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 15X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work. But not using Numpy is actually not that far away, about 5-6X. </p>
+<p>So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coefficients sucks.</p>
+<h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h1>
+<p>I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 7X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.</p>
 
   <hr>
 <div class="md-source-file">

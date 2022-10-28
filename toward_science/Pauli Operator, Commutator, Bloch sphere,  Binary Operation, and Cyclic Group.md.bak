@@ -1,6 +1,14 @@
-# Bloch sphere, Pauli Operator, Binary Operation, Commutator and Cyclic Group
+# Pauli Operator, Commutator, Bloch sphere,  Binary Operation, and Cyclic Group
 
-Sometimes a thing called "Commutator" is being used in Quantum Computing. In some particular algorithm that solve certain equation, Commutator is used extensively. However the problem is, how can we implement this function fast. The current implementation expecially in the quantum simulation package called OpenFermion is super slow, and I think maybe we can do a better job. 
+Sometimes a thing called "Commutator" is being used in Quantum Computing. In some particular algorithm that solve certain equation, Commutator is used extensively. However the problem is, how can we implement this function fast. The current implementation expecially in the quantum simulation package called OpenFermion is super slow, and I think maybe I can do a better job. 
+
+- [What is commute](#what-is-commute)
+- [What is Binary Operation](#what-is-binary-operation)
+- [Commutator in 20 word](#commutator-in-20-word)
+- [Pauli Operator](#pauli-operator)
+- [What is Bloch Sphere](#what-is-bloch_sphere)
+- [Pauli Operator form a Cyclic Group](#pauli-operator-form-a-cyclic-group)
+- [How to Make Fast Commutator](#how-to-make-fast-commutator)
 
 ## What is commute
 
@@ -40,7 +48,7 @@ This machine/function can take only two number. Likewise, commutator is binary o
 
 	Let A, B be two operation. 
 
-	Check AB -BA ?= 0
+	Check AB - BA ?= 0
 
 Explain:
 	if A and B commute, then AB should have the same value as BA. And because of that, when you subtract them, you are subtracting the same value. So the result must be zero. 
@@ -354,121 +362,7 @@ Let say
 	
 	Third, since multiplying Pauli Operator is a binary operation, this make Cyclic Group 100% true.
 	
-So by this uniqueness, we can do all comparison separately and sleep well.
-
-## Algorithm
-
-	A  coefficient   Pauli Operator
-
-	   -0.106        [I0 I1 I2   ]
-	   +0.045        [X0 Z1 X2   ]
-	   +0.045        [X0 Z1 X2 Z3]
-	   +0.045        [Y0 Z1 Y2   ]
-	   +0.045        [Y0 Z1 Y2 Z3]
-	   +0.173        [Z0         ]
-	   +0.173        [Z0 Z1      ]
-	   +0.166        [Z0 Z1 Z2   ]
-	   +0.166        [Z0 Z1 Z2 Z3]
-	   +0.120        [Z0    Z2   ]
-	   +0.120        [Z0    Z2 Z3]
-	   +0.168        [   Z1      ]
-	   -0.221        [   Z1 Z2 Z3]
-	   +0.174        [   Z1    Z3]
-	   -0.221        [      Z2   ]
-
-	B  coefficient   Pauli Operator
-       +1.0          [Z0    Z2   ]
-	
-0. Ignore row that solely contain I
-	
-1. Shrink the problem size. Extract target terms
-
-	A  coefficient   Pauli Operator
-
-	   +0.045        [X0  X2]
-	   +0.045        [X0  X2]
-	   +0.045        [Y0  Y2]
-	   +0.045        [Y0  Y2]
-	   +0.173        [Z0    ]
-	   +0.173        [Z0    ]
-	   +0.166        [Z0  Z2]
-	   +0.166        [Z0  Z2]
-	   +0.120        [Z0  Z2]
-	   +0.120        [Z0  Z2]
-	   +0.168        [      ]
-	   -0.221        [    Z2]
-	   +0.174        [      ]
-	   -0.221        [    Z2]
-
-	B  coefficient   Pauli Operator
-       +1.0          [Z0  Z2]
-
-2. No need to check for the given coefficient
-
-	A  Pauli Operator
-
-	   [X0  X2]
-	   [X0  X2]
-	   [Y0  Y2]
-	   [Y0  Y2]
-	   [Z0    ]
-	   [Z0    ]
-	   [Z0  Z2]
-	   [Z0  Z2]
-	   [Z0  Z2]
-	   [Z0  Z2]
-	   [      ]
-	   [    Z2]
-	   [      ]
-	   [    Z2]
-
-	B  Pauli Operator
-       [Z0  Z2]
-
-3. Distribution
-
-	A1*B ?= B*A1
-	A2*B ?= B*A2
-	A3*B ?= B*A3
-	 ... ?= ...
-
-4. Apply multiplication by the following law
-
-	XY ==  iZ
-	YX == -iZ
-	YZ ==  iX
-	ZY == -iX
-	ZX ==  iY
-	XZ == -iY
-	
-	I* ==  *
-	** ==  I
-
-5. See if the resultant Pauli Operator match
-	
-	In fact we don't even need to do this. Because XY == YX == Z. Same resultant from different multiplication order. Property of Cyclic Group again.
-
-6. See if the resultant coefficient match
-	
-	Maybe ultimately all we need is only keep track of parity (odd or even) of non commutative Pauli Operator muliplication. Only have to count how many non-I muliplication. Since donig AB ?= BA also apply property of Cyclic Group. If there is a non-I muliplication, one side must be i and -i be the other side.
-	
-	    i != -i
-		
-	-i  i ==  i -i == - ii
-	-i -i ==  i  i == + ii
-	
-	i  i i == -i != -i -i -i ==  i
-	i -i i ==  i != -i  i -i == -i
-	...
-	
-	
-	Just thought of this. Not verified.
-	
-7. If any coefficient or Pauli Operator do not match, return False
-	
-	We need only one counter example to disprove the "A and B is commute" statement. Even if there is one single term do not match, we can stop everything and say it firm and loud that A and B is NON commute.
-	
-8. End
+So by this uniqueness, we can do all comparison separately.
 
 
 
