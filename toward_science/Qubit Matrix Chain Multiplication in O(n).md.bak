@@ -18,7 +18,7 @@
 
 # SymPauli
 
-    <https://github.com/hirasawakinko/SymPauli>
+<https://github.com/hirasawakinko/SymPauli>
 
 
 # Basics
@@ -88,7 +88,7 @@ And obviously these symbolic rules are valid, you can avoid matrix multiplicatio
     YZ -> X
     ...
 
-For exaple:
+For example:
 
     matrix A = 4I + 2Y + 7X - 4Z + 3Y
 

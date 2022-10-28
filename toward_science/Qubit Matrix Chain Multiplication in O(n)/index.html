@@ -630,7 +630,7 @@ XY -&gt; Z
 YZ -&gt; X
 ...
 </code></pre></div></td></tr></table></div>
-<p>For exaple:</p>
+<p>For example:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1154,10 +1154,10 @@ my row : (I I I I I I) -&gt; (0 0 0 0 0 0)
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>conventional with coefficient 
 VS new without coefficient
 </code></pre></div></td></tr></table></div>
-<p>So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 15X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work. But not using Numpy is actually not that far away, about 5-6X. </p>
+<p>So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 10X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work.</p>
 <p>So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coefficients sucks.</p>
 <h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h1>
-<p>I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 7X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.</p>
+<p>I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.</p>
 
   <hr>
 <div class="md-source-file">
