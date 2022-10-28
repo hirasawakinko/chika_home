@@ -1151,8 +1151,10 @@ my row : (I I I I I I) -&gt; (0 0 0 0 0 0)
 <p>However, for the chain multiplication situation, since there is no need to R/W is only at first and the last, multiplying chain of <code>30000 rows of Pauli tensor * 40 qubits</code> to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.</p>
 <p>Until now, I have been ignoring the coefficients, mainly focused on Pauli Operators. All comparison stated above is:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>conventional with coefficient 
-VS new without coefficient
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>conventional with coefficient 
+VS 
+new without coefficient
 </code></pre></div></td></tr></table></div>
 <p>So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 10X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work.</p>
 <p>So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coefficients sucks.</p>

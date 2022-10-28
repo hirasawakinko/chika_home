@@ -449,13 +449,13 @@ Until now, I have been ignoring the coefficients, mainly focused on Pauli Operat
     conventional with coefficient 
     VS new without coefficient
 
-So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 15X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work. But not using Numpy is actually not that far away, about 5-6X. 
+So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 10X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work.
 
 So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coefficients sucks.
 
 # Conclusion
 
-I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 7X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.
+I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.
 
 
 
