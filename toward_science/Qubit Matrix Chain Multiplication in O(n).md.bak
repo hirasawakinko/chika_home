@@ -167,7 +167,7 @@ So, what about OpenFermion's naive coding? Well, they almost got it but not quit
     = I Y     |  = X Z
     + Y X     |  + Y Y
     + X Y     |  + X Y
-    + Z X     |  + Z X
+    + Z X     |
     + Y Z     |
 
 Just as what you will do to `(x + 3)(x + 2)`, you do the same thing to these matrix.
@@ -178,7 +178,7 @@ Just as what you will do to `(x + 3)(x + 2)`, you do the same thing to these mat
     = I Y     |  = X Z  (b1)
     + Y X     |  + Y Y  (b2)
     + X Y     |  + X Y  (b3)
-    + Z X     |  + Z X  (b4)
+    + Z X     | 
     + Y Z     | 
 
 
@@ -188,31 +188,31 @@ Just as what you will do to `(x + 3)(x + 2)`, you do the same thing to these mat
 
 So you would carry the bitwise multiplication like this:
 
-      X Z (b1)    Y Y  (b2)    X Y  (b3)    Z X  (b4)  
-    matrix A    matrix A     matrix A     matrix A     
-    = I Y       = I Y        = I Y        = I Y        
-    + Y X    +  + Y X    +   + Y X    +   + Y X    +   
-    + X Y       + X Y        + X Y        + X Y        
-    + Z X       + Z X        + Z X        + Z X        
-    + Y Z       + Y Z        + Y Z        + Y Z        
+      X Z (b1)    Y Y  (b2)    X Y  (b3)  
+    matrix A    matrix A     matrix A     
+    = I Y       = I Y        = I Y        
+    + Y X    +  + Y X    +   + Y X      
+    + X Y       + X Y        + X Y        
+    + Z X       + Z X        + Z X        
+    + Y Z       + Y Z        + Y Z        
 
 
-                     Y Y  (b2)    X Y  (b3)    Z X  (b4)  
-                   matrix A     matrix A     matrix A     
-                   = I Y        = I Y        = I Y        
-    = something +  + Y X    +   + Y X    +   + Y X     
-                   + X Y        + X Y        + X Y        
-                   + Z X        + Z X        + Z X        
-                   + Y Z        + Y Z        + Y Z        
+                     Y Y  (b2)    X Y  (b3)   
+                   matrix A     matrix A      
+                   = I Y        = I Y         
+    = something +  + Y X    +   + Y X   
+                   + X Y        + X Y         
+                   + Z X        + Z X         
+                   + Y Z        + Y Z         
 
 
-                     X Y  (b3)    Z X  (b4)  
-                   matrix A     matrix A     
-                   = I Y        = I Y        
-    = something +  + Y X    +   + Y X    
-                   + X Y        + X Y        
-                   + Z X        + Z X        
-                   + Y Z        + Y Z        
+                     X Y  (b3)  
+                   matrix A     
+                   = I Y        
+    = something +  + Y X    
+                   + X Y      
+                   + Z X        
+                   + Y Z        
 
 
 At each step, you broadcase one row of matrix B to all rows of matrix A.
@@ -280,7 +280,7 @@ By the previous rule, we know the answer already.
     + Z -> Y
     + Y -> Z
 
-Here you see some duplication. i.e. ee already know that `X*Z -> Y`, so why are we still checking it row by row? This is just a waste of time.
+Here you see some duplication. i.e. we already know that `X*Z -> Y`, so why are we still checking it row by row? This is just a waste of time.
 
 Here it comes the relational data structure.
 
@@ -334,7 +334,7 @@ When you do multiplication, we do it to the backend, not frontend. After that, y
         3      3 = Y
         2
 
-    multiplied X
+    reading result
     fontend   backend
     X < 0       0 = X
     Z < 2       1 = I
@@ -432,7 +432,7 @@ For example multiplied by `(X Y Z Y Z X)`:
 
  Same table applies to all rows. Multiply once, read many. Because Pauli Operator is Cyclic, Just like you rotate a analogue clock (those come with hours minutes pins), the internal relative position of 10 o'clock and 4 o'clock and others are not gonna to change.
 
-Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the while thing into subprocess and sum them up lately.
+Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the whole thing into subprocess and sum them up lately.
 
 Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into small subtask.
 
@@ -442,7 +442,7 @@ Also the small size of the backend makes the communicational cost very low.
 
 Read and write performance of this data structure is fatal. Since you have to first map the information of frontend to the backend, and after that you have to do the reverse. This kind of translation cost is super expensive, for matrix that is `30000 rows of Pauli tensor * 40 qubits`, it is about 0.1X to 0.01X of the R/W performance. 
 
-However, for the chain multiplication situation, since there is no need to R/W is only at first and the last, multiplying chain of `30000 rows of Pauli tensor * 40 qubits` to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.
+However, for the chain multiplication situation, R/W is only performed at first and the last, multiplying chain of `30000 rows of Pauli tensor * 40 qubits` to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.
 
 Until now, I have been ignoring the coefficients, mainly focused on Pauli Operators. All comparison stated above is:
 
@@ -456,12 +456,4 @@ So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coeffic
 
 # Conclusion
 
-I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it the numeric computation.
-
-
-
-
-
-
-
-
+I independently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it numeric computation.

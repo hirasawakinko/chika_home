@@ -752,7 +752,7 @@ matrix B
 = I Y     |  = X Z
 + Y X     |  + Y Y
 + X Y     |  + X Y
-+ Z X     |  + Z X
++ Z X     |
 + Y Z     |
 </code></pre></div></td></tr></table></div>
 <p>Just as what you will do to <code>(x + 3)(x + 2)</code>, you do the same thing to these matrix.</p>
@@ -774,7 +774,7 @@ matrix A  |  matrix B
 = I Y     |  = X Z  (b1)
 + Y X     |  + Y Y  (b2)
 + X Y     |  + X Y  (b3)
-+ Z X     |  + Z X  (b4)
++ Z X     | 
 + Y Z     |
 
 
@@ -807,31 +807,31 @@ matrix A * matrix B
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code>  X Z (b1)    Y Y  (b2)    X Y  (b3)    Z X  (b4)  
-matrix A    matrix A     matrix A     matrix A     
-= I Y       = I Y        = I Y        = I Y        
-+ Y X    +  + Y X    +   + Y X    +   + Y X    +   
-+ X Y       + X Y        + X Y        + X Y        
-+ Z X       + Z X        + Z X        + Z X        
-+ Y Z       + Y Z        + Y Z        + Y Z
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code>  X Z (b1)    Y Y  (b2)    X Y  (b3)  
+matrix A    matrix A     matrix A     
+= I Y       = I Y        = I Y        
++ Y X    +  + Y X    +   + Y X      
++ X Y       + X Y        + X Y        
++ Z X       + Z X        + Z X        
++ Y Z       + Y Z        + Y Z
 
 
-                 Y Y  (b2)    X Y  (b3)    Z X  (b4)  
-               matrix A     matrix A     matrix A     
-               = I Y        = I Y        = I Y        
-= something +  + Y X    +   + Y X    +   + Y X     
-               + X Y        + X Y        + X Y        
-               + Z X        + Z X        + Z X        
-               + Y Z        + Y Z        + Y Z
-
-
-                 X Y  (b3)    Z X  (b4)  
-               matrix A     matrix A     
-               = I Y        = I Y        
-= something +  + Y X    +   + Y X    
-               + X Y        + X Y        
-               + Z X        + Z X        
+                 Y Y  (b2)    X Y  (b3)   
+               matrix A     matrix A      
+               = I Y        = I Y         
+= something +  + Y X    +   + Y X   
+               + X Y        + X Y         
+               + Z X        + Z X         
                + Y Z        + Y Z
+
+
+                 X Y  (b3)  
+               matrix A     
+               = I Y        
+= something +  + Y X    
+               + X Y      
+               + Z X        
+               + Y Z
 </code></pre></div></td></tr></table></div>
 <p>At each step, you broadcase one row of matrix B to all rows of matrix A.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -918,7 +918,7 @@ matrix A
 + Z -&gt; Y
 + Y -&gt; Z
 </code></pre></div></td></tr></table></div>
-<p>Here you see some duplication. i.e. ee already know that <code>X*Z -&gt; Y</code>, so why are we still checking it row by row? This is just a waste of time.</p>
+<p>Here you see some duplication. i.e. we already know that <code>X*Z -&gt; Y</code>, so why are we still checking it row by row? This is just a waste of time.</p>
 <p>Here it comes the relational data structure.</p>
 <h1 id="relational-data-structure-and-super-parallelism">Relational data structure and super parallelism<a class="headerlink" href="#relational-data-structure-and-super-parallelism" title="Permanent link">&para;</a></h1>
 <p>This is one part of matrix A. And we are going to perform unified permutation operator to them all.</p>
@@ -1007,7 +1007,7 @@ fontend   backend
     3      3 = Y
     2
 
-multiplied X
+reading result
 fontend   backend
 X &lt; 0       0 = X
 Z &lt; 2       1 = I
@@ -1143,12 +1143,12 @@ my row : (I I I I I I) -&gt; (0 0 0 0 0 0)
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>my row : (I I I I I I) -&gt; (1 2 3 2 3 1) -&gt; (X Y Z Y Z X)
 </code></pre></div></td></tr></table></div>
 <p>Same table applies to all rows. Multiply once, read many. Because Pauli Operator is Cyclic, Just like you rotate a analogue clock (those come with hours minutes pins), the internal relative position of 10 o'clock and 4 o'clock and others are not gonna to change.</p>
-<p>Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the while thing into subprocess and sum them up lately.</p>
-<p>Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into small subtask.</p>
+<p>Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the whole thing into subprocess and sum them up lately.</p>
+<p>Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into smaller subtasks.</p>
 <p>Also the small size of the backend makes the communicational cost very low.</p>
 <h1 id="but-comes-with-great-penalty">But comes with great penalty<a class="headerlink" href="#but-comes-with-great-penalty" title="Permanent link">&para;</a></h1>
 <p>Read and write performance of this data structure is fatal. Since you have to first map the information of frontend to the backend, and after that you have to do the reverse. This kind of translation cost is super expensive, for matrix that is <code>30000 rows of Pauli tensor * 40 qubits</code>, it is about 0.1X to 0.01X of the R/W performance. </p>
-<p>However, for the chain multiplication situation, since there is no need to R/W is only at first and the last, multiplying chain of <code>30000 rows of Pauli tensor * 40 qubits</code> to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.</p>
+<p>However, for the chain multiplication situation, R/W is only performed at first and the last, multiplying chain of <code>30000 rows of Pauli tensor * 40 qubits</code> to the matrix of same size but in a linear combunation, this data structure is giving out 30000X to 40000X performance.</p>
 <p>Until now, I have been ignoring the coefficients, mainly focused on Pauli Operators. All comparison stated above is:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1159,18 +1159,18 @@ new without coefficient
 <p>So yeah it is just BS benchmark and nothing you can take seriously. But that is because there is no room for improvement when we include coefficients into the calculation. At most 10X speend up at the same scale using Python, And I am already using Numpy for the heavy leafting coefficient work.</p>
 <p>So you can see that no coefficients, 40000X. Yes coefficients, 10X. Damn coefficients sucks.</p>
 <h1 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h1>
-<p>I indipendently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it numeric computation.</p>
+<p>I independently invented a new algorithm using relational data structure and phantomly revolutionized the contentional approach by 40000X under the same scale, but this is just when I ignore all computation work for the coefficients. With coefficients, 10X is the maximun I can get. So, long live the symbolic computation, god damn it numeric computation.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-28</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-29</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-28</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-29</span>
       
     
   </small>
