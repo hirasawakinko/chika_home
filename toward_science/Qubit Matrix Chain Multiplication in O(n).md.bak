@@ -434,7 +434,7 @@ For example multiplied by `(X Y Z Y Z X)`:
 
 Second is that everything is summation, and the ordering of summation does not matter due to addition commutativity. So you can split the whole thing into subprocess and sum them up lately.
 
-Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into small subtask.
+Further is that tensor product of Pauli operator is carried out bitwise-ly, so that you can further split it into smaller subtasks.
 
 Also the small size of the backend makes the communicational cost very low.
 
