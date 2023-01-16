@@ -173,7 +173,7 @@ x = [0,1,2,3,4]
 print(len(x))  # 5
 ```
 
-## N dimensional List
+### N dimensional List
 
 You can put anything insided a List, including a List itself.
 
@@ -511,7 +511,7 @@ for i in range(2):
         innerlayer.append(temp)
     x.append(innerlayer)
 # x = [[0, 1, 2], 
-       [0, 1, 2]]
+#      [0, 1, 2]]
 ```
 
 You can use this method to build a empty matrix.
@@ -519,7 +519,7 @@ You can use this method to build a empty matrix.
 ```py
 x = [[0 for j in range(3)] for i in range(2)] 
 # x = [[0, 0, 0],
-       [0, 0, 0]]
+#      [0, 0, 0]]
 ```
 
 #### List comprehension with temporary variable
@@ -562,22 +562,22 @@ Explained:
 
 ```
 Begining at 0
-check if (0 < 2) => nope
+check if (0 < 2) => YUP
 print the current value = 0
 current value plus 1
 (current value = 1)
 
-check if (1 < 2) => nope
+check if (1 < 2) => YUP
 print the current value = 1
 current value plus 1
 (current value = 2)
 
-check if (2 < 2) => nope
+check if (2 < 2) => YUP
 print the current value = 2
 current value plus 1
 (current value = 3)
 
-check if (3 < 2) => YUP
+check if (3 < 2) => NOPE
 stop looping
 print value 999
 ```
@@ -609,11 +609,11 @@ The usage depend on you.
 
 But never forget to end the loop. Otherwise it is called infinite loop. The loop will never end. And Python can not tell itself is doing infinite loop of if the loop is going to end. When you wait so long and still not seeing the result of your program, probably you wrote some infinite loop back there.
 
-#### While continue pass
+#### While Continue Pass
 
 Same usage as For loop. 
 
-#### While comprehension
+#### While Comprehension
 
 As far as I know there is no such thing in Python (or is it?)
 
@@ -714,7 +714,7 @@ x[key] = value  # This line will raise error
 
 Dictionary provide the fastest way to access a value by its key. But what if you want the inverted version: access a key by its value?
 
-For example a List, you want to know the List index of certain string. Here you van combine Dict Comprehension and function `enumerate()` to achieve that.
+For example a List, you want to know the List index of certain string. Here you can combine Dict Comprehension and function `enumerate()` to achieve that.
 
 ```py
 values = ["Amos", "Behemoth", "Ceres"]

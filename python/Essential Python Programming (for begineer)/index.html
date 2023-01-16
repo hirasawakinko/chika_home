@@ -1054,15 +1054,15 @@ This is the same as:</p>
 <a id="__codelineno-44-5" name="__codelineno-44-5"></a>        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
 <a id="__codelineno-44-6" name="__codelineno-44-6"></a>        <span class="n">innerlayer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
 <a id="__codelineno-44-7" name="__codelineno-44-7"></a>    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">innerlayer</span><span class="p">)</span>
-<a id="__codelineno-44-8" name="__codelineno-44-8"></a><span class="c1"># x = [[0, 1, 2], </span>
-<a id="__codelineno-44-9" name="__codelineno-44-9"></a>       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a><span class="c1"># x = [[[0,0], [0,1], [0,2]], </span>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a><span class="c1">#      [[1,0], [1,1], [1,2]]]</span>
 </code></pre></div></td></tr></table></div>
 <p>You can use this method to build a empty matrix.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
 <span class="normal"><a href="#__codelineno-45-2">2</a></span>
 <span class="normal"><a href="#__codelineno-45-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> 
 <a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="c1"># x = [[0, 0, 0],</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3"></a>       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a><span class="c1">#      [0, 0, 0]]</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="list-comprehension-with-temporary-variable">List comprehension with temporary variable<a class="headerlink" href="#list-comprehension-with-temporary-variable" title="Permanent link">&para;</a></h4>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
@@ -1116,22 +1116,22 @@ Explained:</p>
 <span class="normal"><a href="#__codelineno-50-17">17</a></span>
 <span class="normal"><a href="#__codelineno-50-18">18</a></span>
 <span class="normal"><a href="#__codelineno-50-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1"></a>Begining at 0
-<a id="__codelineno-50-2" name="__codelineno-50-2"></a>check if (0 &lt; 2) =&gt; nope
+<a id="__codelineno-50-2" name="__codelineno-50-2"></a>check if (0 &lt; 2) =&gt; YUP
 <a id="__codelineno-50-3" name="__codelineno-50-3"></a>print the current value = 0
 <a id="__codelineno-50-4" name="__codelineno-50-4"></a>current value plus 1
 <a id="__codelineno-50-5" name="__codelineno-50-5"></a>(current value = 1)
 <a id="__codelineno-50-6" name="__codelineno-50-6"></a>
-<a id="__codelineno-50-7" name="__codelineno-50-7"></a>check if (1 &lt; 2) =&gt; nope
+<a id="__codelineno-50-7" name="__codelineno-50-7"></a>check if (1 &lt; 2) =&gt; YUP
 <a id="__codelineno-50-8" name="__codelineno-50-8"></a>print the current value = 1
 <a id="__codelineno-50-9" name="__codelineno-50-9"></a>current value plus 1
 <a id="__codelineno-50-10" name="__codelineno-50-10"></a>(current value = 2)
 <a id="__codelineno-50-11" name="__codelineno-50-11"></a>
-<a id="__codelineno-50-12" name="__codelineno-50-12"></a>check if (2 &lt; 2) =&gt; nope
+<a id="__codelineno-50-12" name="__codelineno-50-12"></a>check if (2 &lt; 2) =&gt; YUP
 <a id="__codelineno-50-13" name="__codelineno-50-13"></a>print the current value = 2
 <a id="__codelineno-50-14" name="__codelineno-50-14"></a>current value plus 1
 <a id="__codelineno-50-15" name="__codelineno-50-15"></a>(current value = 3)
 <a id="__codelineno-50-16" name="__codelineno-50-16"></a>
-<a id="__codelineno-50-17" name="__codelineno-50-17"></a>check if (3 &lt; 2) =&gt; YUP
+<a id="__codelineno-50-17" name="__codelineno-50-17"></a>check if (3 &lt; 2) =&gt; NOPE
 <a id="__codelineno-50-18" name="__codelineno-50-18"></a>stop looping
 <a id="__codelineno-50-19" name="__codelineno-50-19"></a>print value 999
 </code></pre></div></td></tr></table></div>
@@ -1165,9 +1165,9 @@ Explained:</p>
 </code></pre></div></td></tr></table></div>
 <p>The usage depend on you. </p>
 <p>But never forget to end the loop. Otherwise it is called infinite loop. The loop will never end. And Python can not tell itself is doing infinite loop of if the loop is going to end. When you wait so long and still not seeing the result of your program, probably you wrote some infinite loop back there.</p>
-<h4 id="while-continue-pass">While continue pass<a class="headerlink" href="#while-continue-pass" title="Permanent link">&para;</a></h4>
+<h4 id="while-continue-pass">While Continue Pass<a class="headerlink" href="#while-continue-pass" title="Permanent link">&para;</a></h4>
 <p>Same usage as For loop. </p>
-<h4 id="while-comprehension">While comprehension<a class="headerlink" href="#while-comprehension" title="Permanent link">&para;</a></h4>
+<h4 id="while-comprehension">While Comprehension<a class="headerlink" href="#while-comprehension" title="Permanent link">&para;</a></h4>
 <p>As far as I know there is no such thing in Python (or is it?)</p>
 <h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
 <p>Vocabulary -&gt; Meaning. This is the Dictionary. Creating a connected pair. Or mathematically speaking, a mapping (hey no one understand this!).</p>
@@ -1265,7 +1265,7 @@ Explained:</p>
 </code></pre></div></td></tr></table></div>
 <h3 id="enumerate-dictionary">Enumerate Dictionary<a class="headerlink" href="#enumerate-dictionary" title="Permanent link">&para;</a></h3>
 <p>Dictionary provide the fastest way to access a value by its key. But what if you want the inverted version: access a key by its value?</p>
-<p>For example a List, you want to know the List index of certain string. Here you van combine Dict Comprehension and function <code>enumerate()</code> to achieve that.</p>
+<p>For example a List, you want to know the List index of certain string. Here you can combine Dict Comprehension and function <code>enumerate()</code> to achieve that.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-60-1">1</a></span>
 <span class="normal"><a href="#__codelineno-60-2">2</a></span>
 <span class="normal"><a href="#__codelineno-60-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
