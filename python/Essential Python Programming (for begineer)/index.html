@@ -1,0 +1,1638 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../favicon_io/favicon-32x32.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.1">
+    
+    
+      
+        <title>Essential Python Programming (for begineer) - Chika's Home</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2e8b5541.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#essential-python-programming-for-begineer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Chika&#39;s Home" class="md-header__button md-logo" aria-label="Chika's Home" data-md-component="logo">
+      
+  <img src="../../favicon_io/android-chrome-512x512.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Chika's Home
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Essential Python Programming (for begineer)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hirasawakinko/chika_home" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chika_home
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about/" class="md-tabs__link">
+      About Me
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../about_site/" class="md-tabs__link">
+      About This Site
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../library/" class="md-tabs__link">
+      Chika's Library
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../review_book/" class="md-tabs__link">
+      Book Review
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../algorithms/" class="md-tabs__link">
+      Algorithms
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../" class="md-tabs__link">
+      Python Guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../how_to/" class="md-tabs__link">
+      How to
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../toward_science/" class="md-tabs__link">
+      Toward Science
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../blog/" class="md-tabs__link">
+      Blog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Chika&#39;s Home" class="md-nav__button md-logo" aria-label="Chika's Home" data-md-component="logo">
+      
+  <img src="../../favicon_io/android-chrome-512x512.png" alt="logo">
+
+    </a>
+    Chika's Home
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hirasawakinko/chika_home" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chika_home
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About Me
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about_site/" class="md-nav__link">
+        About This Site
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/" class="md-nav__link">
+        Chika's Library
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../review_book/" class="md-nav__link">
+        Book Review
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithms/" class="md-nav__link">
+        Algorithms
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Python Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how_to/" class="md-nav__link">
+        How to
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../toward_science/" class="md-nav__link">
+        Toward Science
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        Blog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/hirasawakinko/chika_home/edit/master/docs/python/Essential Python Programming (for begineer).md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="essential-python-programming-for-begineer">Essential Python Programming (for begineer)<a class="headerlink" href="#essential-python-programming-for-begineer" title="Permanent link">&para;</a></h1>
+<h2 id="print">Print<a class="headerlink" href="#print" title="Permanent link">&para;</a></h2>
+<p><code>print()</code> is the first step of Python. It show you stuff.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="type">Type<a class="headerlink" href="#type" title="Permanent link">&para;</a></h2>
+<p><code>type()</code> tell you the type of the object.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="number">Number<a class="headerlink" href="#number" title="Permanent link">&para;</a></h2>
+<p>Number in Python is just written like a number.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">type</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nb">type</span><span class="p">(</span><span class="mf">3.0</span><span class="o">+</span><span class="mi">7</span><span class="n">j</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="string">String<a class="headerlink" href="#string" title="Permanent link">&para;</a></h2>
+<p>String is different from number.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;3.0&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;3.0+7j&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="changing-type">Changing Type<a class="headerlink" href="#changing-type" title="Permanent link">&para;</a></h2>
+<p>By now you should know that type(3) is int and type("3") is str. This <strong>type</strong> can also use as a transform function.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;3.0&quot;</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;3.0&quot;</span><span class="p">)))</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="variable">Variable<a class="headerlink" href="#variable" title="Permanent link">&para;</a></h2>
+<p>Just like 3x = y in school algebra, <code>x</code> and <code>y</code> are is a variable. Variable is a name. There is a value behind the value.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="comment">Comment<a class="headerlink" href="#comment" title="Permanent link">&para;</a></h2>
+<p>Comment is not part of the program. Python do not excute the part you written as a comment by default. <code>#</code> indicate stuffs behind is intended to be a comment.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="c1">#print(x)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1">#print(x)</span>
+</code></pre></div></td></tr></table></div>
+<p>You can see nothing is being output. Since those lines for outputing stuffs on screen are now  comments.</p>
+<p>For the sake of convenient, now I use comment to show the output of certain line.</p>
+<h2 id="operation">Operation<a class="headerlink" href="#operation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># 5</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># 1</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># 6</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="condition">Condition<a class="headerlink" href="#condition" title="Permanent link">&para;</a></h2>
+<p>Condition is simple. <code>If</code> this do this <code>else</code> do that.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># equality in Pythin is denoted by 2 `=` sign</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1"># True</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># change the value</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="c1"># False</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>  <span class="c1"># adding second condition</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> 
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="c1"># True</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="temporary-variable">Temporary variable<a class="headerlink" href="#temporary-variable" title="Permanent link">&para;</a></h2>
+<p>Temporary variable is like this: <code>temp := some condition</code>. When the condition is evaluated as True, that value is assigned to the variable name <code>temp</code>. Usually using with condition.</p>
+<p>Below is the conventional code.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Mary&quot;</span><span class="p">:</span>  <span class="c1"># Checking equality</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="n">message</span> <span class="o">=</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Mary&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not Mary&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>You want to print the value if <code>name == "Mary"</code> but this code do not seem smart. Use temporary variable</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">if</span> <span class="n">message</span> <span class="o">:=</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Mary&quot;</span><span class="p">):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not Mary&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>When the value of <code>name == "Mary"</code> is not False, it will be assigned to variable name <code>message</code>. What means by <strong>is not False</strong>? It is that the string is not empty, the string is not evaluated as False. </p>
+<h2 id="range">Range<a class="headerlink" href="#range" title="Permanent link">&para;</a></h2>
+<p>Provided a upper bound and a lower bound, you can count numbers. You can ask if a value is within the range.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># range(0, 10)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># True</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="nb">print</span><span class="p">(</span><span class="mi">4</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># True</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nb">print</span><span class="p">(</span><span class="mi">11</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># False</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="nb">print</span><span class="p">(</span><span class="mi">10</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># False # Because in Python, the stopping point 10 is not included</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># False</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h2>
+<p>List is a list. For example name list, a bunch of names inside a single list. <code>list()</code> is a function that can change some specific stuff into a list.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="nb">print</span><span class="p">(</span><span class="mi">0</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># True</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># False</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="nb">print</span><span class="p">(</span><span class="mi">10</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># False</span>
+</code></pre></div></td></tr></table></div>
+<p>Check how many stuffs are in the list. <code>len()</code> stands for length.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># 5</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="n-dimensional-list">N dimensional List<a class="headerlink" href="#n-dimensional-list" title="Permanent link">&para;</a></h2>
+<p>You can put anything insided a List, including a List itself.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0,1],[2,3],[4,5]]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="list-index">List index<a class="headerlink" href="#list-index" title="Permanent link">&para;</a></h3>
+<p>Stuffs inside a List count from 0. 0<sup>th</sup> element, 1<sup>st</sup> element, 2<sup>nd</sup> elenment, and so on.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 6 # [0] means the first element</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># 9</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 9 # [-1] means the last element</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="list-is-mutable">List is mutable<a class="headerlink" href="#list-is-mutable" title="Permanent link">&para;</a></h3>
+<p>Stuff inside a List can be changed. </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [99, 6, 7, 8]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="list-contain-a-reference">List contain a reference<a class="headerlink" href="#list-contain-a-reference" title="Permanent link">&para;</a></h3>
+<p><code>id()</code> is how you can check the memory address of a object. </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># 2369491173840 # this value depends because it is the memory address</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>  <span class="c1"># 2369491173840</span>
+</code></pre></div></td></tr></table></div>
+<p>You see that both return the same value. Both are referencing to the same memory address. In Python, number/interger is inmutable and everytime you callit, it refers to the same object. Unless you do not want this feature on purpose.</p>
+<p>So there is "imutable" object in Python. Of cos, there is "mutable" object in Python. One of this kind is the List we are looking right now.</p>
+<p>So when you put a List inside another List, you are puting the reference of the List only, not the elements inside of the first list. Hence when you change the element, the changes happen to everywhere.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0, 1], [0, 1], [0, 1]]</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>  <span class="c1"># 2369531363840 2369531363840 2369531363840</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[99, 1], [99, 1], [99, 1]]  # All inner List changed at once</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="list-copying">List copying<a class="headerlink" href="#list-copying" title="Permanent link">&para;</a></h3>
+<p>To prevent the global changes of element, you have to create new object for each of them.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span>  <span class="c1"># [[99, 1], [0, 1], [0, 1]]</span>
+</code></pre></div></td></tr></table></div>
+<p>Or you may use the <code>copy()</code> function from List itself. But also, it only give you the reference of its elements. When the element is another list, it is the same object before and after copying.</p>
+<p>Let's first see how List.copy() work in action.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span>
+<span class="normal"><a href="#__codelineno-20-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [0, 1]</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [0, 1]</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [99, 1]</span>
+</code></pre></div></td></tr></table></div>
+<p>You can see original x is not affected because element of <code>x</code> is number/integer and it is imutable. And imutable object is the end of the journey, you cannot reassign another value to that memory address.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span>
+<span class="normal"><a href="#__codelineno-21-6">6</a></span>
+<span class="normal"><a href="#__codelineno-21-7">7</a></span>
+<span class="normal"><a href="#__codelineno-21-8">8</a></span>
+<span class="normal"><a href="#__codelineno-21-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0,1], [2,3]]</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [[0,1], [2,3]]</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0, 1], [2, 99]]</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [[0, 1], [2, 99]]</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># 2369531365120</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># 2369531365120</span>
+</code></pre></div></td></tr></table></div>
+<p><code>x2[1]</code> refer to the inner List <code>[2,3]</code>. <code>x2[1][1]</code> means that we are changing the second value of this inner List to <code>99</code>. By print the memory address, you can see that both refer to the same object. Hence when you change one side, the other side also changed.</p>
+<h2 id="deepcopy">Deepcopy<a class="headerlink" href="#deepcopy" title="Permanent link">&para;</a></h2>
+<p>In the previous section, we see that modifying a N dimension List will have some unwanted side effect. How to prevent that?</p>
+<p>Here comes a function that is handy but if not careful enough, it hurt the performance a lot.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="n">x2</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0,1], [2,3]]</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [[0,1], [2,3]]</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># 2369531365760</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># 2369531346624 # See that they do the share the same memory address</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[0, 1], [2, 3]]</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>  <span class="c1"># [[0, 1], [2, 99]]</span>
+</code></pre></div></td></tr></table></div>
+Remember to use deepcopy() carefully. Do not make unnecessary copy.</p>
+<h2 id="loop">Loop<a class="headerlink" href="#loop" title="Permanent link">&para;</a></h2>
+<p>One of the greatest thing in programming is that you can repeat same task for many times. This ability is called <strong>looping</strong>. Mainly, there are two types of loop in Python. <strong>For loop</strong> and <strong>WHITE loop</strong>.</p>
+<h3 id="for-loop">For loop<a class="headerlink" href="#for-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 </span>
+</code></pre></div></td></tr></table></div>
+<h4 id="for-loop-with-condition">For loop with condition<a class="headerlink" href="#for-loop-with-condition" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a>    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Larger than</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># 3 -&gt; 4</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="for-loop-break-continue-pass">For loop break continue pass<a class="headerlink" href="#for-loop-break-continue-pass" title="Permanent link">&para;</a></h4>
+<p>You can stop the For loop manually by <code>break</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span>
+<span class="normal"><a href="#__codelineno-25-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>    <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stoping the loop&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>        <span class="k">break</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a>0
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a>1
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>2
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a>3
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a>Stoping the loop
+</code></pre></div></td></tr></table></div>
+<p>You can skip the current cycle by <code>continue</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span>
+<span class="normal"><a href="#__codelineno-27-4">4</a></span>
+<span class="normal"><a href="#__codelineno-27-5">5</a></span>
+<span class="normal"><a href="#__codelineno-27-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a>    <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Skipping&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>        <span class="k">continue</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span>
+<span class="normal"><a href="#__codelineno-28-4">4</a></span>
+<span class="normal"><a href="#__codelineno-28-5">5</a></span>
+<span class="normal"><a href="#__codelineno-28-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a>Skipping
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>Skipping
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a>3
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a>4
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a>5
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a>6
+</code></pre></div></td></tr></table></div>
+<p>You can pretend that there is code but actually nothing.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a>    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+<p>Nothing is being done inside the loop. But that still require some computational resource since it is still counting from 0 to 7. </p>
+<p>But <code>pass</code> is different from <code>continue</code>, <code>pass</code> is like a space holder but do not have the same functionality of <code>continue</code>. <code>pass</code> do not do skip.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a>    <span class="k">pass</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span>
+<span class="normal"><a href="#__codelineno-31-5">5</a></span>
+<span class="normal"><a href="#__codelineno-31-6">6</a></span>
+<span class="normal"><a href="#__codelineno-31-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>0
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a>1
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a>2
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a>3
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a>4
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a>5
+<a id="__codelineno-31-7" name="__codelineno-31-7"></a>6
+</code></pre></div></td></tr></table></div>
+<h4 id="n-dimensional-for-loop">N dimensional For loop<a class="headerlink" href="#n-dimensional-for-loop" title="Permanent link">&para;</a></h4>
+<p>For each layer of For loop, one element is being taken out from the list. When that element is also a list, you can use for loop on this element of list. </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="k">for</span> <span class="n">layer1</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a>    <span class="k">for</span> <span class="n">layer2</span> <span class="ow">in</span> <span class="n">layer1</span><span class="p">:</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">layer2</span><span class="p">)</span>  <span class="c1"># 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 </span>
+</code></pre></div></td></tr></table></div>
+<p>By changing the position of function <code>print()</code>, or stuff inside function <code>print()</code>, you can obtain different effect.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span>
+<span class="normal"><a href="#__codelineno-33-4">4</a></span>
+<span class="normal"><a href="#__codelineno-33-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="k">for</span> <span class="n">layer1</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now&quot;</span><span class="p">,</span> <span class="n">layer1</span><span class="p">)</span>  <span class="c1"># Now [0,1] -&gt; Now [2,3]</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4"></a>    <span class="k">for</span> <span class="n">layer2</span> <span class="ow">in</span> <span class="n">layer1</span><span class="p">:</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">layer2</span><span class="p">)</span>  <span class="c1">#-&gt; 0 -&gt; 1 -&gt; 2 ...</span>
+</code></pre></div></td></tr></table></div>
+<p>So the overall printing will be:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span>
+<span class="normal"><a href="#__codelineno-34-5">5</a></span>
+<span class="normal"><a href="#__codelineno-34-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>Now [0,1]
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a>0
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a>1
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a>Now [2,3]
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a>2
+<a id="__codelineno-34-6" name="__codelineno-34-6"></a>3
+</code></pre></div></td></tr></table></div>
+<h4 id="enumerate">Enumerate<a class="headerlink" href="#enumerate" title="Permanent link">&para;</a></h4>
+<p>When it become confusing to make sense of N dimensional Loop, use <code>enumerate()</code>. </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;element&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>  <span class="c1"># element 0 = 0 -&gt; element 1 = 1 -&gt; ...</span>
+</code></pre></div></td></tr></table></div>
+<p>More typical usage of <code>enumerate()</code> is like this.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span>
+<span class="normal"><a href="#__codelineno-36-4">4</a></span>
+<span class="normal"><a href="#__codelineno-36-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]],[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]]]</span>  <span class="c1"># This is a 3 dimension List</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a>    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">d2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d1</span><span class="p">):</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4"></a>        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d3</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d2</span><span class="p">):</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">d3</span><span class="p">)</span>  <span class="c1"># 0 0 0 0 -&gt; 0 0 1 0 -&gt; 0 1 0 1 -&gt; ...</span>
+</code></pre></div></td></tr></table></div>
+<p>So that you know which dimension is which.</p>
+<h4 id="building-list-using-for-loop">Building List using For loop<a class="headerlink" href="#building-list-using-for-loop" title="Permanent link">&para;</a></h4>
+<p>You can put stuff into empty list by <code>List.append()</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span>
+<span class="normal"><a href="#__codelineno-37-4">4</a></span>
+<span class="normal"><a href="#__codelineno-37-5">5</a></span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a>    <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;adding number&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="s2">&quot;to the list.&quot;</span><span class="p">)</span>  <span class="c1"># adding number 0 to the list. -&gt; ...</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt;&gt; my list :&quot;</span><span class="p">,</span> <span class="n">mylist</span><span class="p">)</span>  <span class="c1"># &gt;&gt;&gt; my list : [0] -&gt; &gt;&gt;&gt; my list : [0, 1] -&gt; ...</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="decompose-list-using-for-loop">Decompose List using For loop<a class="headerlink" href="#decompose-list-using-for-loop" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span>
+<span class="normal"><a href="#__codelineno-38-6">6</a></span>
+<span class="normal"><a href="#__codelineno-38-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]],[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]]]</span>  <span class="c1"># This is a 3 dimension List</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a>    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">d2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d1</span><span class="p">):</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a>        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d3</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d2</span><span class="p">):</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6"></a>            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d3</span><span class="p">)</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5] # N dimension is reduced to 1 dimension</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="list-comprehension">List comprehension<a class="headerlink" href="#list-comprehension" title="Permanent link">&para;</a></h4>
+<p>The building process of a list and the expression of For loop can be compressed into a single line. <code>[]</code> construct a List. <code>for name in namelist</code> make a For loop. By combining both, you can make a List in one line of code.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+</code></pre></div></td></tr></table></div>
+This is the same as:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a>    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="list-comprehension-with-condition">List comprehension with condition<a class="headerlink" href="#list-comprehension-with-condition" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [3, 4]</span>
+</code></pre></div></td></tr></table></div>
+<p>This is the same as:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span>
+<span class="normal"><a href="#__codelineno-42-4">4</a></span>
+<span class="normal"><a href="#__codelineno-42-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3"></a>    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># if number larger than 2</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4"></a>        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5"></a><span class="c1"># x = [3, 4]</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="n-dimensional-list-comprehension">N dimensional List comprehension<a class="headerlink" href="#n-dimensional-list-comprehension" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> 
+</code></pre></div></td></tr></table></div>
+<p>This is the same as:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span>
+<span class="normal"><a href="#__codelineno-44-2">2</a></span>
+<span class="normal"><a href="#__codelineno-44-3">3</a></span>
+<span class="normal"><a href="#__codelineno-44-4">4</a></span>
+<span class="normal"><a href="#__codelineno-44-5">5</a></span>
+<span class="normal"><a href="#__codelineno-44-6">6</a></span>
+<span class="normal"><a href="#__codelineno-44-7">7</a></span>
+<span class="normal"><a href="#__codelineno-44-8">8</a></span>
+<span class="normal"><a href="#__codelineno-44-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3"></a>    <span class="n">innerlayer</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4"></a>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5"></a>        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6"></a>        <span class="n">innerlayer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7"></a>    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">innerlayer</span><span class="p">)</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a><span class="c1"># x = [[0, 1, 2], </span>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a>       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</code></pre></div></td></tr></table></div>
+<p>You can use this method to build a empty matrix.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span>
+<span class="normal"><a href="#__codelineno-45-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> 
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="c1"># x = [[0, 0, 0],</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a>       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="list-comprehension-with-temporary-variable">List comprehension with temporary variable<a class="headerlink" href="#list-comprehension-with-temporary-variable" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span> <span class="p">]</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a><span class="c1"># x = [1, 1, 1, 1, 1]</span>
+</code></pre></div></td></tr></table></div>
+<p>Explained: Counting from 0 to 10, not include 10. <code>num%2</code> means remainder after num is divided by 2. It the remainder is nonzero, it means True to Python. Therefore, If the number has remainder after divided by 2, assign this remainder to the new List x. So eventually you obtain a List full of 1.</p>
+<p>By changing <code>num%1</code> to <code>num%4</code>, you got the <code>x mod 4</code> in algebra.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span>
+<span class="normal"><a href="#__codelineno-47-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">]</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2"></a><span class="c1"># x = [1, 2, 3, 1, 2, 3, 1]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="while-loop">WHILE loop<a class="headerlink" href="#while-loop" title="Permanent link">&para;</a></h3>
+<p>WHILE loop is like this: <strong>While</strong> the condition is True, do the following <strong>non stoply</strong>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span>
+<span class="normal"><a href="#__codelineno-48-3">3</a></span>
+<span class="normal"><a href="#__codelineno-48-4">4</a></span>
+<span class="normal"><a href="#__codelineno-48-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2"></a><span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-48-4" name="__codelineno-48-4"></a>    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-48-5" name="__codelineno-48-5"></a><span class="nb">print</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Output:</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
+<span class="normal"><a href="#__codelineno-49-2">2</a></span>
+<span class="normal"><a href="#__codelineno-49-3">3</a></span>
+<span class="normal"><a href="#__codelineno-49-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a>0
+<a id="__codelineno-49-2" name="__codelineno-49-2"></a>1
+<a id="__codelineno-49-3" name="__codelineno-49-3"></a>2
+<a id="__codelineno-49-4" name="__codelineno-49-4"></a>999
+</code></pre></div></td></tr></table></div>
+Explained:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-50-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-50-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-50-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-50-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-50-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-50-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-50-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-50-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-50-10">10</a></span>
+<span class="normal"><a href="#__codelineno-50-11">11</a></span>
+<span class="normal"><a href="#__codelineno-50-12">12</a></span>
+<span class="normal"><a href="#__codelineno-50-13">13</a></span>
+<span class="normal"><a href="#__codelineno-50-14">14</a></span>
+<span class="normal"><a href="#__codelineno-50-15">15</a></span>
+<span class="normal"><a href="#__codelineno-50-16">16</a></span>
+<span class="normal"><a href="#__codelineno-50-17">17</a></span>
+<span class="normal"><a href="#__codelineno-50-18">18</a></span>
+<span class="normal"><a href="#__codelineno-50-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1"></a>Begining at 0
+<a id="__codelineno-50-2" name="__codelineno-50-2"></a>check if (0 &lt; 2) =&gt; nope
+<a id="__codelineno-50-3" name="__codelineno-50-3"></a>print the current value = 0
+<a id="__codelineno-50-4" name="__codelineno-50-4"></a>current value plus 1
+<a id="__codelineno-50-5" name="__codelineno-50-5"></a>(current value = 1)
+<a id="__codelineno-50-6" name="__codelineno-50-6"></a>
+<a id="__codelineno-50-7" name="__codelineno-50-7"></a>check if (1 &lt; 2) =&gt; nope
+<a id="__codelineno-50-8" name="__codelineno-50-8"></a>print the current value = 1
+<a id="__codelineno-50-9" name="__codelineno-50-9"></a>current value plus 1
+<a id="__codelineno-50-10" name="__codelineno-50-10"></a>(current value = 2)
+<a id="__codelineno-50-11" name="__codelineno-50-11"></a>
+<a id="__codelineno-50-12" name="__codelineno-50-12"></a>check if (2 &lt; 2) =&gt; nope
+<a id="__codelineno-50-13" name="__codelineno-50-13"></a>print the current value = 2
+<a id="__codelineno-50-14" name="__codelineno-50-14"></a>current value plus 1
+<a id="__codelineno-50-15" name="__codelineno-50-15"></a>(current value = 3)
+<a id="__codelineno-50-16" name="__codelineno-50-16"></a>
+<a id="__codelineno-50-17" name="__codelineno-50-17"></a>check if (3 &lt; 2) =&gt; YUP
+<a id="__codelineno-50-18" name="__codelineno-50-18"></a>stop looping
+<a id="__codelineno-50-19" name="__codelineno-50-19"></a>print value 999
+</code></pre></div></td></tr></table></div>
+<h4 id="while-true-and-break">While True and break<a class="headerlink" href="#while-true-and-break" title="Permanent link">&para;</a></h4>
+<p>Sometimes it is just more convenient to do the loop first, check the condition then.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span>
+<span class="normal"><a href="#__codelineno-51-2">2</a></span>
+<span class="normal"><a href="#__codelineno-51-3">3</a></span>
+<span class="normal"><a href="#__codelineno-51-4">4</a></span>
+<span class="normal"><a href="#__codelineno-51-5">5</a></span>
+<span class="normal"><a href="#__codelineno-51-6">6</a></span>
+<span class="normal"><a href="#__codelineno-51-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3"></a>    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is now larger than 5&quot;</span><span class="p">)</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7"></a>        <span class="k">break</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span>
+<span class="normal"><a href="#__codelineno-52-2">2</a></span>
+<span class="normal"><a href="#__codelineno-52-3">3</a></span>
+<span class="normal"><a href="#__codelineno-52-4">4</a></span>
+<span class="normal"><a href="#__codelineno-52-5">5</a></span>
+<span class="normal"><a href="#__codelineno-52-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1"></a>1
+<a id="__codelineno-52-2" name="__codelineno-52-2"></a>2
+<a id="__codelineno-52-3" name="__codelineno-52-3"></a>3
+<a id="__codelineno-52-4" name="__codelineno-52-4"></a>4
+<a id="__codelineno-52-5" name="__codelineno-52-5"></a>5
+<a id="__codelineno-52-6" name="__codelineno-52-6"></a>x is now larger than 5
+</code></pre></div></td></tr></table></div>
+<p>The usage depend on you. </p>
+<p>But never forget to end the loop. Otherwise it is called infinite loop. The loop will never end. And Python can not tell itself is doing infinite loop of if the loop is going to end. When you wait so long and still not seeing the result of your program, probably you wrote some infinite loop back there.</p>
+<h4 id="while-continue-pass">While continue pass<a class="headerlink" href="#while-continue-pass" title="Permanent link">&para;</a></h4>
+<p>Same usage as For loop. </p>
+<h4 id="while-comprehension">While comprehension<a class="headerlink" href="#while-comprehension" title="Permanent link">&para;</a></h4>
+<p>As far as I know there is no such thing in Python (or is it?)</p>
+<h2 id="dictionary">Dictionary<a class="headerlink" href="#dictionary" title="Permanent link">&para;</a></h2>
+<p>Vocabulary -&gt; Meaning. This is the Dictionary. Creating a connected pair. Or mathematically speaking, a mapping (hey no one understand this!).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1">1</a></span>
+<span class="normal"><a href="#__codelineno-53-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">}</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2"></a><span class="n">x</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="c1"># &quot;Apple&quot; </span>
+</code></pre></div></td></tr></table></div>
+<p>Dictionary is constructed by <code>{}</code>. Inside this curvy braket, <strong>key</strong> : <strong>value</strong>. A for Apple B for Bob!</p>
+<p>When extrating the value back, use the same syntax of List indexing. Calling <code>x["A"]</code> like asking the Dictionary hey what is connected to "A"? The Dictionary anwser you Oh it is "Apple".</p>
+<h3 id="dictionary-construction">Dictionary Construction<a class="headerlink" href="#dictionary-construction" title="Permanent link">&para;</a></h3>
+<p>Well almost same as if this is a list. But a little different.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-54-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-54-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-54-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-54-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-54-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-54-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-54-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-54-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-54-10">10</a></span>
+<span class="normal"><a href="#__codelineno-54-11">11</a></span>
+<span class="normal"><a href="#__codelineno-54-12">12</a></span>
+<span class="normal"><a href="#__codelineno-54-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Empty Dictionary</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3"></a><span class="k">for</span> <span class="n">initial</span> <span class="ow">in</span> <span class="n">initials</span><span class="p">:</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4"></a>    <span class="k">if</span> <span class="n">initial</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5"></a>        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Apple&quot;</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6"></a>    <span class="k">elif</span> <span class="n">initial</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span>
+<a id="__codelineno-54-7" name="__codelineno-54-7"></a>        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
+<a id="__codelineno-54-8" name="__codelineno-54-8"></a>    <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span>
+<a id="__codelineno-54-9" name="__codelineno-54-9"></a>        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Catastrophe&quot;</span>
+<a id="__codelineno-54-10" name="__codelineno-54-10"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-54-11" name="__codelineno-54-11"></a>        <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Unknow&quot;</span>
+<a id="__codelineno-54-12" name="__codelineno-54-12"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<a id="__codelineno-54-13" name="__codelineno-54-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {&quot;A&quot;: &quot;Apple&quot;, &quot;B&quot;: &quot;Bob&quot; , &quot;C&quot;: &quot;Catastrophe&quot;}</span>
+</code></pre></div></td></tr></table></div>
+<p>But this code do not seem smart. Then, use <code>zip()</code>. <code>zip()</code> combine two or more stream of data into one, so that you can write a for loop for it!</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1">1</a></span>
+<span class="normal"><a href="#__codelineno-55-2">2</a></span>
+<span class="normal"><a href="#__codelineno-55-3">3</a></span>
+<span class="normal"><a href="#__codelineno-55-4">4</a></span>
+<span class="normal"><a href="#__codelineno-55-5">5</a></span>
+<span class="normal"><a href="#__codelineno-55-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Empty Dictionary</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Catastrophe&quot;</span><span class="p">]</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4"></a><span class="k">for</span> <span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<a id="__codelineno-55-6" name="__codelineno-55-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {&quot;A&quot;: &quot;Apple&quot;, &quot;B&quot;: &quot;Bob&quot; , &quot;C&quot;: &quot;Catastrophe&quot;}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="zip-dictionary-construction">Zip Dictionary Construction<a class="headerlink" href="#zip-dictionary-construction" title="Permanent link">&para;</a></h3>
+<p><code>zip()</code> usage in the previous section. We can make use of that and write just a fewer code to achieve the same thing.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-56-1">1</a></span>
+<span class="normal"><a href="#__codelineno-56-2">2</a></span>
+<span class="normal"><a href="#__codelineno-56-3">3</a></span>
+<span class="normal"><a href="#__codelineno-56-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Catastrophe&quot;</span><span class="p">]</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {&quot;A&quot;: &quot;Apple&quot;, &quot;B&quot;: &quot;Bob&quot; , &quot;C&quot;: &quot;Catastrophe&quot;}</span>
+</code></pre></div></td></tr></table></div>
+<p><code>zip()</code> combine two list, and <code>dict()</code> turn this combined stream of data into a Dictionary.</p>
+<p>But this only work if stuff inside <code>zip()</code> make a pair. If you have something like <code>zip(list1, list2, list3)</code>, this do not work. What you need is the next technique.</p>
+<h3 id="dictionary-comprehension">Dictionary Comprehension<a class="headerlink" href="#dictionary-comprehension" title="Permanent link">&para;</a></h3>
+<p>Just like List Comprehension, there is Dictionary Comprehension too. Given that <code>{}</code> make a Dictionary, just like <code>[]</code> make a List, you can do this. The syntax is only differ from List Comprehension by a little.</p>
+<p>Basically this is just the code from previous section with different ordering.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-57-1">1</a></span>
+<span class="normal"><a href="#__codelineno-57-2">2</a></span>
+<span class="normal"><a href="#__codelineno-57-3">3</a></span>
+<span class="normal"><a href="#__codelineno-57-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Catastrophe&quot;</span><span class="p">]</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span> <span class="n">initial</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span> <span class="p">}</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {&quot;A&quot;: &quot;Apple&quot;, &quot;B&quot;: &quot;Bob&quot; , &quot;C&quot;: &quot;Catastrophe&quot;}</span>
+</code></pre></div></td></tr></table></div>
+<p>By Dictionary Comprehension, you can now do <code>zip(list1, list2, list3)</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-58-1">1</a></span>
+<span class="normal"><a href="#__codelineno-58-2">2</a></span>
+<span class="normal"><a href="#__codelineno-58-3">3</a></span>
+<span class="normal"><a href="#__codelineno-58-4">4</a></span>
+<span class="normal"><a href="#__codelineno-58-5">5</a></span>
+<span class="normal"><a href="#__codelineno-58-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Catastrophe&quot;</span><span class="p">]</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3"></a><span class="n">values2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span> <span class="n">initial</span><span class="p">:</span> <span class="p">[</span><span class="n">value</span><span class="p">,</span> <span class="n">value2</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">value2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">values2</span><span class="p">)</span> <span class="p">}</span>
+<a id="__codelineno-58-5" name="__codelineno-58-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {&quot;A&quot;: [&quot;Apple&quot;, &quot;Amos&quot;], &quot;B&quot;: [&quot;Bob&quot;, &quot;Behemoth&quot;] , &quot;C&quot;: [&quot;Catastrophe&quot;, &quot;Ceres&quot;]}</span>
+<a id="__codelineno-58-6" name="__codelineno-58-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">])</span>  <span class="c1"># [&quot;Apple&quot;, &quot;Amos&quot;] # The value is now a list.</span>
+</code></pre></div></td></tr></table></div>
+<p>As you see from this demostration, everything can be assigned as a value of Dictionary including number, string, List, Dictionary... But not the key. For a key, Dictionary require you to have a unique key for each object. But is way beyond comprehension of a begineer, so you can totally ignore this fact. Just try if you are not certain. Sometime Python will stop you from doing that. Try using a list as a key of Dictionary like the following code.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-59-1">1</a></span>
+<span class="normal"><a href="#__codelineno-59-2">2</a></span>
+<span class="normal"><a href="#__codelineno-59-3">3</a></span>
+<span class="normal"><a href="#__codelineno-59-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2"></a><span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3"></a><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;my list&quot;</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4"></a><span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1"># This line will raise error</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="enumerate-dictionary">Enumerate Dictionary<a class="headerlink" href="#enumerate-dictionary" title="Permanent link">&para;</a></h3>
+<p>Dictionary provide the fastest way to access a value by its key. But what if you want the inverted version: access a key by its value?</p>
+<p>For example a List, you want to know the List index of certain string. Here you van combine Dict Comprehension and function <code>enumerate()</code> to achieve that.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-60-1">1</a></span>
+<span class="normal"><a href="#__codelineno-60-2">2</a></span>
+<span class="normal"><a href="#__codelineno-60-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2"></a><span class="n">lookup</span> <span class="o">=</span> <span class="p">{</span> <span class="n">x</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="p">}</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3"></a><span class="n">lookup</span><span class="p">[</span><span class="s2">&quot;Behemoth&quot;</span><span class="p">]</span>  <span class="c1"># 1 # tell you that it is at position 1</span>
+</code></pre></div></td></tr></table></div>
+<p>But this only work if and only if the element inside the List is all unique. For example when you have two Amos ["Amos", "Amos", "Behemoth", "Ceres"], the information from the first entry is being covered by the second entry. So the resulting lookup dictionary will only store it Amos is in position 1, not [0,1].</p>
+<p>For multiple entry, you need to write a normal For loop.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-61-1">1</a></span>
+<span class="normal"><a href="#__codelineno-61-2">2</a></span>
+<span class="normal"><a href="#__codelineno-61-3">3</a></span>
+<span class="normal"><a href="#__codelineno-61-4">4</a></span>
+<span class="normal"><a href="#__codelineno-61-5">5</a></span>
+<span class="normal"><a href="#__codelineno-61-6">6</a></span>
+<span class="normal"><a href="#__codelineno-61-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2"></a><span class="n">lookup</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3"></a><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4"></a>    <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lookup</span><span class="p">:</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5"></a>        <span class="n">lookup</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-61-7" name="__codelineno-61-7"></a>        <span class="n">lookip</span><span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Now you may ask if that <code>if value not in lookup:</code> checking is cumbersome because it actually is. So there is a better solution for this. A DefaultDict.</p>
+<h3 id="defaultdict">DefaultDict<a class="headerlink" href="#defaultdict" title="Permanent link">&para;</a></h3>
+<p>First you need to tell the DefaultDict, what is your default value if the key is not being assigned to the dict. This time you say you want a list as default. So that DefaultDict will create a empty list for you.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-62-1">1</a></span>
+<span class="normal"><a href="#__codelineno-62-2">2</a></span>
+<span class="normal"><a href="#__codelineno-62-3">3</a></span>
+<span class="normal"><a href="#__codelineno-62-4">4</a></span>
+<span class="normal"><a href="#__codelineno-62-5">5</a></span>
+<span class="normal"><a href="#__codelineno-62-6">6</a></span>
+<span class="normal"><a href="#__codelineno-62-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1"></a><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2"></a>
+<a id="__codelineno-62-3" name="__codelineno-62-3"></a><span class="n">x</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-62-5" name="__codelineno-62-5"></a><span class="n">lookup</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-62-6" name="__codelineno-62-6"></a><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+<a id="__codelineno-62-7" name="__codelineno-62-7"></a>    <span class="n">lookip</span><span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># now you do not need to check for `value in lookup` </span>
+</code></pre></div></td></tr></table></div>
+<h2 id="tuple">Tuple<a class="headerlink" href="#tuple" title="Permanent link">&para;</a></h2>
+<p>Tuple is the imutable version of List. And because Tuple is imutable, you can assign it as a key of a Dictionary!</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-63-1">1</a></span>
+<span class="normal"><a href="#__codelineno-63-2">2</a></span>
+<span class="normal"><a href="#__codelineno-63-3">3</a></span>
+<span class="normal"><a href="#__codelineno-63-4">4</a></span>
+<span class="normal"><a href="#__codelineno-63-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1"></a><span class="n">this_is_a_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">this_is_a_tuple</span><span class="p">)</span>  <span class="c1"># (0, 1, 2, 3, 4)</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">this_is_a_tuple</span><span class="p">))</span>  <span class="mi">3</span> <span class="nb">tuple</span>
+<a id="__codelineno-63-4" name="__codelineno-63-4"></a><span class="n">this_is_a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-63-5" name="__codelineno-63-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">this_is_a_list</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-64-1">1</a></span>
+<span class="normal"><a href="#__codelineno-64-2">2</a></span>
+<span class="normal"><a href="#__codelineno-64-3">3</a></span>
+<span class="normal"><a href="#__codelineno-64-4">4</a></span>
+<span class="normal"><a href="#__codelineno-64-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2"></a><span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3"></a><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;my list&quot;</span>
+<a id="__codelineno-64-4" name="__codelineno-64-4"></a><span class="n">x</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1"># Success</span>
+<a id="__codelineno-64-5" name="__codelineno-64-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {(0, 1, 2): &quot;my list&quot;}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="imutable">Imutable<a class="headerlink" href="#imutable" title="Permanent link">&para;</a></h3>
+<p>Almost everything is same as a List except that now you cannot change the content inside a Tuple.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-65-1">1</a></span>
+<span class="normal"><a href="#__codelineno-65-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2"></a><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>  <span class="c1"># You can not do this</span>
+</code></pre></div></td></tr></table></div>
+<p>But just as what you have learnt from the section of referencing, Tuple only keep track of the first layer of reference. If you put List inside a Tuple, you can not change the List, but you can change stuff inside that List.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-66-1">1</a></span>
+<span class="normal"><a href="#__codelineno-66-2">2</a></span>
+<span class="normal"><a href="#__codelineno-66-3">3</a></span>
+<span class="normal"><a href="#__codelineno-66-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],)</span>  <span class="c1"># Tuple need you to type that comma if there is only one element</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># [0,1,2,3]</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3"></a><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x = ([0,1,2,99],)</span>
+</code></pre></div></td></tr></table></div>
+<p>But you can do this does not mean that you should do this.</p>
+<h3 id="tupling">Tupling<a class="headerlink" href="#tupling" title="Permanent link">&para;</a></h3>
+<p>Just lke you can turn something into a List by using function <code>list()</code>, you can almost do the same thing with function <code>tuple()</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-67-1">1</a></span>
+<span class="normal"><a href="#__codelineno-67-2">2</a></span>
+<span class="normal"><a href="#__codelineno-67-3">3</a></span>
+<span class="normal"><a href="#__codelineno-67-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># [0, 1, 2, 3, 4] list</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-67-4" name="__codelineno-67-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># (0, 1, 2, 3, 4) tuple</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="tuple-comprehension">Tuple Comprehension<a class="headerlink" href="#tuple-comprehension" title="Permanent link">&para;</a></h3>
+<p>Do not like List or Dictionary, for Tuple, you need to use function <code>tuple()</code> to write a comprehension.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-68-1">1</a></span>
+<span class="normal"><a href="#__codelineno-68-2">2</a></span>
+<span class="normal"><a href="#__codelineno-68-3">3</a></span>
+<span class="normal"><a href="#__codelineno-68-4">4</a></span>
+<span class="normal"><a href="#__codelineno-68-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">]</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2"></a><span class="c1"># x = [1, 2, 3, 1, 2, 3, 1]</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3"></a>
+<a id="__codelineno-68-4" name="__codelineno-68-4"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+<a id="__codelineno-68-5" name="__codelineno-68-5"></a><span class="c1"># x = (1, 2, 3, 1, 2, 3, 1)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="itemgetter">Itemgetter<a class="headerlink" href="#itemgetter" title="Permanent link">&para;</a></h3>
+<p>Function <code>itemgetter()</code> comes handy when you need to obtain multiple element from a List of from a Tuple of from a Dictionary at once.</p>
+<p>Usually people do this.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-69-1">1</a></span>
+<span class="normal"><a href="#__codelineno-69-2">2</a></span>
+<span class="normal"><a href="#__codelineno-69-3">3</a></span>
+<span class="normal"><a href="#__codelineno-69-4">4</a></span>
+<span class="normal"><a href="#__codelineno-69-5">5</a></span>
+<span class="normal"><a href="#__codelineno-69-6">6</a></span>
+<span class="normal"><a href="#__codelineno-69-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2"></a><span class="n">need</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3"></a>
+<a id="__codelineno-69-4" name="__codelineno-69-4"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-69-5" name="__codelineno-69-5"></a><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">need</span><span class="p">:</span>
+<a id="__codelineno-69-6" name="__codelineno-69-6"></a>    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<a id="__codelineno-69-7" name="__codelineno-69-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [&quot;Amos&quot;, &quot;Behemoth&quot;, &quot;Ceres&quot;]</span>
+</code></pre></div></td></tr></table></div>
+<p>Stop doing this. Use map itemgetter.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-70-1">1</a></span>
+<span class="normal"><a href="#__codelineno-70-2">2</a></span>
+<span class="normal"><a href="#__codelineno-70-3">3</a></span>
+<span class="normal"><a href="#__codelineno-70-4">4</a></span>
+<span class="normal"><a href="#__codelineno-70-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2"></a><span class="n">need</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3"></a><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<a id="__codelineno-70-4" name="__codelineno-70-4"></a><span class="n">y</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="n">need</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-70-5" name="__codelineno-70-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># (&quot;Amos&quot;, &quot;Behemoth&quot;, &quot;Ceres&quot;)</span>
+</code></pre></div></td></tr></table></div>
+<p>If you obtaining multiple stuff, Itemgetter return a Tuple. If you obtain only single stuff, itemgetter return that single object without putting it in any List or Tuple. You need to be careful with this. Since tou can use <code>*</code> to unpack a List or Tuple even if that List or Tuple contain only single element. But since you are using <code>*</code> to unpack something, you are expecting many things inside. Really, be careful of this behaviour.</p>
+<p>But first of all what means by "use <code>*</code> to unpack a List or Tuple" ??? This is explained in the following section.</p>
+<p>But before that, just one more thing. You can use <code>itemgetter()</code> to extract element from 2 dimension List.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-71-1">1</a></span>
+<span class="normal"><a href="#__codelineno-71-2">2</a></span>
+<span class="normal"><a href="#__codelineno-71-3">3</a></span>
+<span class="normal"><a href="#__codelineno-71-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>  <span class="c1"># let say you want the first element from each sub-List</span>
+<a id="__codelineno-71-2" name="__codelineno-71-2"></a><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<a id="__codelineno-71-3" name="__codelineno-71-3"></a><span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># 0 means index 0 of List. </span>
+<a id="__codelineno-71-4" name="__codelineno-71-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># (0, 2, 4)</span>
+</code></pre></div></td></tr></table></div>
+<code>map(itemgetter(0), x)</code> is like a idiom, so remenber it.</p>
+<h2 id="multiple-dispatch">Multiple Dispatch<a class="headerlink" href="#multiple-dispatch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-72-1">1</a></span>
+<span class="normal"><a href="#__codelineno-72-2">2</a></span>
+<span class="normal"><a href="#__codelineno-72-3">3</a></span>
+<span class="normal"><a href="#__codelineno-72-4">4</a></span>
+<span class="normal"><a href="#__codelineno-72-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Empty Dictionary</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2"></a><span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3"></a><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Catastrophe&quot;</span><span class="p">]</span>
+<a id="__codelineno-72-4" name="__codelineno-72-4"></a><span class="k">for</span> <span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<a id="__codelineno-72-5" name="__codelineno-72-5"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+<p>You have seen this in the section of Dictionary. You should have ask the question "What is that <code>for (initial, value) in zip(</code> ? "</p>
+<p>This is called multiple dispatch in Python. Pairs are being returned from function <code>zip()</code>, and you assign a each of them to a variable name <code>initial</code> and <code>value</code>. Basically this act the same as following code.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-73-1">1</a></span>
+<span class="normal"><a href="#__codelineno-73-2">2</a></span>
+<span class="normal"><a href="#__codelineno-73-3">3</a></span>
+<span class="normal"><a href="#__codelineno-73-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1"></a><span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">initials</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2"></a>    <span class="n">initial</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-73-4" name="__codelineno-73-4"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+<p>With multiple dispatch, we can just split and asign each element inside a Tuple or a List of something work like them with a variable name.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-74-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-74-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-74-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-74-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-74-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-74-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-74-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-74-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-74-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-74-10">10</a></span>
+<span class="normal"><a href="#__codelineno-74-11">11</a></span>
+<span class="normal"><a href="#__codelineno-74-12">12</a></span>
+<span class="normal"><a href="#__codelineno-74-13">13</a></span>
+<span class="normal"><a href="#__codelineno-74-14">14</a></span>
+<span class="normal"><a href="#__codelineno-74-15">15</a></span>
+<span class="normal"><a href="#__codelineno-74-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">99</span><span class="p">]</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-74-3" name="__codelineno-74-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 0</span>
+<a id="__codelineno-74-4" name="__codelineno-74-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1"># 99</span>
+<a id="__codelineno-74-5" name="__codelineno-74-5"></a>
+<a id="__codelineno-74-6" name="__codelineno-74-6"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<a id="__codelineno-74-7" name="__codelineno-74-7"></a><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">middle</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># `*` indicate that contain multiple stuff inside </span>
+<a id="__codelineno-74-8" name="__codelineno-74-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>  <span class="c1"># 0</span>
+<a id="__codelineno-74-9" name="__codelineno-74-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span>  <span class="c1"># [1, 2, 3]</span>
+<a id="__codelineno-74-10" name="__codelineno-74-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>  <span class="c1"># [4]</span>
+<a id="__codelineno-74-11" name="__codelineno-74-11"></a>
+<a id="__codelineno-74-12" name="__codelineno-74-12"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">head</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">end</span><span class="p">]</span>
+<a id="__codelineno-74-13" name="__codelineno-74-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [0, [1, 2, 3], 4]</span>
+<a id="__codelineno-74-14" name="__codelineno-74-14"></a>
+<a id="__codelineno-74-15" name="__codelineno-74-15"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">middle</span><span class="p">,</span> <span class="n">end</span><span class="p">]</span>  <span class="c1"># with `*` for middle, you unpack stuffs inside</span>
+<a id="__codelineno-74-16" name="__codelineno-74-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
+</code></pre></div></td></tr></table></div>
+<p>Although multiple dispatch is useful, do not addict to it. Sometimes it comes with performance panalty like the following.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-75-1">1</a></span>
+<span class="normal"><a href="#__codelineno-75-2">2</a></span>
+<span class="normal"><a href="#__codelineno-75-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># never do this</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># never do this</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3"></a><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># do this, if the value is a number. Number is imutable</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>
+<p>So you know there is List, Tuple, Dictionary. There is one more: Set .</p>
+<p>Set share the same symbol as Dictionary. But to build a Set, you need to call the function <code>set()</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-76-1">1</a></span>
+<span class="normal"><a href="#__codelineno-76-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># set</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-77-1">1</a></span>
+<span class="normal"><a href="#__codelineno-77-2">2</a></span>
+<span class="normal"><a href="#__codelineno-77-3">3</a></span>
+<span class="normal"><a href="#__codelineno-77-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># set</span>
+<a id="__codelineno-77-3" name="__codelineno-77-3"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<a id="__codelineno-77-4" name="__codelineno-77-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># {0, 3, 4}  # only unique element are stored in Set</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="building-a-set-using-for-loop">Building a Set using For loop<a class="headerlink" href="#building-a-set-using-for-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-78-1">1</a></span>
+<span class="normal"><a href="#__codelineno-78-2">2</a></span>
+<span class="normal"><a href="#__codelineno-78-3">3</a></span>
+<span class="normal"><a href="#__codelineno-78-4">4</a></span>
+<span class="normal"><a href="#__codelineno-78-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>  <span class="c1"># a List full of 0</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2"></a><span class="n">myset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-78-3" name="__codelineno-78-3"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-78-4" name="__codelineno-78-4"></a>    <span class="n">myset</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>  <span class="c1"># contrast to `List.append()`, You use `Set.add()`</span>
+<a id="__codelineno-78-5" name="__codelineno-78-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">myset</span><span class="p">)</span>  <span class="c1"># {0}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="set-comprehension">Set Comprehension<a class="headerlink" href="#set-comprehension" title="Permanent link">&para;</a></h3>
+<p>Well, there has List Comprehension, Dict Comprehension, no Tuple Comprehension, but there has Set Comprehension. It is just <code>[</code> for the List thing replaced by <code>{</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-79-1">1</a></span>
+<span class="normal"><a href="#__codelineno-79-2">2</a></span>
+<span class="normal"><a href="#__codelineno-79-3">3</a></span>
+<span class="normal"><a href="#__codelineno-79-4">4</a></span>
+<span class="normal"><a href="#__codelineno-79-5">5</a></span>
+<span class="normal"><a href="#__codelineno-79-6">6</a></span>
+<span class="normal"><a href="#__codelineno-79-7">7</a></span>
+<span class="normal"><a href="#__codelineno-79-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">]</span>
+<a id="__codelineno-79-2" name="__codelineno-79-2"></a><span class="c1"># x = [1, 2, 3, 1, 2, 3, 1]</span>
+<a id="__codelineno-79-3" name="__codelineno-79-3"></a>
+<a id="__codelineno-79-4" name="__codelineno-79-4"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">)</span>
+<a id="__codelineno-79-5" name="__codelineno-79-5"></a><span class="c1"># x = (1, 2, 3, 1, 2, 3, 1)</span>
+<a id="__codelineno-79-6" name="__codelineno-79-6"></a>
+<a id="__codelineno-79-7" name="__codelineno-79-7"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span> <span class="n">val</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">:=</span> <span class="n">num</span><span class="o">%</span><span class="mi">4</span><span class="p">)</span> <span class="p">}</span>
+<a id="__codelineno-79-8" name="__codelineno-79-8"></a><span class="c1"># x = {1, 2, 3}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="setting">Setting<a class="headerlink" href="#setting" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-80-1">1</a></span>
+<span class="normal"><a href="#__codelineno-80-2">2</a></span>
+<span class="normal"><a href="#__codelineno-80-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-80-2" name="__codelineno-80-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">{</span> <span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">x</span> <span class="p">}</span>  <span class="c1"># Never write this</span>
+<a id="__codelineno-80-3" name="__codelineno-80-3"></a><span class="n">y</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># just slap function `set()` to it</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="listsetlist">List(Set(List))<a class="headerlink" href="#listsetlist" title="Permanent link">&para;</a></h3>
+<p>For example you got a List x=[1,2,3,1,2,3,1], you want to eliminate duplicated elelment. Do this, list(set(List)).</p>
+<p>No matter what your algorithms textbook is saying, this is the known fastest way in Python.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-81-1">1</a></span>
+<span class="normal"><a href="#__codelineno-81-2">2</a></span>
+<span class="normal"><a href="#__codelineno-81-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-81-2" name="__codelineno-81-2"></a><span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<a id="__codelineno-81-3" name="__codelineno-81-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [1, 2, 3]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="set-relation">Set Relation<a class="headerlink" href="#set-relation" title="Permanent link">&para;</a></h3>
+<p>Make use of set relationship. You can make the fastest program out of them.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-82-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-82-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-82-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-82-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-82-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-82-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-82-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-82-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-82-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-82-10">10</a></span>
+<span class="normal"><a href="#__codelineno-82-11">11</a></span>
+<span class="normal"><a href="#__codelineno-82-12">12</a></span>
+<span class="normal"><a href="#__codelineno-82-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span>
+<a id="__codelineno-82-2" name="__codelineno-82-2"></a><span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<a id="__codelineno-82-3" name="__codelineno-82-3"></a>
+<a id="__codelineno-82-4" name="__codelineno-82-4"></a><span class="n">x</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># {2}</span>
+<a id="__codelineno-82-5" name="__codelineno-82-5"></a><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span>  <span class="c1"># {2}</span>
+<a id="__codelineno-82-6" name="__codelineno-82-6"></a>
+<a id="__codelineno-82-7" name="__codelineno-82-7"></a><span class="n">x</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># False</span>
+<a id="__codelineno-82-8" name="__codelineno-82-8"></a>
+<a id="__codelineno-82-9" name="__codelineno-82-9"></a><span class="n">x</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># {0,1,2,3,4}</span>
+<a id="__codelineno-82-10" name="__codelineno-82-10"></a><span class="n">x</span> <span class="o">|</span> <span class="n">y</span>  <span class="c1"># {0,1,2,3,4}</span>
+<a id="__codelineno-82-11" name="__codelineno-82-11"></a>
+<a id="__codelineno-82-12" name="__codelineno-82-12"></a><span class="n">x</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># {0,1}</span>
+<a id="__codelineno-82-13" name="__codelineno-82-13"></a><span class="n">x</span> <span class="o">-</span> <span class="n">y</span>  <span class="c1"># {0,1}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="want-more">Want More?<a class="headerlink" href="#want-more" title="Permanent link">&para;</a></h2>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-16</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-16</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Hirasawa Chika
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/hirasawakinko/chika_home" target="_blank" rel="noopener" title="Visit Chika&#39;s Github repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.prune", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "header.autohide", "content.code.annotate", "content.tabs.link", "toc.integrate", "toc.follow"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
+      
+    
+  </body>
+</html>
