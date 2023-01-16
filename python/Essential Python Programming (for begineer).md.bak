@@ -1,0 +1,992 @@
+# Essential Python Programming (for begineer)
+
+## Print
+
+`print()` is the first step of Python. It show you stuff.
+
+```py
+print(10)
+```
+
+## Type
+
+`type()` tell you the type of the object.
+
+```py
+type(3)
+type("3")
+```
+
+## Number
+
+Number in Python is just written like a number.
+
+```py
+type(3)
+type(3.0)
+type(3.0+7j)
+```
+
+## String
+
+String is different from number.
+
+```py
+type("3")
+type("3.0")
+type("3.0+7j")
+```
+
+## Changing Type
+
+By now you should know that type(3) is int and type("3") is str. This **type** can also use as a transform function.
+
+```py
+print(str(3), type(str(3))
+print(int("3.0"), type(int("3.0")))
+```
+
+## Variable
+
+Just like 3x = y in school algebra, `x` and `y` are is a variable. Variable is a name. There is a value behind the value.
+
+```py
+x = 3
+print(x)
+x = 5
+print(x)
+```
+
+## Comment
+
+Comment is not part of the program. Python do not excute the part you written as a comment by default. `#` indicate stuffs behind is intended to be a comment.
+
+```py
+x = 3
+#print(x)
+x = 5
+#print(x)
+```
+
+You can see nothing is being output. Since those lines for outputing stuffs on screen are now  comments.
+
+For the sake of convenient, now I use comment to show the output of certain line.
+
+## Operation
+
+```py
+x = 3
+y = 2
+print(x + y)  # 5
+print(x - y)  # 1
+print(x * y)  # 6
+```
+
+## Condition
+
+Condition is simple. `If` this do this `else` do that.
+
+```py
+x = 3
+if x == 3:  # equality in Pythin is denoted by 2 `=` sign
+    print(True)
+else:
+    print(False)
+# True
+
+x = 5  # change the value
+if x == 3:
+    print(True)
+else:
+    print(False)
+# False
+
+x = 5
+if x == 3:
+    print(True)
+elif x == 5:  # adding second condition
+    print(True) 
+else:
+    print(False)
+# True
+```
+
+## Temporary variable
+
+Temporary variable is like this: `temp := some condition`. When the condition is evaluated as True, that value is assigned to the variable name `temp`. Usually using with condition.
+
+Below is the conventional code.
+
+```py
+name = "John"
+if name == "Mary":  # Checking equality
+    message = name == "Mary"
+    print(message)
+else:
+    print("Not Mary")
+```
+
+You want to print the value if `name == "Mary"` but this code do not seem smart. Use temporary variable
+
+```py
+name = "John"
+if message := (name == "Mary"):
+    print(message)
+else:
+    print("Not Mary")
+```
+
+When the value of `name == "Mary"` is not False, it will be assigned to variable name `message`. What means by **is not False**? It is that the string is not empty, the string is not evaluated as False. 
+
+## Range
+
+Provided a upper bound and a lower bound, you can count numbers. You can ask if a value is within the range.
+
+```py
+x = range(0, 10)
+print(x) # range(0, 10)
+print(3 in x)  # True
+print(4 in x)  # True
+print(11 in x)  # False
+print(10 in x)  # False # Because in Python, the stopping point 10 is not included
+print(-10 in x)  # False
+```
+
+## List
+
+List is a list. For example name list, a bunch of names inside a single list. `list()` is a function that can change some specific stuff into a list.
+
+```py
+x = [0,1,2,3,4]
+print(x)  # [0, 1, 2, 3, 4]
+x = list(range(0,5))
+print(x)  # [0, 1, 2, 3, 4]
+print(0 in x)  # True
+print(5 in x)  # False
+print(10 in x)  # False
+```
+
+Check how many stuffs are in the list. `len()` stands for length.
+
+```py
+x = [0,1,2,3,4]
+print(len(x))  # 5
+```
+
+## N dimensional List
+
+You can put anything insided a List, including a List itself.
+
+```py
+x = [[0,1],[2,3],[4,5]]
+print(x)  # [[0,1],[2,3],[4,5]]
+```
+
+### List index
+
+Stuffs inside a List count from 0. 0th element, 1st element, 2nd elenment, and so on.
+
+```py
+x = [6,7,8,9]
+print(x[0])  # 6 # [0] means the first element
+print(x[3])  # 9
+print(x[-1])  # 9 # [-1] means the last element
+```
+
+### List is mutable
+
+Stuff inside a List can be changed. 
+
+```py
+x = [5,6,7,8]
+x[0] = 99
+print(x)  # [99, 6, 7, 8]
+```
+
+### List contain a reference
+
+`id()` is how you can check the memory address of a object. 
+
+```py
+x = 8
+print(id(x))  # 2369491173840 # this value depends because it is the memory address
+x = [6,7,8,9]
+print(id(x[2])))  # 2369491173840
+```
+
+You see that both return the same value. Both are referencing to the same memory address. In Python, number/interger is inmutable and everytime you callit, it refers to the same object. Unless you do not want this feature on purpose.
+
+So there is "imutable" object in Python. Of cos, there is "mutable" object in Python. One of this kind is the List we are looking right now.
+
+So when you put a List inside another List, you are puting the reference of the List only, not the elements inside of the first list. Hence when you change the element, the changes happen to everywhere.
+
+```py
+y = [0,1]
+x = [y, y, y]
+print(x)  # [[0, 1], [0, 1], [0, 1]]
+print(id(x[0]), id(x[1]), id(x[2]))  # 2369531363840 2369531363840 2369531363840
+y[0] = 99
+print(x)  # [[99, 1], [99, 1], [99, 1]]  # All inner List changed at once
+```
+
+### List copying
+
+To prevent the global changes of element, you have to create new object for each of them.
+
+```py
+x = [0,1]
+y = [0,1]
+z = [0,1]
+mylist = [x, y, z]
+x[0] = 99
+print(mylist)  # [[99, 1], [0, 1], [0, 1]]
+```
+
+Or you may use the `copy()` function from List itself. But also, it only give you the reference of its elements. When the element is another list, it is the same object before and after copying.
+
+Let's first see how List.copy() work in action.
+
+```py
+x = [0,1]
+x2 = x.copy()
+print(x2)  # [0, 1]
+x2[0] = 99
+print(x)  # [0, 1]
+print(x2)  # [99, 1]
+```
+
+You can see original x is not affected because element of `x` is number/integer and it is imutable. And imutable object is the end of the journey, you cannot reassign another value to that memory address.
+
+```py
+x = [[0,1], [2,3]]
+x2 = x.copy()
+print(x)  # [[0,1], [2,3]]
+print(x2)  # [[0,1], [2,3]]
+x2[1][1] = 99
+print(x)  # [[0, 1], [2, 99]]
+print(x2)  # [[0, 1], [2, 99]]
+print(id(x[1]))  # 2369531365120
+print(id(x2[1]))  # 2369531365120
+```
+
+`x2[1]` refer to the inner List `[2,3]`. `x2[1][1]` means that we are changing the second value of this inner List to `99`. By print the memory address, you can see that both refer to the same object. Hence when you change one side, the other side also changed.
+
+## Deepcopy
+
+In the previous section, we see that modifying a N dimension List will have some unwanted side effect. How to prevent that?
+
+Here comes a function that is handy but if not careful enough, it hurt the performance a lot.
+
+```py
+from copy import deepcopy
+x = [[0,1], [2,3]]
+x2 = deepcopy(x)
+print(x)  # [[0,1], [2,3]]
+print(x2)  # [[0,1], [2,3]]
+print(id(x[1]))  # 2369531365760
+print(id(x2[1]))  # 2369531346624 # See that they do the share the same memory address
+x2[1][1] = 99
+print(x)  # [[0, 1], [2, 3]]
+print(x2)  # [[0, 1], [2, 99]]
+```
+Remember to use deepcopy() carefully. Do not make unnecessary copy.
+
+## Loop
+
+One of the greatest thing in programming is that you can repeat same task for many times. This ability is called **looping**. Mainly, there are two types of loop in Python. **For loop** and **WHITE loop**.
+
+### For loop
+
+```py
+x = [0,1,2,3,4]
+for number in x:
+    print(number)  # 0 -> 1 -> 2 -> 3 -> 4
+for number in range(5):
+    print(number)  # 0 -> 1 -> 2 -> 3 -> 4 
+```
+
+#### For loop with condition
+
+```py
+for number in range(5):
+    if number > 2:  # Larger than
+        print(number)  # 3 -> 4
+```
+
+#### For loop break continue pass
+
+You can stop the For loop manually by `break`.
+
+```py
+for num in range(7);
+    if num < 3:
+        print(num)
+    else:
+        print("Stoping the loop")
+        break
+```
+
+```
+0
+1
+2
+3
+Stoping the loop
+```
+
+You can skip the current cycle by `continue`.
+
+```py
+for num in range(7);
+    if num < 3:
+        print("Skipping")
+        continue
+    else:
+        print(num)
+```
+
+```
+Skipping
+Skipping
+3
+4
+5
+6
+```
+
+You can pretend that there is code but actually nothing.
+
+```py
+for num in range(7);
+    pass
+```
+
+Nothing is being done inside the loop. But that still require some computational resource since it is still counting from 0 to 7. 
+
+But `pass` is different from `continue`, `pass` is like a space holder but do not have the same functionality of `continue`. `pass` do not do skip.
+
+```py
+for num in range(7);
+    pass
+    print(num)
+```
+
+```
+0
+1
+2
+3
+4
+5
+6
+```
+
+#### N dimensional For loop
+
+For each layer of For loop, one element is being taken out from the list. When that element is also a list, you can use for loop on this element of list. 
+
+```py
+x = [[0,1],[2,3],[4,5]]
+for layer1 in x:
+    for layer2 in layer1:
+        print(layer2)  # 0 -> 1 -> 2 -> 3 -> 4 
+```
+
+By changing the position of function `print()`, or stuff inside function `print()`, you can obtain different effect.
+
+```py
+x = [[0,1],[2,3],[4,5]]
+for layer1 in x:
+    print("Now", layer1)  # Now [0,1] -> Now [2,3]
+    for layer2 in layer1:
+        print(layer2)  #-> 0 -> 1 -> 2 ...
+```
+
+So the overall printing will be:
+
+```
+Now [0,1]
+0
+1
+Now [2,3]
+2
+3
+```
+
+#### Enumerate
+
+When it become confusing to make sense of N dimensional Loop, use `enumerate()`. 
+
+```py
+x = [0,1,2,3,4]
+for i, number in enumerate(x):
+    print("element", i, "=", number)  # element 0 = 0 -> element 1 = 1 -> ...
+```
+
+More typical usage of `enumerate()` is like this.
+
+```py
+x = [[[0,0],[1,1]],[[2,2],[3,3]],[[4,4],[5,5]]]  # This is a 3 dimension List
+for i, d1 in enumerate(x):
+    for j, d2 in enumerate(d1):
+        for k, d3 in enumerate(d2):
+            print(i, j, k, d3)  # 0 0 0 0 -> 0 0 1 0 -> 0 1 0 1 -> ...
+```
+
+So that you know which dimension is which.
+
+
+#### Building List using For loop
+
+You can put stuff into empty list by `List.append()`.
+
+```py
+mylist = []
+for number in range(5):
+    mylist.append(number)
+    print("adding number", number, "to the list.")  # adding number 0 to the list. -> ...
+    print(">>> my list :", mylist)  # >>> my list : [0] -> >>> my list : [0, 1] -> ...
+print(mylist)  # [0, 1, 2, 3, 4]
+```
+
+#### Decompose List using For loop
+
+```py
+x = [[[0,0],[1,1]],[[2,2],[3,3]],[[4,4],[5,5]]]  # This is a 3 dimension List
+y = []
+for i, d1 in enumerate(x):
+    for j, d2 in enumerate(d1):
+        for k, d3 in enumerate(d2):
+            y.append(d3)
+print(y)  # [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5] # N dimension is reduced to 1 dimension
+```
+
+#### List comprehension
+
+The building process of a list and the expression of For loop can be compressed into a single line. `[]` construct a List. `for name in namelist` make a For loop. By combining both, you can make a List in one line of code.
+
+```py
+x = [number for number in range(5)]
+print(x)  # [0, 1, 2, 3, 4]
+```
+This is the same as:
+
+```py
+x = []
+for number in range(5):
+    x.append(number)
+```
+
+#### List comprehension with condition
+
+```py
+x = [number for number in range(5) if number > 2]
+print(x)  # [3, 4]
+```
+
+This is the same as:
+
+```py
+x = []
+for number in range(5):
+    if number > 2:  # if number larger than 2
+        x.append(number)
+# x = [3, 4]
+```
+
+#### N dimensional List comprehension
+
+```py
+x = [[[i,j] for j in range(3)] for i in range(2)] 
+```
+
+This is the same as:
+
+```py
+x = []
+for i in range(2):
+    innerlayer = []
+    for j in range(3):
+        temp = [i,j]
+        innerlayer.append(temp)
+    x.append(innerlayer)
+# x = [[0, 1, 2], 
+       [0, 1, 2]]
+```
+
+You can use this method to build a empty matrix.
+
+```py
+x = [[0 for j in range(3)] for i in range(2)] 
+# x = [[0, 0, 0],
+       [0, 0, 0]]
+```
+
+#### List comprehension with temporary variable
+
+```py
+x = [ val for num in range(10) if (val := num%2) ]
+# x = [1, 1, 1, 1, 1]
+```
+
+Explained: Counting from 0 to 10, not include 10. `num%2` means remainder after num is divided by 2. It the remainder is nonzero, it means True to Python. Therefore, If the number has remainder after divided by 2, assign this remainder to the new List x. So eventually you obtain a List full of 1.
+
+By changing `num%1` to `num%4`, you got the `x mod 4` in algebra.
+
+```py
+x = [ val for num in range(10) if (val := num%4) ]
+# x = [1, 2, 3, 1, 2, 3, 1]
+```
+
+### WHILE loop
+
+WHILE loop is like this: **While** the condition is True, do the following **non stoply**.
+
+```py
+x = 0
+while x < 2:
+    print(x)
+    x += 1
+print(999)
+```
+
+Output:
+
+```
+0
+1
+2
+999
+```
+Explained:
+
+```
+Begining at 0
+check if (0 < 2) => nope
+print the current value = 0
+current value plus 1
+(current value = 1)
+
+check if (1 < 2) => nope
+print the current value = 1
+current value plus 1
+(current value = 2)
+
+check if (2 < 2) => nope
+print the current value = 2
+current value plus 1
+(current value = 3)
+
+check if (3 < 2) => YUP
+stop looping
+print value 999
+```
+
+#### While True and break
+
+Sometimes it is just more convenient to do the loop first, check the condition then.
+
+```py
+x = 0
+while True:
+    x += 1
+    print(x)
+    if x > 5:
+        print("x is now larger than 5")
+        break
+```
+
+```
+1
+2
+3
+4
+5
+x is now larger than 5
+```
+
+The usage depend on you. 
+
+But never forget to end the loop. Otherwise it is called infinite loop. The loop will never end. And Python can not tell itself is doing infinite loop of if the loop is going to end. When you wait so long and still not seeing the result of your program, probably you wrote some infinite loop back there.
+
+#### While continue pass
+
+Same usage as For loop. 
+
+#### While comprehension
+
+As far as I know there is no such thing in Python (or is it?)
+
+## Dictionary
+
+Vocabulary -> Meaning. This is the Dictionary. Creating a connected pair. Or mathematically speaking, a mapping (hey no one understand this!).
+
+```py
+x = {"A": "Apple", "B": "Bob"}
+x["A"]  # "Apple" 
+```
+
+Dictionary is constructed by `{}`. Inside this curvy braket, **key** : **value**. A for Apple B for Bob!
+
+When extrating the value back, use the same syntax of List indexing. Calling `x["A"]` like asking the Dictionary hey what is connected to "A"? The Dictionary anwser you Oh it is "Apple".
+
+### Dictionary Construction
+
+Well almost same as if this is a list. But a little different.
+
+```py
+x = {}  # Empty Dictionary
+initials = ["A", "B", "C"]
+for initial in initials:
+    if initial == "A":
+        value = "Apple"
+    elif initial == "B":
+        value = "Bob"
+    elif value == "C":
+        value = "Catastrophe"
+    else:
+        value = "Unknow"
+    x[initial] = value
+print(x)  # {"A": "Apple", "B": "Bob" , "C": "Catastrophe"}
+```
+
+But this code do not seem smart. Then, use `zip()`. `zip()` combine two or more stream of data into one, so that you can write a for loop for it!
+
+
+```py
+x = {}  # Empty Dictionary
+initials = ["A", "B", "C"]
+values = ["Apple", "Bob", "Catastrophe"]
+for (initial, value) in zip(initials, values):
+    x[initial] = value
+print(x)  # {"A": "Apple", "B": "Bob" , "C": "Catastrophe"}
+```
+
+### Zip Dictionary Construction
+
+`zip()` usage in the previous section. We can make use of that and write just a fewer code to achieve the same thing.
+
+```py
+initials = ["A", "B", "C"]
+values = ["Apple", "Bob", "Catastrophe"]
+x = dict(zip(initials, values))
+print(x)  # {"A": "Apple", "B": "Bob" , "C": "Catastrophe"}
+```
+
+`zip()` combine two list, and `dict()` turn this combined stream of data into a Dictionary.
+
+But this only work if stuff inside `zip()` make a pair. If you have something like `zip(list1, list2, list3)`, this do not work. What you need is the next technique.
+
+### Dictionary Comprehension
+
+Just like List Comprehension, there is Dictionary Comprehension too. Given that `{}` make a Dictionary, just like `[]` make a List, you can do this. The syntax is only differ from List Comprehension by a little.
+
+Basically this is just the code from previous section with different ordering.
+
+```py
+initials = ["A", "B", "C"]
+values = ["Apple", "Bob", "Catastrophe"]
+x = { initial: value for (initial, value) in zip(initials, values) }
+print(x)  # {"A": "Apple", "B": "Bob" , "C": "Catastrophe"}
+```
+
+By Dictionary Comprehension, you can now do `zip(list1, list2, list3)`.
+
+```py
+initials = ["A", "B", "C"]
+values = ["Apple", "Bob", "Catastrophe"]
+values2 = ["Amos", "Behemoth", "Ceres"]
+x = { initial: [value, value2] for (initial, value, value2) in zip(initials, values, values2) }
+print(x)  # {"A": ["Apple", "Amos"], "B": ["Bob", "Behemoth"] , "C": ["Catastrophe", "Ceres"]}
+print(x["A"])  # ["Apple", "Amos"] # The value is now a list.
+```
+
+As you see from this demostration, everything can be assigned as a value of Dictionary including number, string, List, Dictionary... But not the key. For a key, Dictionary require you to have a unique key for each object. But is way beyond comprehension of a begineer, so you can totally ignore this fact. Just try if you are not certain. Sometime Python will stop you from doing that. Try using a list as a key of Dictionary like the following code.
+
+```py
+x = {}
+key = [0,1,2]
+value = "my list"
+x[key] = value  # This line will raise error
+```
+
+### Enumerate Dictionary
+
+Dictionary provide the fastest way to access a value by its key. But what if you want the inverted version: access a key by its value?
+
+For example a List, you want to know the List index of certain string. Here you van combine Dict Comprehension and function `enumerate()` to achieve that.
+
+```py
+values = ["Amos", "Behemoth", "Ceres"]
+lookup = { x:i for (i,x) in enumerate(values) }
+lookup["Behemoth"]  # 1 # tell you that it is at position 1
+```
+
+But this only work if and only if the element inside the List is all unique. For example when you have two Amos ["Amos", "Amos", "Behemoth", "Ceres"], the information from the first entry is being covered by the second entry. So the resulting lookup dictionary will only store it Amos is in position 1, not [0,1].
+
+For multiple entry, you need to write a normal For loop.
+
+```py
+values = ["Amos", "Amos", "Behemoth", "Ceres"]
+lookup = {}
+for (i, value) in enumerate(values):
+    if value not in lookup:
+        lookup[value] = [i]
+    else:
+        lookip[value].append(i)
+```
+
+Now you may ask if that `if value not in lookup:` checking is cumbersome because it actually is. So there is a better solution for this. A DefaultDict.
+
+### DefaultDict
+
+First you need to tell the DefaultDict, what is your default value if the key is not being assigned to the dict. This time you say you want a list as default. So that DefaultDict will create a empty list for you.
+
+```py
+from collections import defaultdict
+
+x = defaultdict(list)
+values = ["Amos", "Amos", "Behemoth", "Ceres"]
+lookup = {}
+for (i, value) in enumerate(values):
+    lookip[value].append(i)  # now you do not need to check for `value in lookup` 
+```
+
+## Tuple
+
+Tuple is the imutable version of List. And because Tuple is imutable, you can assign it as a key of a Dictionary!
+
+```py
+this_is_a_tuple = (0,1,2,3,4)
+print(this_is_a_tuple)  # (0, 1, 2, 3, 4)
+print(type(this_is_a_tuple))  3 tuple
+this_is_a_list = [0,1,2,3,4]
+print(this_is_a_list)  # [0, 1, 2, 3, 4]
+```
+
+```py
+x = {}
+key = (0,1,2)
+value = "my list"
+x[key] = value  # Success
+print(x)  # {(0, 1, 2): "my list"}
+```
+
+### Imutable
+
+Almost everything is same as a List except that now you cannot change the content inside a Tuple.
+
+```py
+x = (0,1,2,3)
+x[-1] = 99  # You can not do this
+```
+
+But just as what you have learnt from the section of referencing, Tuple only keep track of the first layer of reference. If you put List inside a Tuple, you can not change the List, but you can change stuff inside that List.
+
+```py
+x = ([0,1,2,3],)  # Tuple need you to type that comma if there is only one element
+print(x[0])  # [0,1,2,3]
+x[0][-1] = 99
+print(x)  # x = ([0,1,2,99],)
+```
+
+But you can do this does not mean that you should do this.
+
+### Tupling
+
+Just lke you can turn something into a List by using function `list()`, you can almost do the same thing with function `tuple()`.
+
+```py
+x = list(range(5))
+print(x, type(x))  # [0, 1, 2, 3, 4] list
+x = tuple(range(5))
+print(x, type(x))  # (0, 1, 2, 3, 4) tuple
+```
+
+### Tuple Comprehension
+
+Do not like List or Dictionary, for Tuple, you need to use function `tuple()` to write a comprehension.
+
+```py
+x = [ val for num in range(10) if (val := num%4) ]
+# x = [1, 2, 3, 1, 2, 3, 1]
+
+x = tuple( val for num in range(10) if (val := num%4) )
+# x = (1, 2, 3, 1, 2, 3, 1)
+```
+
+### Itemgetter
+
+Function `itemgetter()` comes handy when you need to obtain multiple element from a List of from a Tuple of from a Dictionary at once.
+
+Usually people do this.
+
+```py
+x = ["Amos", "Amos", "Behemoth", "Ceres"]
+need = [0,2,3]
+
+y = []
+for index in need:
+    x.append(x[index])
+print(y)  # ["Amos", "Behemoth", "Ceres"]
+```
+
+Stop doing this. Use map itemgetter.
+
+```py
+x = ["Amos", "Amos", "Behemoth", "Ceres"]
+need = [0,2,3]
+from operator import itemgetter
+y = itemgetter(*need)(x)
+print(y)  # ("Amos", "Behemoth", "Ceres")
+```
+
+If you obtaining multiple stuff, Itemgetter return a Tuple. If you obtain only single stuff, itemgetter return that single object without putting it in any List or Tuple. You need to be careful with this. Since tou can use `*` to unpack a List or Tuple even if that List or Tuple contain only single element. But since you are using `*` to unpack something, you are expecting many things inside. Really, be careful of this behaviour.
+
+But first of all what means by "use `*` to unpack a List or Tuple" ??? This is explained in the following section.
+
+But before that, just one more thing. You can use `itemgetter()` to extract element from 2 dimension List.
+
+```py
+x = [[0,1],[2,3],[4,5]]  # let say you want the first element from each sub-List
+from operator import itemgetter
+y = map(itemgetter(0), x)  # 0 means index 0 of List. 
+print(y)  # (0, 2, 4)
+```
+`map(itemgetter(0), x)` is like a idiom, so remenber it.
+
+
+## Multiple Dispatch
+
+```py
+x = {}  # Empty Dictionary
+initials = ["A", "B", "C"]
+values = ["Apple", "Bob", "Catastrophe"]
+for (initial, value) in zip(initials, values):
+    x[initial] = value
+```
+
+You have seen this in the section of Dictionary. You should have ask the question "What is that `for (initial, value) in zip(` ? "
+
+This is called multiple dispatch in Python. Pairs are being returned from function `zip()`, and you assign a each of them to a variable name `initial` and `value`. Basically this act the same as following code.
+
+```py
+for pair in zip(initials, values):
+    initial = pair[0]
+    value = pair[1]
+    x[initial] = value
+```
+
+With multiple dispatch, we can just split and asign each element inside a Tuple or a List of something work like them with a variable name.
+
+```py
+x = [0, 99]
+a, b = x
+print(a)  # 0
+print(b)  # 99
+
+x = [0, 1, 2, 3, 4]
+head, *middle, end = x  # `*` indicate that contain multiple stuff inside 
+print(head)  # 0
+print(middle)  # [1, 2, 3]
+print(end)  # [4]
+
+y = [head, middle, end]
+print(y)  # [0, [1, 2, 3], 4]
+
+y = [head, *middle, end]  # with `*` for middle, you unpack stuffs inside
+print(y)  # [0, 1, 2, 3, 4]
+```
+
+Although multiple dispatch is useful, do not addict to it. Sometimes it comes with performance panalty like the following.
+
+```py
+a, b, c = tuple([0, 0, 0])  # never do this
+a, b, c = (0, 0, 0)  # never do this
+a = b = c = 0  # do this, if the value is a number. Number is imutable
+```
+
+## Set
+
+So you know there is List, Tuple, Dictionary. There is one more: Set .
+
+Set share the same symbol as Dictionary. But to build a Set, you need to call the function `set()`.
+
+```py
+x = set()
+print(type(x))  # set
+```
+
+```py
+x = {0,1,2,3,4}
+print(type(x))  # set
+x = {0,0,3,3,4}
+print(x)  # {0, 3, 4}  # only unique element are stored in Set
+```
+
+### Building a Set using For loop
+
+```py
+x = [0 for num in range(5)]  # a List full of 0
+myset = set()
+for num in x:
+    myset.add(num)  # contrast to `List.append()`, You use `Set.add()`
+print(myset)  # {0}
+```
+
+### Set Comprehension
+
+Well, there has List Comprehension, Dict Comprehension, no Tuple Comprehension, but there has Set Comprehension. It is just `[` for the List thing replaced by `{`.
+
+```py
+x = [ val for num in range(10) if (val := num%4) ]
+# x = [1, 2, 3, 1, 2, 3, 1]
+
+x = tuple( val for num in range(10) if (val := num%4) )
+# x = (1, 2, 3, 1, 2, 3, 1)
+
+x = { val for num in range(10) if (val := num%4) }
+# x = {1, 2, 3}
+```
+
+### Setting
+
+```py
+x = (1, 2, 3, 1, 2, 3, 1)
+y = { num for num in x }  # Never write this
+y = set(x)  # just slap function `set()` to it
+```
+
+### List(Set(List))
+
+For example you got a List x=[1,2,3,1,2,3,1], you want to eliminate duplicated elelment. Do this, list(set(List)).
+
+No matter what your algorithms textbook is saying, this is the known fastest way in Python.
+
+```py
+x = [1, 2, 3, 1, 2, 3, 1]
+y = list(set(x))
+print(y)  # [1, 2, 3]
+```
+
+### Set Relation
+
+Make use of set relationship. You can make the fastest program out of them.
+
+```py
+x = {0,1,2}
+y = {2,3,4}
+
+x.intersection(y)  # {2}
+x & y  # {2}
+
+x.isdisjoint(y)  # False
+
+x.update(y)  # {0,1,2,3,4}
+x | y  # {0,1,2,3,4}
+
+x.difference(y)  # {0,1}
+x - y  # {0,1}
+```
+
+## Want More?
