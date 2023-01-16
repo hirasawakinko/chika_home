@@ -1405,7 +1405,7 @@ Explained:</p>
 <a id="__codelineno-71-4" name="__codelineno-71-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># (0, 2, 4)</span>
 </code></pre></div></td></tr></table></div>
 <code>map(itemgetter(0), x)</code> is like a idiom, so remenber it.</p>
-<h2 id="multiple-dispatch">Multiple Dispatch<a class="headerlink" href="#multiple-dispatch" title="Permanent link">&para;</a></h2>
+<h2 id="multiple-unpack">Multiple Unpack<a class="headerlink" href="#multiple-unpack" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-72-1">1</a></span>
 <span class="normal"><a href="#__codelineno-72-2">2</a></span>
 <span class="normal"><a href="#__codelineno-72-3">3</a></span>
@@ -1417,7 +1417,7 @@ Explained:</p>
 <a id="__codelineno-72-5" name="__codelineno-72-5"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
 <p>You have seen this in the section of Dictionary. You should have ask the question "What is that <code>for (initial, value) in zip(</code> ? "</p>
-<p>This is called multiple dispatch in Python. Pairs are being returned from function <code>zip()</code>, and you assign a each of them to a variable name <code>initial</code> and <code>value</code>. Basically this act the same as following code.</p>
+<p>This is called multiple unpack in Python. Pairs are being returned from function <code>zip()</code>, and you assign a each of them to a variable name <code>initial</code> and <code>value</code>. Basically this act the same as following code.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-73-1">1</a></span>
 <span class="normal"><a href="#__codelineno-73-2">2</a></span>
 <span class="normal"><a href="#__codelineno-73-3">3</a></span>
@@ -1426,7 +1426,7 @@ Explained:</p>
 <a id="__codelineno-73-3" name="__codelineno-73-3"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <a id="__codelineno-73-4" name="__codelineno-73-4"></a>    <span class="n">x</span><span class="p">[</span><span class="n">initial</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
-<p>With multiple dispatch, we can just split and asign each element inside a Tuple or a List of something work like them with a variable name.</p>
+<p>With multiple unpack, we can just split and asign each element inside a Tuple or a List of something work like them with a variable name.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-74-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-74-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-74-3"> 3</a></span>
@@ -1459,7 +1459,7 @@ Explained:</p>
 <a id="__codelineno-74-15" name="__codelineno-74-15"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">head</span><span class="p">,</span> <span class="o">*</span><span class="n">middle</span><span class="p">,</span> <span class="n">end</span><span class="p">]</span>  <span class="c1"># with `*` for middle, you unpack stuffs inside</span>
 <a id="__codelineno-74-16" name="__codelineno-74-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [0, 1, 2, 3, 4]</span>
 </code></pre></div></td></tr></table></div>
-<p>Although multiple dispatch is useful, do not addict to it. Sometimes it comes with performance panalty like the following.</p>
+<p>Although multiple unpack is useful, do not addict to it. Sometimes it comes with performance panalty like the following.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-75-1">1</a></span>
 <span class="normal"><a href="#__codelineno-75-2">2</a></span>
 <span class="normal"><a href="#__codelineno-75-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># never do this</span>

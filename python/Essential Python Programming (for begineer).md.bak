@@ -510,8 +510,8 @@ for i in range(2):
         temp = [i,j]
         innerlayer.append(temp)
     x.append(innerlayer)
-# x = [[0, 1, 2], 
-#      [0, 1, 2]]
+# x = [[[0,0], [0,1], [0,2]], 
+#      [[1,0], [1,1], [1,2]]]
 ```
 
 You can use this method to build a empty matrix.
