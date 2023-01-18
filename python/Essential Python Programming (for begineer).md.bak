@@ -39,7 +39,7 @@ type("3.0+7j")
 
 ## Changing Type
 
-By now you should know that type(3) is int and type("3") is str. This **type** can also use as a transform function.
+By now you should know that `type(3)` is `int` and `type("3")` is `str`. This **type** can also use as a transform function.
 
 ```py
 print(str(3), type(str(3))
@@ -48,7 +48,7 @@ print(int("3.0"), type(int("3.0")))
 
 ## Variable
 
-Just like 3x = y in school algebra, `x` and `y` are is a variable. Variable is a name. There is a value behind the value.
+Just like 3x = y in school algebra, `x` and `y` are is a variable. Variable is a name. There is a value behind the name.
 
 ```py
 x = 3
@@ -898,7 +898,7 @@ y = [head, *middle, end]  # with `*` for middle, you unpack stuffs inside
 print(y)  # [0, 1, 2, 3, 4]
 ```
 
-Although multiple unpack is useful, do not addict to it. Sometimes it comes with performance panalty like the following.
+Although multiple unpack is useful, do not addict to it. Sometimes it comes with performance penalty like the following.
 
 ```py
 a, b, c = tuple([0, 0, 0])  # never do this
