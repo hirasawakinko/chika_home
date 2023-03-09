@@ -48,7 +48,7 @@ print(int("3.0"), type(int("3.0")))
 
 ## Variable
 
-Just like 3x = y in school algebra, `x` and `y` are is a variable. Variable is a name. There is a value behind the name.
+Just like 3x = y in school algebra, `x` and `y` are variable. Variable is a name. There is a value behind the name.
 
 ```py
 x = 3
@@ -827,11 +827,11 @@ need = [0,2,3]
 
 y = []
 for index in need:
-    x.append(x[index])
+    y.append(x[index])
 print(y)  # ["Amos", "Behemoth", "Ceres"]
 ```
 
-Stop doing this. Use map itemgetter.
+Stop doing this. Use itemgetter.
 
 ```py
 x = ["Amos", "Amos", "Behemoth", "Ceres"]

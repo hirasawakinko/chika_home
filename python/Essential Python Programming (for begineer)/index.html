@@ -1379,19 +1379,23 @@ Explained:</p>
 <a id="__codelineno-69-3" name="__codelineno-69-3"></a>
 <a id="__codelineno-69-4" name="__codelineno-69-4"></a><span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
 <a id="__codelineno-69-5" name="__codelineno-69-5"></a><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">need</span><span class="p">:</span>
-<a id="__codelineno-69-6" name="__codelineno-69-6"></a>    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<a id="__codelineno-69-6" name="__codelineno-69-6"></a>    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
 <a id="__codelineno-69-7" name="__codelineno-69-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># [&quot;Amos&quot;, &quot;Behemoth&quot;, &quot;Ceres&quot;]</span>
 </code></pre></div></td></tr></table></div>
-<p>Stop doing this. Use map itemgetter.</p>
+<p>Stop doing this. Use itemgetter.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-70-1">1</a></span>
 <span class="normal"><a href="#__codelineno-70-2">2</a></span>
 <span class="normal"><a href="#__codelineno-70-3">3</a></span>
 <span class="normal"><a href="#__codelineno-70-4">4</a></span>
-<span class="normal"><a href="#__codelineno-70-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
+<span class="normal"><a href="#__codelineno-70-5">5</a></span>
+<span class="normal"><a href="#__codelineno-70-6">6</a></span>
+<span class="normal"><a href="#__codelineno-70-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Amos&quot;</span><span class="p">,</span> <span class="s2">&quot;Behemoth&quot;</span><span class="p">,</span> <span class="s2">&quot;Ceres&quot;</span><span class="p">]</span>
 <a id="__codelineno-70-2" name="__codelineno-70-2"></a><span class="n">need</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <a id="__codelineno-70-3" name="__codelineno-70-3"></a><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
-<a id="__codelineno-70-4" name="__codelineno-70-4"></a><span class="n">y</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="n">need</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-70-4" name="__codelineno-70-4"></a><span class="n">y</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 <a id="__codelineno-70-5" name="__codelineno-70-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># (&quot;Amos&quot;, &quot;Behemoth&quot;, &quot;Ceres&quot;)</span>
+<a id="__codelineno-70-6" name="__codelineno-70-6"></a><span class="n">y</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="o">*</span><span class="n">need</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-70-7" name="__codelineno-70-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># (&quot;Amos&quot;, &quot;Behemoth&quot;, &quot;Ceres&quot;)</span>
 </code></pre></div></td></tr></table></div>
 <p>If you obtaining multiple stuff, Itemgetter return a Tuple. If you obtain only single stuff, itemgetter return that single object without putting it in any List or Tuple. You need to be careful with this. Since tou can use <code>*</code> to unpack a List or Tuple even if that List or Tuple contain only single element. But since you are using <code>*</code> to unpack something, you are expecting many things inside. Really, be careful of this behaviour.</p>
 <p>But first of all what means by "use <code>*</code> to unpack a List or Tuple" ??? This is explained in the following section.</p>
