@@ -1041,7 +1041,7 @@ def normal_commutator(AA, BB):
                         new[new_key] += (
                             -a_cof * b_cof 
                             if ((aclw%2-clw%2) + (clw%4+aclw%4)%4)%4 else
-                            -a_cof * b_cof)
+                            +a_cof * b_cof)
 
         else: # Seperate code to eliminate unnecessary $if b_hash in common_terms$ checking
             ######### Same code from above ###########
@@ -1066,7 +1066,7 @@ def normal_commutator(AA, BB):
                         new[new_key] += (
                             -a_cof * b_cof 
                             if ((aclw%2-clw%2) + (clw%4+aclw%4)%4)%4 else
-                            -a_cof * b_cof)
+                            +a_cof * b_cof)
     QO = QubitOperator  # Preload
     new_QO = QO()
     new_QO.terms = new
