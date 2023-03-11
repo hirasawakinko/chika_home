@@ -1,0 +1,1077 @@
+# Special and General Commutativity of Pauli Operator
+
+# Premise
+
+## Premise: Pauli Operator
+
+Pauli Operator is a set of 2x2 matrix denoted by symbols of {I, X, Y, Z}. They are matrix, so they obey every law of linear algebra. They are the core part of Quantum Computing.
+
+    I = [ 1  0]
+        [ 0  1]
+        
+    X = [ 0  1]
+        [ 1  0]
+        
+    Y = [ 0  -j]
+        [ j  0]
+    
+    Z = [ 1  0]
+        [ 0 -1]
+        
+## Premise: Dictionary for Pauli Operator multiplication
+
+First of all, we need a dictionary to check what is what, when two Pauli multiplied together, what will be the result. And since matrix multiplication is binary operation, the dictionary key consist of two consecutive Pauli Operator symbols.
+
+I choose the approach that seperate Pauli Operator and its coefficient to reduce total count of loops in the program.
+
+``` py
+# Seperating Pauli Operator and its coefficient
+lookup_xyz = { 'XY': 'Z',
+               'YX': 'Z',
+               'XZ': 'Y',
+               'ZX': 'Y',
+               'YZ': 'X',
+               'ZY': 'X' }
+            
+lookup_cof = { 'XY':  1j,
+               'YX': -1j,
+               'XZ': -1j,
+               'ZX':  1j,
+               'YZ':  1j,
+               'ZY': -1j }
+```
+But if you choose the compounded approach, you would need to call out element[0], element[1] which is a waste of time.
+
+``` py
+# Compounded Pauli Operator and its coefficient
+lookup = { 'XY': ('Z',  1j),
+           'YX': ('Z', -1j),
+           'XZ': ('Y', -1j),
+           'ZX': ('Y',  1j),
+           'YZ': ('X',  1j),
+           'ZY': ('X', -1j) }
+```
+
+## Premise: Terms in linear combination must be unique
+
+By the way, this is all established in the premise of well defined dataset. Namely, all terms inside the linear combination are unique. For example let say we have a linear combination of two Z1 (see below). It will automatically merge them into one.
+
+    QubitOperator('''1 [Z1] + 1 [Z1]''')
+    = 2 [Z1] 
+
+I want the merged version. Otherwise my algorithm do not work.
+
+## Premise: comm(A, B) as the symbol of commutator
+
+The convention for mathematical symbol of commutator is [A, B]. Which stand for the arithematic operation of (AB - BA).
+
+I must not use this anywhere in my article because this symbolically collides with Python code and bring unnecessary confusion textually.
+
+Instead, I use comm(A, B) to represent the comumutator operation.
+
+# Singular Commutativity
+
+Single means only one term in the linear combination. Let's first deal with the most specific one, i.e. comm(single, single). 
+
+Say we have two Pauli Operator a and b. We need to check if they are commute to each other.
+
+    a)  +1.0 Y0 X1 X2 Y3
+    b)  +1.0    Z1    X3
+
+    want: comm(a, b)
+
+        comm(a, b)
+
+    =   comm( +1.0 Y0 X1 X2 Y3 , +1.0 Z1 X3)  # remember AB-BA
+
+    =   (+1.0 Y0 X1 X2 Y3)(+1.0 Z1 X3) - (+1.0 Z1 X3)(+1.0 Y0 X1 X2 Y3)
+
+How can we solve this? How to multiply Pauli Operator?
+
+## Multiplication of Pauli Operator
+
+First thing to know is that either a and b is tensor product of Pauli Operators with coefficient.
+
+        [coefficient]   [tensor product of Pauli Operators]
+    a)  +1.0            Y0 X1 X2 Y3
+    b)  +1.0               Z1    X3
+
+The neat thing about tensor product is that the outcome is in fact index sensitive. Which means that you cannot seperate the XYZ and the index of it.
+
+            [Pauli XYZ] [index]
+    Z1 =    Z           1
+    X3 =    X           3
+
+Pauli Operator can only multiply to the same index.
+
+    Z1 X3 == Z1 X3  # nothing happen since index differ
+    Z1 X1 == ZX1 = (Y1, 1j)  # Outcome is Y1 with coefficient 1j, according to the dictionary
+
+And the coefficient can be any usually number. You can do this multiplication vertically (or should say vistually)
+
+    comm(a, b)
+    = comm( +1.0 Y0 X1 X2 Y3 , +1.0 Z1 X3)
+    
+    = (+1.0 Y0 X1 X2 Y3) - (+1.0    Z1    X3)
+      (+1.0    Z1    X3)   (+1.0 Y0 X1 X2 Y3)
+    
+    = (+1.0 Y0 XZ1 X2 YX3) - (+1.0 Y0 ZX1 X2 XY3)
+    
+    = (+1.0 Y0 -1jY1 X2 -1jZ3 ) - (+1.0 Y0 1jY1 X2 1jZ3)  # Refer to the dictionary to get new value
+    
+    = (+1.0*-1j*-1j Y0 Y1 X2 Z3 ) - (+1.0*1j*1j Y0 Y1 X2 Z3)  # Factor out coefficient
+    
+    = (-1.0 Y0 Y1 X2 Z3 ) - (-1.0 Y0 Y1 X2 Z3) # Multiply coefficient
+    
+    = 0 Y0 Y1 X2 Z3
+    
+    = 0
+
+So a and b is indeed commute.
+
+## Focusing and ignoring
+
+Already we can see some room for improvement.
+
+    comm(a, b)
+    = comm( +1.0 Y0 X1 X2 Y3 , +1.0 Z1 X3)
+
+    = (+1.0 Y0 X1 X2 Y3) - (+1.0    Z1    X3)
+      (+1.0    Z1    X3)   (+1.0 Y0 X1 X2 Y3)
+
+    = (+1.0 Y0 XZ1 X2 YX3) - (+1.0 Y0 ZX1 X2 XY3)  # Nothing is multiplied to index 0 and 2
+    ...
+    =   (-1.0 Y0 Y1 X2 Z3 ) -   (-1.0 Y0 Y1 X2 Z3)  # index 0 and 2 remain unchanged
+
+In fact we can solely focus on those Pauli XYZ on common indices.
+
+      [focus]         [outfo]   [focus]         [outfo]
+    = (+1.0 X1 Y3     Y0 X2 ) - (+1.0 Z1 X3           )
+      (+1.0 Z1 X3           )   (+1.0 X1 Y3     Y0 X2 )
+
+Since tensor product is index sensitive, not position sensitive, it doesn't matter how we sort or ordering it. Those outfo Pauli XYZ can in fact be ignored since we are 100% sure that they are the same thing. And we are looking at things that are potentially will be changed after arithematic i.e. [focus] part. I will prove this in the section of [Uniqueness of Pauli XYZ](#uniqueness-of-pauli-xyz). And we can countinue the remaining computation.
+
+      [focus]         [focus]
+    = (+1.0 X1 Y3 ) - (+1.0 Z1 X3 )  # [outfo] is ignored
+      (+1.0 Z1 X3 )   (+1.0 X1 Y3 )
+
+    = (+1.0 -1jY1 -1jZ3 ) - (+1.0 1jY1 1jZ3)  # Refer to the dictionary to get new value
+
+    = (+1.0*-1j*-1j Y1 Z3 ) - (+1.0*1j*1j Y1 Z3)  # Factor out coefficient
+
+    = (-1.0 Y1 Z3 ) - (-1.0 Y1 Z3) # Multiply coefficient
+
+    = 0 Y1 Z3
+
+    = 0  # Same result
+
+## Predicting Pauli Operator
+
+You may notice that ordering do not affect the multiplication outcome for Pauli XYZ.
+
+    XY == YX == Z
+    ZZ == ZZ == I
+    YI == IY == Y
+
+Hence we can bascially assume that the multiplication outcome for Pauli XYZ is always the same. 100% sure. Not even bother to check. So we can ignore one more thing: 
+
+    For example in such situation
+    
+    (+1.0 XZ1 YX3) - (+1.0 ZX1 XY3)
+    
+    In index 1 and index 3, we don't ask if the Pauli XYZ outcome of left part of the minus sign is the same accross the right part.
+    
+    They must automatically the same.
+
+## Predicting coefficient
+
+Here we multiply coefficient of both sides of the minus sign one by one. This could be computational intense when we have a lot to do. Is there a way to know the final result directly? Yes there is one.
+
+Just look at the dictionary and you can see that the ordering only make result differ by the sign.
+
+    'XZ': ('Y', -1j)
+    'ZX': ('Y',  1j)
+
+I describe this property as a cyclic group. Imagine that it is like the below arrangement. XYZ arranged on the edge of a circle. X at 12 o'clock, Y at 4 o'clock, Z at 8 o'clock. 
+
+If you count them counter clockwise.
+
+    X => Y then you got 1jZ. 
+    Y => Z then you got 1jX. 
+    Z => X then you got 1jY. 
+    Positive sign for clockwise.
+
+      X
+    Z   Y
+
+    XYZXYZXYZXYZXYZ  # clockwise
+
+If you count them counter anticlockwise. 
+    Y=>X then you got -1jZ.
+    Z=>Y then you got -1jX.
+    X=>Z then you got -1jY.
+    Negative sign for anticlockwise.
+
+    ZYXZYXZYXZYXZYX  # anti-clockwise or counter-clockwisw
+
+Say we have a long tensor product to deal with.
+
+    comm(   +1.0 X0 Y1 Y2 Z3 X4 Z5 Z6 X7 Y8 Z9 , +1.0 Z0 X1 Y2 Y3 Z4 Y5 X6 Y7 Z8 Y9 )
+
+    = +1.0 X0 Y1 Y2 Z3 X4 Z5 Z6 X7 Y8 Z9 - +1.0 Z0 X1 Y2 Y3 Z4 Y5 X6 Y7 Z8 Y9
+      +1.0 Z0 X1 Y2 Y3 Z4 Y5 X6 Y7 Z8 Y9   +1.0 X0 Y1 Y2 Z3 X4 Z5 Z6 X7 Y8 Z9
+
+    = +1.0 XZ YX YY ZY XZ ZY ZX XY YZ ZY - +1.0 ZX XY YY YZ ZX YZ XZ YX ZY YZ  
+    # Ommited indices
+
+    = +1.0 XZ YX ZY XZ ZY ZX XY YZ ZY - +1.0 ZX XY YZ ZX YZ XZ YX ZY YZ  
+    # (YY = I) so nothing have changed
+
+    = +1.0  1  1  1  1  1  0  0  0  1 - +1.0  0  0  0  0  0  1  1  1  0  
+    # Encode for clockwiseness. 0 for clockwise, 1 for anti-clockwise
+
+    # By stacking two sides we can see that the clockwiseness is opposite of each other
+    +1.0  1  1  1  1  1  0  0  0  1   
+    +1.0  0  0  0  0  0  1  1  1  0
+
+The clockwiseness is having opposite relationship. Hence here come another thing that we can ignore. We can solely keep track of the clockwiseness of the left part of the minus sign.
+
+    # We solely have to look at this clockwiseness infomation
+    +1.0  1  1  1  1  1  0  0  0  1   
+
+Clockwise imply coefficient of 1j.
+
+Anticlockwise imply coefficient of -1j.
+
+Here we can count how many Clockwise, how many Anticlockwise, to see the total number of each 1j and -1j.
+
+    +1.0 XZ YX ZY XZ ZY ZX XY YZ ZY
+    +1.0  1  1  1  1  1  0  0  0  1  # 0 for clockwise, 1 for anti-clockwise
+
+                    [count]     [which means]
+    Clockwise:      3           ( 1j) ** 3
+    Anticlockwise:  6           (-1j) ** 6
+
+We can view -1j as (-1)*(1j) to seperate them. Therefore there are in total:
+
+    ## For the left term of the minus sign ##
+        [count]     [value come from]
+    -1  6           count of Clockwise
+    1j  3+6         count of Clockwise + Anticlockwise
+    
+    = (-1)**(Anticlockwise) * (1j)**(Clockwise + Anticlockwise)
+
+For the right term of the minus sign, you just need to swap the count of Clockwise and Anticlockwise.
+
+    BE CAREFUL! The count of clockwiseness is with respect to the left term!
+    
+    ## For the right term of the minus sign ##
+        [count]     [value come from]
+    -1  3           count of Anticlockwise
+    1j  3+6         count of Clockwise + Anticlockwise
+    
+    = (-1)**(Clockwise) * (1j)**(Clockwise + Anticlockwise)
+
+So the whole thing is
+
+    left term - right term
+
+    = (-1)**(Anticlockwise) * (1j)**(Clockwise + Anticlockwise) 
+    - (-1)**(Clockwise) * (1j)**(Clockwise + Anticlockwise)
+
+    = (1j)**(Anticlockwise + Clockwise)
+    * [(-1)**(Clockwise) - (-1)**(Anticlockwise)]  # Factorization
+
+Since (1j)**(Clockwise + Anticlockwise) can not be zero even when (Clockwise+Anticlockwise)==0 , we can ignore this part, and also (Clockwise+Anticlockwise) will never be negative. So this (1j)**(Clockwise + Anticlockwise) part is not determining whether the end result of AB-BA is zero or not. 
+
+The part that we need to look at is [(-1)**(Clockwise) - (-1)**(Anticlockwise)] .
+
+    # Only this part matters
+    (-1)**(Anticlockwise) - (-1)**(Clockwise)   
+
+Exponential of -1 have only two result. Either +1 or -1. Dependening of the power. Thus keep track of the parity is enought.
+
+    +1 == (-1)**( odd number)
+    -1 == (-1)**(even number)
+    
+In totalt 4 situations:
+
+    +1 - (+1) = 0
+    +1 - (-1) = 2
+    -1 - (+1) = 2
+    -1 - (-1) = 0
+
+Also we can see that if the result is non-zero, it must be a coefficient of 2. Cases when result is zero is that one side has the opposite sign of another side. So so only need to perform parity check, and this can determine whether (AB - BA) is zero or not.
+
+    Parity Check
+    = Anticlockwise%2 ^ Clockwise%2  # Binary XOR
+
+    so if Anticlockwise%2 != Clockwise%2,
+    there must left with a remainder => not equals to zero => non commute
+
+    side note for Binary XOR
+        0^0 == 0
+        0^1 == 1
+        1^0 == 1
+        1^1 == 0
+    thus we can use this to check for parity.
+
+## Code
+
+``` py title="commutator_singular"
+def commutator_singular(a, b):
+    # Only clockwiseness dictionary is needed
+    lookup = { 'XY': 0,
+               'YX': 1,
+               'XZ': 1,
+               'ZX': 0,
+               'YZ': 0,
+               'ZY': 1 }
+
+    if a == b:  # Self commute
+        return True
+
+    a_key, b_key = dict(a.keys()), dict(b.keys())  # We don't need coefficient
+
+    # Extract common indices
+    intersect = set(a_key.keys()).intersection(b_key.keys())
+    if intersect:
+        clw = aclw = 0
+        for i in intersect:
+            a, b = a_key[i], b_key[i]
+            if a != b:  # Skip XX YY ZZ
+                anticlock = lookup[f"{a}{b}"]
+                if anticlock:
+                    aclw ^= 1  # Parity check
+                else:
+                    clw ^= 1  # Parity check
+        if aclw ^ clw :  # Parity check
+            return False
+
+    return True
+```
+
+# Special Commutativity
+
+Now we have the knowledge of how to do comm(single, single), let see how to do the more generalized one i.e. comm(multiple, single) . Let's denote this as comm(AA, B) for there is now more stuff inside the left slot.
+
+## Linearity of commutator and broadcasting
+
+Let see what actually is comm(AA, B).
+
+Commutator is a linear function which means that you can 'broadcast' the function.
+
+Just like how you would multiply c(x + y) => (cx + cy), you broadcast the c to everyone inside parentheses.
+
+    comm( (H+J+K) , B )
+    = comm(H, B) + comm(J, B) + comm(K, B)
+
+    comm(AA, B)
+    = comm( -1.0             , +1.0 Z1 X3  )
+            +1.0 X0 Y1 Y2 X3
+            +1.0 Y0 X1 X2 Y3
+            -1.0 X0 X1 Y2 Y3
+            -1.0 Y0 Y1 X2 X3
+            +1.0 Z0
+            +1.0 Z0 Z1
+            +1.0 Z0    Z2
+            +1.0 Z0       Z3
+            +1.0 Z1
+            +1.0 Z1    Z2
+            +1.0 Z1       Z3
+            -1.0 Z2
+            +1.0 Z2       Z3
+            -1.0 Z3
+
+So you broadcast B := 1.0 [Z1 X3] to all terms in AA.
+
+    = comm( -1.0             , +1.0 Z1 X3 )
+     +comm( +1.0 X0 Y1 Y2 X3 , +1.0 Z1 X3 )
+     +comm( +1.0 Y0 X1 X2 Y3 , +1.0 Z1 X3 )
+     +comm( -1.0 X0 X1 Y2 Y3 , +1.0 Z1 X3 )
+     +comm( -1.0 Y0 Y1 X2 X3 , +1.0 Z1 X3 )
+     +comm( +1.0 Z0          , +1.0 Z1 X3 )
+     +comm( +1.0 Z0 Z1       , +1.0 Z1 X3 )
+     +comm( +1.0 Z0    Z2    , +1.0 Z1 X3 )
+     +comm( +1.0 Z0       Z3 , +1.0 Z1 X3 )
+     +comm( +1.0 Z1          , +1.0 Z1 X3 )
+     +comm( +1.0 Z1    Z2    , +1.0 Z1 X3 )
+     +comm( +1.0 Z1       Z3 , +1.0 Z1 X3 )
+     +comm( -1.0 Z2          , +1.0 Z1 X3 )
+     +comm( +1.0 Z2       Z3 , +1.0 Z1 X3 )
+     +comm( -1.0 Z3          , +1.0 Z1 X3 )
+
+
+Now we can deal with each of these seperately instead of thinking how to deal with all terms simultaneously.
+
+I call each term of AA as 'a', likewise each term of B as 'b'. Obviously there is only 1 'b' in this case, so 'b' stand for 1.0 [Z1 X3].
+
+Look at the first term,
+
+    0)  comm( -1.0             , +1.0 Z1 X3 )
+
+There is no Pauli XYZ inside A. Why? It is actually a convention in most of the symbolic computation library that always ommiting the Pauli I Operator. Because you will always get the same thing when multiplying Pauli I to any Pauli XYZ. Hence, comm(a0, b) is no doubt commute.
+
+    a0b - ba0 == 0  # by the fact that a0 is Pauli I
+
+But for any terms that contain things other than Pauli I, you need to check wether it is commute.
+
+    1)  comm( +1.0 X0 Y1 Y2 X3 , +1.0 Z1 X3 )
+
+    = comm( +1.0 X0 Y1 Y2 X3,
+            +1.0    Z1    X3)
+
+    = comm( +1.0 Y1 X3  ,
+            +1.0 Z1 X3  )   # focus on common index
+
+    = YZ XX - ZY XX  # lets use the clockwiseness techinque from previous section
+
+    ## we can solely keep track of the first (left) clockwiseness
+        Anticlockwise%2 ^ Clockwise%2
+    =   1 ^ 0
+    =   1   
+    = non commute
+
+One counter example is enough, so comm(AA, B) return False immediately.
+
+## Uniqueness of Pauli XYZ
+
+The most important notion about Pauli XYZ is that it form a cyclic group and thus maintain uniqueness. This uniqueness ensure that we can boradcase like above paragraph and reject commutativity immediately after one counter example found. Otherwise we must check for all pattern to see whether they are commute or not.
+
+What if there did not exist uniquess?
+
+Let say we got comm(AA, B). And currently comparing AA[i] and B[0].
+
+    comm( AA[i] , B[0] )
+
+When they commute, they cancel out.
+
+But when they NOT commute, the remainder stay. What will then happen?
+
+Remember that we are comparing AA and B. We scan from AA[0] to AA[n].
+
+    If comm(AA[1], BB[0]) != 0
+
+    Since we multiplied AA[1] by BB[0],
+    this should form a new term that we don't know yet
+
+    comm(AA[1], B[0]) => something else let say 1 * R_1
+
+    Then we meet other commute pair
+
+    Let say comm(AA[2], B[0]) == 0
+    But this is just meaning that
+
+    comm(AA[2], B[0]) => something else let say 1 * R_2
+
+    What if there is another R_2 ?
+    What if R_1 is actually R_2 ?
+    So we cannot cancel out the Pauli Tensor from comm(AA[2], B[0]),
+    although comm(AA[2], B[0]) == 0
+
+    If this kind of thing can be happened,
+    then we must check for all terms to make sure the final remainder is zero,
+    then finally we can say AA and B is commute
+
+But we don't need to do that. Let me prove it.
+
+Since Pauli XYZ is a cyclic group.
+
+      X
+    Z   Y
+
+Let say you got Y, multiplying X to results Z. You can do the same thing on the above triangle. Try draw a line from Y, passing X, you must reach Z.
+
+Then you have a set of Pauli XYZ. Just think of many of those triangles all happening at once.
+
+    B     [focus]
+    B0    ...
+
+    AA    [focus]         [outfo]
+    AA0   ...             ...
+    AA1   ...             ...
+    AA2   ...             ...
+
+Recall the section of [Premise: terms in linear combination must be unique](#premise-terms-in-linear-combination-must-be-unique).
+
+Each Pauli XYZ inside AA is a unique permutation of Pauli Tensor.
+
+For the outfo part, just assume that they are all having the same exactly one permutation. Even that, the focus part must all differ from each other within same set i.e. within AA. 
+
+Let say AA consist of 3 rows and they differ from each other in only one Pauli XYZ. And B[0] is Z
+
+        B   [focus]
+        0   Z
+
+        AA  [focus]         [outfo]
+        0   X               ...
+        1   Y               ...
+        2   Z               ...
+
+    =   AAB [focus]         [outfo]
+        0   XZ              ...
+        1   YZ              ...
+        2   ZZ              ...
+
+    =   AAB [focus]         [outfo]
+        0   Y               ...
+        1   X               ...
+        2   I               ...
+
+Terms in AA are still differ from each other after multiplication. Because they are all multiplied by the same thing. Their relative distance after being multiplied still  remain unchanged.
+
+Think of that XYZ triangle analogy. You got 3 of them now. And then you rotate them simultaneously by same unit. Their relative status do not change after all.
+
+Like you multiply 3 to [1. 2. 3], they change to [3, 6, 9] and they still differ internally before and after.
+
+Hence uniqueness of Pauli XYZ is ensured and we can safely do the broadcasting and cancel out comm(AA[i], B[0]) = 0 terms.
+
+## Code
+``` py title="commutator_special"
+def commutator_special(AA, B):
+    # Only clockwiseness dictionary is needed
+    lookup = { 'XY': 0,
+               'YX': 1,
+               'XZ': 1,
+               'ZX': 0,
+               'YZ': 0,
+               'ZY': 1 }
+
+    # Hash the whole AA dict for faster checking
+    AA_Hashs = { hash((key,val)): (dict(key), val) for key,val in AA.items() }
+
+    for b_key, b_cof in B.keys:  # This loop has only one element
+        b_key = dict(b_key)
+
+        if hash(b_key) in AA_Hashs:  # Self commute
+            return True
+
+        # Only dict.values is enough. We don't need hash((key,val)) below
+        for a_key, a_cof in AA.values():  
+            # Extract common indices
+            intersect = set(a_key.keys()).intersection(b_key.keys())
+            if intersect:
+                clw = aclw = 0
+                for i in intersect:
+                    a, b = a_key[i], b_key[i]
+                    if a != b:  # Skip XX YY ZZ
+                        anticlock = lookup[f"{a}{b}"]
+                        if anticlock:
+                            aclw ^= 1  # Parity check
+                        else:
+                            clw ^= 1  # Parity check
+                if aclw ^ clw :  # Parity check
+                    return False
+    return True
+```
+
+# General Commutativity
+
+We have already seen comm(one, one) and comm(many, one), how about comm(many, many) denoted as comm(AA, BB) ? Is that difficult?
+
+Yes it is not an easy job to think about it. But don't worry, because I solved it for you already.
+
+## Cartesian Product
+
+To do comm(AA, BB), we need to broadcase everything in BB to everything in AA. And this is simplily the case of Cartesian Product.
+
+You can write some simple code to see what it is.
+
+``` py
+from itertools import product
+AA = [0,1,2,3]
+BB = [0,1,2,3]
+for a,b in product(AA, BB):
+    print(a,b)
+    
+# 0 0
+# 0 1
+# 0 2
+# 0 3
+# 1 0
+# 1 1
+# ...
+```
+
+So if we are to check whether AA and BB commute, we have to check for all combination in the worst case. This can be super computational intense if you do this straight. And some guy do carry the whole calculation of AABB - BBAA, namely, carry out the multiplication of AABB and BBAA seperately then subtract them. This is just a waste of time since we have already discovered everything from the symmetry of Pauli XYZ and being able to ignore so many maniplulations and still obtain the result.
+
+Just note that you can see that from the Cartesian Product, 01 and 10, or things like this can be happened. The mirror image of the same thing. The number is originally denoted as the index of AA and BB. But what if, what if those {0,1,2,3,...} stands for some unique Pauli XYZ sequence? We can see that this may indicate a exact concern among the symmetry.
+
+## Degerenate uniqueness
+
+Last section I proved the uniquness of Pauli XYZ within a linear combination. This however, do not work in the general case which is comm(many, many) i.e. comm(AA, BB).
+
+Things are unique inside AA. Things also unique inside BB. But the point is the same thing can be possessed by AA and BB at the same time.
+
+        [AA]            [BB]
+    0   ...             ...
+    1   ...             ...
+    2   Z0 X1 X2        ...
+    3   ...             ...
+    4   ...             Z0 X1 X2
+    5   ...             Z0 Z1
+    6   ...             ...
+    7   Z0 Z1           ...
+    8   ...             ...
+    9   ...             ...
+
+Let recall the Cartestian Product.
+
+        a b
+        0 0
+        0 1
+        0 2
+        0 3
+        1 0
+        1 1
+        ...
+
+    fist we need to compute
+
+        comm(0, 0)  # self commute
+    +   comm(0, 1)
+    +   comm(0, 2)
+    +   comm(0, 3)
+    +   comm(1, 0)
+    +   comm(1, 1)  # self commute
+    +   comm(1, 2)
+    +   comm(1, 3)
+    +    ...
+
+    we can already cancel some of them by the law of self commute
+
+        comm(0, 1)  # ?
+    +   comm(0, 2)
+    +   comm(0, 3)
+    +   comm(1, 0)  # ?
+    +   comm(1, 2)
+    +   comm(1, 3)
+    ...
+
+    then we see some interesting pairs
+
+        comm(0, 1)
+    +   comm(1, 0)
+
+    what is their relationship?
+
+So, a pair of couple 0 and 1. Just differed by the ordering. But what are they actually?
+
+    since comm(a, b) = ab - ba0
+
+    comm(0, 1) = 01 - 10
+    comm(1, 0) = 10 - 01 = -(01 - 10)  # Oops
+
+    sum it !
+
+        comm(0, 1) + comm(1, 0)
+    =   (01 - 10) + -(01 - 10)
+    =   0  # This commute, 
+    
+    but if and only if the coefficient of left0 and right0 is the exactly same thing
+    if not, it will be like 
+    
+        0.5*(01 - 10) + -0.3*(01 - 10)
+    =   0.2*(01 - 10) => NON commute
+    
+So they added up. This is not happened in the previous section in Special Commutativity.
+
+In fact this kind of order-reverted commutativity is well known. From this result, we can see that if the exactly same pair is pocessesed by both AA and BB, then we automatically know this pair commute.
+
+```pu
+if a in BB and b in BB:  # commute!
+    continue   # Not even bother to check the clockwiseness
+```
+    like finding the overlaping part of two set
+
+                      /---------\
+            /-------\/           \
+           /        /\            |
+          |        |!!|           |
+           \        \/           /
+            \_______/ \_________/
+
+But for others, not sure. You have to check for their clockwiseness.
+
+And since the uniqueness is degenerated in general case, we cannot return False just because one pair is non commute.
+
+For example
+    
+    comm( [Z0 X1 Y2 X3] , [Y1 X2 Y3] )
+    = 2j [Z0 Z1 Z2 Z3]
+        
+        
+    comm( [Y0 Z1 Z2 Z3] , [X0] )
+    = -2j [Z0 Z1 Z2 Z3]
+    
+    Both pair do not commute internally,
+    but the outcome is exactly same and coeficients add up to zero,
+    then annihilate
+
+## Code
+
+``` py title="commutator_general"
+def commutator_general(AA, BB):
+    # Only clockwiseness dictionary is needed
+    lookup = { 'XY': 0,
+               'YX': 1,
+               'XZ': 1,
+               'ZX': 0,
+               'YZ': 0,
+               'ZY': 1 }
+
+    # Hash for faster checking
+    # Prepare both because we are to check for set relation
+    AA_Hashs = { hash((key,val)):(dict(key), val) for key,val in AA.items() }
+    BB_Hashs = { hash((key,val)):(dict(key), val) for key,val in AA.items() }
+
+    # Prepare a set for faster checking
+    common_terms = set(A_hashs.keys()).intersection(B_hashs.keys())
+
+    for a_hash, (a_key, a_cof) in AA.keys:  # This loop has many element
+        a_key = dict(a_key)
+        if a_hash in common_terms:
+            for b_hash, (b_key, b_cof) in BB.items():
+                if b_hash in common_terms:  #  Skip for this intersection pairs
+                    continue
+                # Extract common indices
+                intersect = set(a_key.keys()).intersection(b_key.keys())
+                if intersect:
+                    clw = aclw = 0
+                    for i in intersect:
+                        a, b = a_key[i], b_key[i]
+                        if a != b:  # Skip XX YY ZZ
+                            anticlock = lookup[f"{a}{b}"]
+                            if anticlock:
+                                aclw ^= 1  # Parity check
+                            else:
+                                clw ^= 1  # Parity check
+                    if clw ^ aclw :  # Parity check
+                        ###########################################
+                        #   We need to evaluate the result here!  #
+                        #   Since we uniqueness is not exist in   #
+                        #   general case !!!                      #
+                        ###########################################
+        else: # Seperate code to eliminate unnecessary $if b_hash in common_terms$ checking
+            ######### Same code from above ###########
+            for b_key, b_cof in BB.values(): # Only values is enough. We don't need hash(key) below
+                intersect = set(a_key.keys()).intersection(b_key.keys())
+                if intersect:
+                    clw = aclw = 0
+                    for i in intersect:
+                        a, b = a_key[i], b_key[i]
+                        if a != b:  # Skip XX YY ZZ
+                            anticlock = lookup[f"{a}{b}"]
+                            if anticlock:
+                                aclw ^= 1  # Parity check
+                            else:
+                                clw ^= 1  # Parity check
+                    if clw ^ aclw :  # Parity check
+                        ###########################################
+                        #   We need to evaluate the result here!  #
+                        #   Since we uniqueness is not exist in   #
+                        #   general case !!!                      #
+                        ###########################################
+    ###########################################
+    #   Now check if the end result is zero   #
+    ###########################################
+```
+
+# Normal Commutator
+
+So, I said from the begining that commutator is a function which
+
+    commutator = AB - BA
+
+If thing do not commute, AB - BA != 0, there is remainder. Sometimes people want the remainder more than commutativity.
+
+And I got you.
+
+So, we have been avoid calculating the coefficient of NON commute outcome. Because, from the textbook or from the first section, people knew that there is only two result from NON commute prduct.
+
+        Clockwise =>  1j
+    Anticlockwise => -1j
+
+        XY - YX
+    =   Clockwise - Anticlockwise
+    =   1j - (-1j)
+    =   2j
+
+        ZY - YZ
+    =   Anticlockwise - Clockwise
+    =   -1j - 1j
+    =   -2j
+
+This is simple, because we only do this on one single Pauli XYZ, that is why they only post this on textbook.
+
+What happen if we got a Tensor Product of Pauli XYZ?
+
+    Clockwise * Clockwise * Anticlockwise * Anticlockwise ... =>  ?
+    Anticlockwise * Anticlockwise * Clockwise * Clockwise ... => -?
+
+Of course you can do it straight. I won't stop you.
+
+    =>  1j * 1j * -1j * -1j * 1j * ...
+
+Seems endless multiplication.
+
+Recalling from the first setion, we got this equation. Maybe this can help us.
+
+    ca and cb stand for coefficient of a and b
+    
+    coefficient when non commute
+    =   (ca * cb) * [(-1)**(Anticlockwise) * (1j)**(Clockwise + Anticlockwise) - (-1)**(Clockwise) * (1j)**(Clockwise + Anticlockwise)]
+
+Too long. Just call Clockwise 'clw' and Anticlockwise 'aclw'.
+
+    (ca * cb) * [(-1)**(aclw) * (1j)**(clw + aclw) - (-1)**(clw) * (1j)**(clw + aclw)]
+
+The problem is the big thing behind (ca * cb) . Its value depends on count of clw and aclw.
+
+    (-1)**(aclw) * (1j)**(clw + aclw) - (-1)**(clw) * (1j)**(clw + aclw)
+    = (1j)**(clw + aclw) * [(-1)**(aclw) - (-1)**(clw)] => eq.0
+
+    Commute means that coefficient equals zero.
+    this can happen if and only if the right part equal zero
+
+    0 = (1j)**(clw + aclw) * [(-1)**(aclw) - (-1)**(clw)]
+    => [(-1)**(aclw) - (-1)**(clw)] == zero
+
+    This is just adding and subtracting, 
+    it can be zero
+
+    But what is exponential of -1 ?
+
+       (-1)**0 =  1
+       (-1)**1 = -1
+       (-1)**2 =  1
+       (-1)**3 = -1
+       (-1)**4 =  1
+        ...
+
+    we can just count the parity clw and aclw for this part
+
+    But what is then (1j)**(clw + aclw) ?
+
+        1j** 0 =  1
+        1j** 1 =  1j
+        1j** 2 = -1
+        1j** 3 = -1j
+        1j** 4 =  1
+        1j** 5 =  1j
+        ...
+
+    There is -1 inside !
+    The left part is entangled with the right part !!!!!
+
+This is complicated. -1 and j are not independent from each other. This cannot be solved trivially.
+
+We have two data, namely, number of clockwise and anticlock. Let see what we can do with them.
+
+    eq.0    (1j)**(clw + aclw) * [(-1)**(aclw) - (-1)**(clw)]
+
+    Since this eq.0 only depend on clw and aclw,
+    we should see what input value leads to what outcome
+
+    When NON commute, clw and aclw has different parity,
+    this can be checked by
+
+        aclw%2  clw%2      
+
+        Let substitute some real number
+        (-1)**(0) - (-1)^(1) ==  +1 - (-1) ==  2
+        (-1)**(1) - (-1)^(0) ==  -1 -  +1  == -2
+
+    Now we know either 2 or -2 can be the answer of this part
+    okay, it seems like we can predict the sign of outcome
+
+        aclw%2  clw%2   
+            0       1   =>  positive
+            1       0   =>  negative
+
+        Neither 0+1 or 1+0 can be negative to distinguish.
+        Why not try 0-1 or 1-0?
+
+            0 - 1 == -1
+
+        So (aclw%2 - clw%2) is the answer for the sign
+
+    we successfully connect the parity of clw and aclw to negative sign
+
+    And 1j exponential has a cycle of 4,
+    so the value of 1j part depend on
+
+            (clw + aclw)%4
+        or (clw%4 + aclw%4)
+        or (clw%4 + aclw%4)%4
+
+    But clw and aclw cannot have same parity,
+    otherwise they are comute and cancel out.
+    No even+even or odd+odd
+    Only even+odd => odd
+
+        clw + aclw can only be 1 and 3
+            1j** 1 =  1j
+            1j** 3 = -1j
+
+    So this is a math question of,
+    what number satisfy the following two equation
+
+        eq.1  aclw%2 - clw%2 == 1 or -1
+        eq.2  (clw%4 + aclw%4) == 1 or 3
+
+    Summing eq.1 and eq.2 will get this
+
+        eq.1.+eq.2  (aclw%2-clw%2) + (clw%4+aclw%4) == ?
+
+    Recall that {1,-1} from eq.1 is the indicator for { 2,-2 }
+            and {1, 3} from eq.2 is the indicator for {1j,-1j}
+
+    We can do carry out the calculation of the original eq.0 and eq.1 eq.2
+    to see there is indeed a isomorphism between these equations
+
+            [eq.1]  [eq.2]   [result]       [eq.0L]  [eq.0R]  [result]
+
+            SUM        /----> (2)            MULTIPLY  /----> (-2j)
+                      /                               /
+            (-1)-----(1)----> (0)            (2)-----(j)----> (2j)
+                 \  /                            \  /
+                  \/                              \/
+                  /\                              /\
+                 /  \                            /  \
+             (1)-----(3)----> (4)           (-2)----(-j)----> (2j)
+                      \                               \
+                       \----> (2)                      \----> (-2j)
+
+    So  {0,4} from eq.1.+eq.2 maps to ( 2j)
+        {  2} from eq.1.+eq.2 maps to (-2j)
+
+    In fact 4 == 0 (mod 4), so for a module4 system
+        {0} from eq.1.+eq.2 maps to ( 2j)
+        {2} from eq.1.+eq.2 maps to (-2j)
+
+    Hence we know that
+        coefficient ==  2j iff (eq.1.+eq.2)%4 == 0
+                    == -2j iff (eq.1.+eq.2)%4 == 2
+
+     _______________________________________________________________________________________________
+    |  clw  aclw   original equation   a=clw%2-aclw%2   b=(clw%4+aclw%4)%4   (a+b)%4  finalresult  |
+    |______________________________________________________________________________________________|
+    |   0   1       -2 *       1j          1                  1               2      (-0-2j)       |
+    |   0   3       -2 *  (-0-1j)          1                  3               0           2j       |
+    |   1   0        2 *       1j         -1                  1               0           2j       |
+    |   1   2        2 *  (-0-1j)         -1                  3               2          -2j       |
+    |   2   1       -2 *  (-0-1j)          1                  3               0           2j       |
+    |   2   3       -2 *       1j          1                  1               2      (-0-2j)       |
+    |   3   0        2 *  (-0-1j)         -1                  3               2          -2j       |
+    |   3   2        2 *       1j         -1                  1               0           2j       |
+    |______________________________________________________________________________________________|
+
+    ((aclw%2 - clw%2) + (clw%4 + aclw%4)%4)%4 =  {(2, -2j), (0, 2j)}
+
+    since -1 has order of cycle == 2, 
+    and 1j has order of cycle ==4, 
+    check until n=4 is enough for revealing all pattern.
+
+Now can now use this magic equation to answer the question. Instead of multiplying the long sequencence of 1j and -1j, we count the number of clockwise and anticlockwise, then we know everything.
+
+Since {2j, -2j} is the only set of result, we can factorize 2j and multiply it back at the end of the function.
+
+## Code
+
+``` py title="commutator_normal"
+def normal_commutator(AA, BB):
+
+    # Dictionary is needed
+    lookup = { 'XY': 0,
+               'YX': 1,
+               'XZ': 1,
+               'ZX': 0,
+               'YZ': 0,
+               'ZY': 1 }
+
+    lookup_xyz = { 'XY': 'Z',
+                   'YX': 'Z',
+                   'XZ': 'Y',
+                   'ZX': 'Y',
+                   'YZ': 'X',
+                   'ZY': 'X',
+                   'X': 'X',
+                   'Y': 'Y',
+                   'Z': 'Z' }
+
+    from collections import defaultdict
+    from operator import itemgetter
+    
+    new = defaultdict(float)
+
+    # Hash for faster checking
+    # Prepare both because we are to check for set relation
+    AA_Hashs = { hash((key,val)):(dict(key), val) for key,val in AA.items() }
+    BB_Hashs = { hash((key,val)):(dict(key), val) for key,val in AA.items() }
+
+    # Prepare a set for faster checking
+    common_terms = set(A_hashs.keys()).intersection(B_hashs.keys())
+
+    for a_hash, (a_key, a_cof) in AA.keys:  # This loop has many element
+        a_key = dict(a_key)
+        if a_hash in common_terms:
+            for b_hash, (b_key, b_cof) in BB.items():
+                if b_hash in common_terms:  #  Skip for this intersection pairs
+                    continue
+
+                # Extract common indices
+                intersect = set(a_key.keys()).intersection(b_key.keys())
+                if intersect:
+                    new_key = a_key.copy()
+                    new_key.update(b_key)
+                    clw = aclw = 0
+                    for i in intersect:
+                        a, b = a_key[i], b_key[i]
+                        if a != b:  # Skip XX YY ZZ
+                            anticlock = lookup[f"{a}{b}"]
+                            new_key[i] = lookup_xyz[f"{a}{b}"]
+                            if anticlock:
+                                aclw += 1  # Parity check
+                            else: clw += 1  # Parity check
+                        else: new_key[i] = None
+                    if clw%2 ^ aclw%2 :  # Parity check
+                        new_key = ((bit,xyz) for bit,xyz in new_key.items() if xyz)
+                        new_key = tuple(sorted(new_key, key=itemgetter(0)))
+                        new[new_key] += (
+                            -a_cof * b_cof 
+                            if ((aclw%2-clw%2) + (clw%4+aclw%4)%4)%4 else
+                            -a_cof * b_cof)
+
+        else: # Seperate code to eliminate unnecessary $if b_hash in common_terms$ checking
+            ######### Same code from above ###########
+            for b_key, b_cof in BB.values(): # Only values is enough. We don't need hash(key) below
+                intersect = set(a_key.keys()).intersection(b_key.keys())
+                if intersect:
+                    new_key = a_key.copy()
+                    new_key.update(b_key)
+                    clw = aclw = 0
+                    for i in intersect:
+                        a, b = a_key[i], b_key[i]
+                        if a != b:  # Skip XX YY ZZ
+                            anticlock = lookup[f"{a}{b}"]
+                            new_key[i] = lookup_xyz[f"{a}{b}"]
+                            if anticlock:
+                                aclw += 1  # Parity check
+                            else: clw += 1  # Parity check
+                        else: new_key[i] = None
+                    if clw%2 ^ aclw%2 :  # Parity check
+                        new_key = ((bit,xyz) for bit,xyz in new_key.items() if xyz)
+                        new_key = tuple(sorted(new_key, key=itemgetter(0)))
+                        new[new_key] += (
+                            -a_cof * b_cof 
+                            if ((aclw%2-clw%2) + (clw%4+aclw%4)%4)%4 else
+                            -a_cof * b_cof)
+    QO = QubitOperator  # Preload
+    new_QO = QO()
+    new_QO.terms = new
+    new_QO.compress()
+    return new_QO * 2j
+```
+
+# ================= THE END =================#
