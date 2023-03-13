@@ -998,7 +998,7 @@ And in AB - BA, we need the clockwiseness of AB is different that BA. The final 
     j**1 = +j
     j**3 = -j
     
-    And -j counterpart is just differed by the sign.
+    And -j counterpart is only differed by the sign.
 
 In conclusion, we only need to see whether it is 1 or 3.
 

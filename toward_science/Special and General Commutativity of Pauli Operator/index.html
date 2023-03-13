@@ -1989,7 +1989,7 @@ check until n=4 is enough for revealing all pattern.
 <p>Now can now use this magic equation to answer the question. Instead of multiplying the long sequencence of 1j and -1j, we count the number of clockwise and anticlockwise, then we know everything.</p>
 <p>Since {2j, -2j} is the only set of result, we can factorize 2j and multiply it back at the end of the function.</p>
 <h2 id="reduce-complexity">Reduce Complexity<a class="headerlink" href="#reduce-complexity" title="Permanent link">&para;</a></h2>
-<p>That is just some fansy technique to eliminate multiplication and replace it with addition and other primitive arithematics. But 1 year after i finished this script, I found that there is alternative simplier method.</p>
+<p>That is just some fansy technique to eliminate multiplication and replace it with addition and other primitive arithematics. But 1 year after I finished this script, I found that there is alternative simplier method.</p>
 <p>First notion is that mulitiplication of imaginary number is a C4 cyclic group. j is clockwise movement, -j is anticlockwise movement. Take the always positive module 4 of (-j)**n, it becomes clockwise.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>(-j)**n = j**((-n)%4)
 </code></pre></div></td></tr></table></div>
