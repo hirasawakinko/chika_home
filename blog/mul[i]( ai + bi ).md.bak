@@ -1,0 +1,130 @@
+What if we add first then multiply in matrix multiplication?
+
+
+Inner Product in linear algebra is defined as the following:
+
+    vector a = [a1]
+               [a2]
+               [a3]
+    
+    vector b = [b1]
+               [b2]
+               [b3]
+               
+    inner product(a, b)
+    = a1 b1 + a2 b2 + a3 b3
+    = sum[i]( ai * bi )
+    
+What if I swap the addition and multiplication? What will happen?
+
+       sum[i]( ai * bi )
+    -> mul[i]( ai + bi )
+    
+    => (a1 + b1) (a2 + b2) (a3 + b3)
+    
+Let's expend this equation.
+
+    (a1 + b1) (a2 + b2) (a3 + b3)
+    
+    = a1 (a2 + b2) (a3 + b3) 
+    + b1 (a2 + b2) (a3 + b3)
+    
+    = a1 a2 (a3 + b3) 
+    + a1 b2 (a3 + b3)
+    + b1 a2 (a3 + b3)
+    + b1 b2 (a3 + b3)
+
+    = a1 a2 a3
+    + a1 a2 b3
+    + a1 b2 a3
+    + a1 b2 b3
+    + b1 a2 a3
+    + b1 a2 b3
+    + b1 b2 a3
+    + b1 b2 b3
+    
+    
+This result is showing that every possibly route to go down the vector.
+
+    e.g. a1 a2 a3
+
+    [a1] [b1]
+      |
+    [a2] [b2]
+      |
+    [a3] [b3]
+    
+    e.g. a1 a2 b3
+
+    [a1] [b1]
+      |
+    [a2] [b2]
+        \
+    [a3] [b3]
+    
+But what means by multiplying all possibly route and then add them up?
+
+The only sense I can make out of it that this arithematic is probabily dealing with "probability".
+
+Say there are 3 electron orbits. The probability that you will find an electron in there can be expressed by system c. And there is another 3 electron orbits expressed by system d.
+
+    system c = [0.4]
+               [0.2]
+               [0.2]
+    
+    system d = [0.3]
+               [0.5]
+               [0.2]
+
+And magically system c and system d collides and they now sharing the same 3 orbits spacially. But still they are independent systems, just overlaping their orbits.
+
+    c      d
+    [0.4]  [0.3]  orbit1
+    [0.2]  [0.5]  orbit2
+    [0.2]  [0.2]  orbit3
+    
+Now 3 electrons filled all 3 orbits. 
+
+One electron is in orbit1 but it is contributed by system c, and the chance to find an electron in system c orbit1 is 0.4. 
+
+Another electron is in orbit2 but it is contributed by system d, and the chance to find an electron in system d orbit2 is 0.5. 
+    
+Another electron is in orbit3 but it is contributed by system c, and the chance to find an electron in system c orbit3 is 0.2. 
+
+So the overall probability is 0.4 * 0.5 * 0.2.
+
+As ultimately there are 3 electrons there. There is a lot of different combination of the source of contributions. So you add up all those probilities.
+
+    = a1 a2 a3
+    + a1 a2 b3
+    + a1 b2 a3
+    + a1 b2 b3
+    + b1 a2 a3
+    + b1 a2 b3
+    + b1 b2 a3
+    + b1 b2 b3
+    
+    = arbitrary real number
+    
+But then the result is a number. What is the meaning of this number? The total probility that I will find 3 electrons in such compond system? My real question is, what is this number means by a matrix operation?
+
+    # .x. to label the multiplication part
+    
+    [.system m.]  [.v1.]  = [.z1.] <= what is this shit?
+    [ system n ]  [.v2.]    [ z2 ]
+    [ system o ]  [.v3.]    [ z3 ]
+
+The meaning of vector v has changed and vector z now has totally different meaning.
+
+Can I say that z1 z2 z3 now means the probabilities that I will find 3 electrons in system m n o respectively? 
+    
+Than I multiply another set systems (matrix) on to it, to obtain a further compounded complex system? 
+
+    system m n o interacting with system v w x
+    
+    [.system m.]  [.v1.| w1 | x1 ]  = [.z1.| p1 | q1 ] 
+    [ system n ]  [.v2.| w2 | x2 ]    [ z2 | p2 | q2 ]
+    [ system o ]  [.v3.| w3 | x3 ]    [ z3 | p3 | q3 ]     
+    
+
+    

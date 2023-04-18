@@ -1,0 +1,170 @@
+# Better Encoding for Pauli Matrix
+
+Pauli Matrix is a set of 2x2 matrix as the followings:
+
+    I = [ 1, 0]
+        [ 0, 1]
+        
+    X = [ 0, 1]
+        [ 1, 0]
+        
+    Y = [ 0,-i]
+        [ i, 1]      
+        
+    Z = [ 1, 0]
+        [ 0,-1]     
+        
+We use they to do Quantum Computing. They all obey rules of Linear Algebra.
+        
+## 00 01 10 11
+        
+Pauli Matrix can be encoded as binary numbers for convenience. As you can see from the following table, `[I,X,Y,Z]` can be encoded as `[00,01,10,11]` which is `[0,1,2,3]`.
+
+    |-------|--------|--------|
+    | Pauli | Binary | Octal  |
+    |-------|--------|--------|
+    | I     | 00     | 0      | 
+    | X     | 01     | 1      |
+    | Y     | 10     | 2      |
+    | Z     | 11     | 3      |
+    |-------|--------|--------|
+    | MUL   | XOR    |        |
+    |-------|--------|--------|
+    
+If you multiply them together, we will find that this set of of operator is closesd while coefficient is ignored:
+
+    XY = Z
+    YX = Z
+    XZ = Y
+    ZX = Y
+    YZ = X
+    ZY = X
+    XX = I
+    YY = I
+    ZZ = I
+    
+Is there a faster way to do this kind of multiplication?
+
+Since XY = Z, Z can be composed from X and Y.
+
+Let's encode X as 01 and Y as 10, so Z is 11.
+
+What operation make (01, 10) -> 11 ?
+
+There is one, XOR (exclusive or).
+
+    XOR
+    1 1 -> 0
+    1 0 -> 1
+    0 1 -> 1
+    0 0 -> 0
+    
+So,
+    
+        X        
+    MUL Y        
+    ------       
+        Z        
+
+        01
+    XOR 10
+    ------
+        11
+        
+And you can test other pairs. XOR is consistent with multiplication of all Pauli Operators. Hence there exist the isomorphism bewteen the binary set {00, 01, 10, 11} with XOR and {I, X, Y, Z} with MUL.
+    
+With the notion of Cyclic property of Pauli Matrix (ignoring coefficient), namely:
+
+    ----> clockwise as +
+      X         01
+    Z   Y     11  10
+
+    |-------|----------|----------|--------|--------|
+    | Pauli | Binary   | Octal    | Clock  | Coef   |
+    |-------|----------|----------|--------|--------|
+    | XY=Z  | 01^10=11 | 1%3>2=1  | +      | +i     |
+    | YZ=X  | 10^11=01 | 2%3>3=1  | +      | +i     |
+    | ZX=Y  | 11^01=10 | 3%3>1=1  | +      | +i     |
+    |-------|----------|----------|--------|--------|
+    | XZ=Y  | 01^11=10 | 1%3>3=0  | -      | -i     |
+    | ZY=X  | 11^10=01 | 3%3>2=0  | -      | -i     |
+    | YX=Z  | 10^01=11 | 2%3>1=0  | -      | -i     |
+    |-------|----------|----------|--------|--------|
+
+There are some ways to calculate the coefficient.
+
+    Let it be Left and Right
+    
+    (L-1) % 3 == R
+    
+    L % 3 > R
+    
+Or check the multiplication matrix.
+
+         I  X  Y  Z=R
+    L=I  0  0  0  0
+      X  0  0  +  -
+      Y  0  -  0  +
+      Z  0  +  -  0
+
+You can see this encoding is very convient for multiplication of Pauli Matrix. 
+
+However, this is not the case if we have to consider multiplying a state vactor to it. In particular, when we multiply Pauli Matrix to say |0011> , we want to know which is bitflip and which is phaseflip.
+
+    |-------|--------|--------|---------|-----------|
+    | Pauli | Binary | Octal  | Bitflip | Phaseflip |
+    |-------|--------|--------|---------|-----------|
+    | I     | 00     | 0      | 0       | 0         | 
+    | X     | 01     | 1      | 1       | 0         |
+    | Y     | 10     | 2      | 1       | 1         |
+    | Z     | 11     | 3      | 0       | 1         |
+    |-------|--------|--------|---------|-----------|
+
+Now how can we obtain Bitflip-ness? By XOR? For example X=01 -> 0 XOR 1 -> 1.
+
+Then what about Phaseflip-ness? Z//2 -> 1.
+
+Still this is not the simpliest solution.
+
+## 00 01 11 10
+
+So why not change the encoding?
+
+The strangest thing is that, it doesn't matter whether Y as 10 or Y as 11, isomoriphism in multiplication still holds.  
+
+    |-------|--------|--------|---------|-----------|
+    | Pauli | Binary | Octal  | Bitflip | Phaseflip |
+    |-------|--------|--------|---------|-----------|
+    | I     | 00     | 0      | 0       | 0         | 
+    | X     | 01     | 1      | 1       | 0         |
+    | Y     | 11     | 3      | 1       | 1         |
+    | Z     | 10     | 2      | 0       | 1         |
+    |-------|--------|--------|---------|-----------|
+
+You can see that Bitflip-ness can be obtained from Pauli&01.
+
+And Phaseflip-ness can be obtained from Pauli&10.
+
+This is a lot easier. But what about multiplications?
+
+    ----> clockwise as +
+      X        01
+    Z   Y    10  11
+
+From the above triangle, you see that the new encoding is just reversed the clockwiseness.
+
+    |-------|----------|----------|--------|--------|
+    | Pauli | Binary   | Octal    | Clock  | Coef   |
+    |-------|----------|----------|--------|--------|
+    | XY=Z  | 01^11=10 | 1%3<2=1  | +      | +i     |
+    | YZ=X  | 11^10=01 | 3%3<1=1  | +      | +i     |
+    | ZX=Y  | 10^01=11 | 2%3<3=1  | +      | +i     |
+    |-------|----------|----------|--------|--------|
+    | XZ=Y  | 01^10=11 | 1%3<2=0  | -      | -i     |
+    | ZY=X  | 10^11=01 | 2%3<3=0  | -      | -i     |
+    | YX=Z  | 11^01=10 | 3%3<1=0  | -      | -i     |
+    |-------|----------|----------|--------|--------|
+    
+Previously we use `L%3>R`, now we just reverse the inequality and use `L%3<R` .
+
+So basically nothing has changed, zero harm, but now we have ever simplier instruction to check for whether the Pauli Matrix is Bitflip or Phaseflip. 
