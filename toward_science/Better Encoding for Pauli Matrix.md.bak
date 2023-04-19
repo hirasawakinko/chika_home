@@ -90,7 +90,7 @@ With the notion of Cyclic property of Pauli Matrix (ignoring coefficient), namel
 | ZY=X  | 11^10=01 | 3 2=1    | -      | -i     |
 | YX=Z  | 10^01=11 | 2 1=3    | -      | -i     |
 
-There are some ways to calculate the coefficient.
+There are one ways to calculate the coefficient.
 
     Let it be Left and Right
     
@@ -162,6 +162,6 @@ From the above triangle, you see that the new encoding is just reversed the cloc
 | YX=Z  | 11^01=10 | 2 1=2    | -      | -i     |
 
     
-Previously we use `L%3 == R-1`, now we just reverse the equality and use `L%3 != R-1` .
+Previously we use `L%3 == R-1` to determine coefficient, now we just reverse the equality and use `L%3 != R-1` .
 
 So basically nothing has changed, zero harm, but now we have ever simplier instruction to check for whether the Pauli Matrix is Bitflip or Phaseflip. 
