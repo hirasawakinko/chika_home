@@ -92,11 +92,15 @@ With the notion of Cyclic property of Pauli Matrix (ignoring coefficient), namel
 
 There is one way to calculate the coefficient.
 
+    Let it be Left and Right
+
+    L%3 == R-1
+
+    or
+
+    L-1 != R%3
+
 ```py
-Let it be Left and Right
-
-L%3 == R-1
-
 A = [[1,2],
      [2,3],
      [3,1],
@@ -107,7 +111,7 @@ A = [[1,2],
 for L, R in A:
     print(L%3 == R-1)
 ```
-```
+```title="output"
 True
 True
 True
@@ -195,7 +199,7 @@ A = [[1,3],
 for L, R in A:
     print(L%3 != R-1)
 ```
-```
+```title="output"
 True
 True
 True
