@@ -1,0 +1,211 @@
+# Translating Arbitrary Matrix into Pauli Tensor
+
+Years ago I said we can compose every matrix by Pauli Matrix. 
+
+    Pauli Matrix:
+    
+    I = [ 1, 0]
+        [ 0, 1]
+        
+    X = [ 0, 1]
+        [ 1, 0]
+        
+    Y = [ 0,-i]
+        [ i, 1]      
+        
+    Z = [ 1, 0]
+        [ 0,-1]   
+
+For instance M00 is the fundamental building block of 2x2 matrix:
+
+    M00 = [ 1, 0]
+          [ 0, 0]
+
+And this fundmental building block can be expressed by linear combination of Pauli Matrix:
+
+    I + Z
+    
+    = [ 1, 0] + [ 1, 0]
+      [ 0, 1]   [ 0,-1] 
+      
+    = [ 2, 0]
+      [ 0, 0]
+     
+    hence 0.5(I+Z) = M00
+    
+For matrix larger than 2x2, all we need to do is to extend the idea by tensor product. For example:
+
+    tensor(I, Z)
+    
+    = [ 1, 0] tensor Z
+      [ 0, 1]
+      
+    = [ Z, 0]
+      [ 0, Z]
+      
+    = [ 1, 0, 0, 0]
+      [ 0,-1, 0, 0]
+      [ 0, 0, 1, 0]
+      [ 0, 0, 0,-1]
+      
+This shows that basically every matrix can be rewriten in some Pauli Matrix. So let's do it.
+
+First this is the arbitrary matrix with arbitrary shape creted to fulfil the purpose.
+
+```py
+import numpy as np
+
+A = np.array([
+    [1,0,0,0,0],
+    [2,0,0,0,0],
+    [0,3,0,0,0],
+    [0,0,4,0,0],
+    [0,0,0,0,0],
+    [0,0,0,0,0],
+])
+```
+
+Then let's translate it to Openfermmion and see if two are equal. Don't blame me for slow code. This is just a prove of concept. Currently has no plan to optimize the performance.
+
+
+```py
+max_len = max(A.shape)
+max_power = np.ceil(np.log(max_len)).astype(int)
+paulis = []
+coefs = []
+
+lookup = [
+    "I+Z",
+    "X+iY",
+    "X-iY",
+    "I-Z",
+]
+lookup_bin = [
+((0.5,0), (0.5,2)),
+((0.5,1),(0.5j,3)),
+((0.5,1),(-0.5j,3)),
+((0.5,0),(-0.5,2)),
+]
+paulis_encoding = []
+
+OPENFERMION = True
+
+for l,r in np.vstack(A.nonzero()).T.copy():
+    coefs.append(A[l,r])
+    if OPENFERMION:
+        # openfermion is counting reversely
+        # here we reverse the binary string
+        if l:
+            _str = format(l, "b")
+            trailing_zeros = max_power-len(_str)
+            print("l", trailing_zeros, _str)
+            l = int(_str[::-1], base=2) << trailing_zeros
+        if r:
+            _str = format(r, "b")
+            trailing_zeros = max_power-len(_str)
+            print("r", trailing_zeros, _str)
+            r = int(_str[::-1], base=2) << trailing_zeros
+    # After this line, compatible with normal integer ordering
+    j = 0
+    current_pauli = []
+    _encoding = []
+    # Translate coordinate from fine to coarse to Pauli Tensor
+    while j < max_power:
+        lr = ((l&1) << 1) + (r&1)
+        current_pauli.append(lookup[lr])
+        _encoding.append(lr)
+        l >>= 1
+        r >>= 1
+        j += 1
+    paulis.append(current_pauli)
+    paulis_encoding.append(_encoding)
+paulis
+coefs
+paulis_encoding
+```
+
+```title="output"
+[['I+Z', 'I+Z'], ['I+Z', 'X-iY'], ['X-iY', 'X+iY'], ['I-Z', 'X-iY']]
+[1, 2, 3, 4]
+[[0, 0], [0, 2], [2, 1], [3, 2]]
+```
+
+```py
+from functools import reduce
+from itertools import product
+from collections import defaultdict as ddict
+from pprint import pprint
+from operator import itemgetter as itg
+
+qo = ddict(complex)
+total = 0
+# Agggregate duplicated terms
+for i, _code in enumerate(paulis_encoding):
+    master_coef = coefs[i]
+    for row in product(*itg(*_code)(lookup_bin)):
+        subcoef, subpauli = zip(*row)
+        subcoef = master_coef * np.prod(subcoef)
+        qo[subpauli] += subcoef
+        total += 1
+print(f"{total = }")
+for row in qo.items():
+    print(row)
+```
+
+```title="output"
+total = 16
+((0, 0), (0.25+0j))
+((0, 2), (0.25+0j))
+((2, 0), (0.25+0j))
+((2, 2), (0.25+0j))
+((0, 1), (1.5+0j))
+((0, 3), -1.5j)
+((2, 1), (-0.5+0j))
+((2, 3), 0.5j)
+((1, 1), (0.75+0j))
+((1, 3), 0.75j)
+((3, 1), -0.75j)
+((3, 3), (0.75+0j))
+```
+
+Here you can see that 4 nonzero component translated into length=16 linear combination of Pauli Tensor. After aggregate, it remains 12. I wonder if there is a general algorithm to do this without the need to aggregate terms.
+
+```py
+from openfermion import QubitOperator as QO
+from openfermion import get_sparse_operator
+# Translate result to Openfermion
+pauli_str = ("I", "X", "Z", "Y")
+
+QO1 = QO()
+for pauli, coef in qo.items():
+    QO1 += QO(
+        tuple((j, pauli_str[p]) for j, p in enumerate(pauli) if p),
+        coef
+    )
+QO1
+QO_openfermion_format = get_sparse_operator(QO1).todense().round(1)
+QO_openfermion_format
+```
+
+```title="output"
+(0.25+0j) [] +
+(0.75+0j) [X0 X1] +
+0.75j [X0 Y1] +
+-0.75j [Y0 X1] +
+(0.75+0j) [Y0 Y1] +
+(0.25+0j) [Z0] +
+(-0.5+0j) [Z0 X1] +
+0.5j [Z0 Y1] +
+(0.25+0j) [Z0 Z1] +
+(1.5+0j) [X1] +
+-1.5j [Y1] +
+(0.25+0j) [Z1]
+matrix([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
+        [2.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
+        [0.+0.j, 3.+0.j, 0.+0.j, 0.+0.j],
+        [0.+0.j, 0.+0.j, 4.+0.j, 0.+0.j]])
+```
+
+And you can see that the resulting matrix is exactly the original one. Hence, this prove that we can dump all kinds of matrix into quantum computer and do some computation.
+
+
