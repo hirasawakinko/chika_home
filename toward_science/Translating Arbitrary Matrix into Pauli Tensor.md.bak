@@ -206,6 +206,6 @@ matrix([[1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
         [0.+0.j, 0.+0.j, 4.+0.j, 0.+0.j]])
 ```
 
-And you can see that the resulting matrix is exactly the original one. Hence, this prove that we can dump all kinds of matrix into quantum computer and do some computation.
+And you can see that the resulting matrix is exactly the original one. Hence, this prove that we can dump all kinds of matrix into quantum computer and do some computations!
 
 
