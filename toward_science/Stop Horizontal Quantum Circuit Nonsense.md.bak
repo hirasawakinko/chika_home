@@ -1,5 +1,6 @@
 # Stop Horizontal Quantum Circuit Nonsense
 
+```
 |0> |0>  = |00>
  |   |
  H   |   = |00> + |10>
@@ -8,3 +9,4 @@
  |   |
  |   |
  v   v   = You Know What I Mean
+ ```
