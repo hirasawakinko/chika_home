@@ -1,0 +1,10 @@
+# Stop Horizontal Quantum Circuit Nonsense
+
+|0> |0>  = |00>
+ |   |
+ H   |   = |00> + |10>
+ |   |
+ .---X   = |00> + |11>
+ |   |
+ |   |
+ v   v   = You Know What I Mean
